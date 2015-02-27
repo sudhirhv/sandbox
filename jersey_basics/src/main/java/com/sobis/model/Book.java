@@ -14,13 +14,14 @@ public class Book {
 	private String title;
 	
 	
+
 	public Book(int bookId, String title, double price) {
 		super();
 		this.bookId = bookId;
 		this.title = title;
 		this.price = price;
 	}
-	
+
 	public int getBookId() {
 		return bookId;
 	}
@@ -44,5 +45,6 @@ public class Book {
 	public Book(){
 		
 	}
-	
+
+
 }
