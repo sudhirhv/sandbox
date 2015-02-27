@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping package="com.sobis.entity">
+   <class name="Book" table="BookTable">
+      
+      <id name="bookId" column="book_id">
+         <generator class="identity"/>
+      </id>
+      <property name="title" length = "100" />
+      <property name="price" column="book_price" />      
+   </class>
+</hibernate-mapping>

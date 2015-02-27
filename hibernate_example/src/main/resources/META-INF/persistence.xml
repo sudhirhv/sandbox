@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence">
+	<persistence-unit name="sobis_pu" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.sobis.entity.Project</class>
+		<class>com.sobis.entity.Address</class>
+		<class>com.sobis.entity.Employee</class>
+		<class>com.sobis.entity.EmployeeProject</class>
+		<class>com.sobis.entity.Skill</class>
+		
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" /> 
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/sobis_jpa?createDatabaseIfNotExist=true" />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.password" value="" />
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.show_sql" value="true" />
+		</properties>
+	</persistence-unit>
+</persistence>
