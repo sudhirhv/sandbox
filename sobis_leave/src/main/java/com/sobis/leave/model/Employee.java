@@ -3,13 +3,8 @@
  */
 package com.sobis.leave.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -18,14 +13,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="employee")
-public class Employee implements Serializable {
+public class Employee extends Base {
 
 	private static final long serialVersionUID = 6404049515635616400L;	
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)	
-	@Column(name="employeeId")
-	private int id;
 	
 	@Column(name="employeeName")
 	private String employeeName;
@@ -59,14 +50,6 @@ public class Employee implements Serializable {
 
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getEmployeeName() {
 		return employeeName;
 	}
@@ -84,38 +67,9 @@ public class Employee implements Serializable {
 	}
 
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime * result + ((employeeName == null) ? 0 : employeeName.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Employee other = (Employee) obj;
-		if (id != other.id)
-			return false;
-		if (employeeName == null) {
-			if (other.employeeName != null)
-				return false;
-		} else if (!employeeName.equals(other.employeeName))
-			return false;
-		return true;
-	}
-
-	public Employee(int id, String employeeName, String email, String approver,
+	public Employee(String employeeName, String email, String approver,
 			String approverEmail) {
-		super();
-		this.id = id;
+		super();		
 		this.employeeName = employeeName;
 		this.email = email;
 		this.approver = approver;
