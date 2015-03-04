@@ -24,7 +24,7 @@ public class EmployeeDaoJpaImpl implements EmployeeDao {
 	}
 
 	@Override
-	public Employee getEmployee(int id) {
+	public Employee getEmployee(String id) {
 		return entityManager.find(Employee.class, id);		
 	}
 
@@ -35,7 +35,7 @@ public class EmployeeDaoJpaImpl implements EmployeeDao {
 	}
 
 	@Override
-	public EmployeeLeaveMaster getEmployeeLeaveMaster(int employeeId, int leaveYear) {
+	public EmployeeLeaveMaster getEmployeeLeaveMaster(String employeeId, int leaveYear) {
 		String jql = "select elm from EmployeeLeaveMaster elm where fk_employee= :employee and leaveYear = :leaveYear";
 		Query query = entityManager.createQuery(jql);
 		query.setParameter("employee", employeeId);

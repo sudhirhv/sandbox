@@ -30,4 +30,14 @@ public class EmployeeLeaveMasterJpaImpl implements EmployeeLeaveMasterDao {
 		return query.getResultList();
 	}
 
+	@Override
+	public int getAvailableLeaveBalance(String employeeId, int leaveYear) {
+		String jql = "select elm from EmployeeLeaveMaster elm where fk_employee= :employee and leaveYear = :leaveYear";
+		Query query = entityManager.createQuery(jql);
+		query.setParameter("employee", employeeId);
+		query.setParameter("leaveYear", leaveYear);
+		EmployeeLeaveMaster employeeLeaveMaster = (EmployeeLeaveMaster) query.getResultList();
+		return employeeLeaveMaster.getAvailableLeaveBalance();
+	}
+
 }

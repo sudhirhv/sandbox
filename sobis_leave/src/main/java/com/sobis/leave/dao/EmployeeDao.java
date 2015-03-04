@@ -9,9 +9,9 @@ public interface EmployeeDao {
 
 	public void addEmployee(Employee employee);
 	
-	public Employee getEmployee(int id);
+	public Employee getEmployee(String employeeId);
 	
 	public List<Employee> getAllEmployees();	
 	
-	public EmployeeLeaveMaster getEmployeeLeaveMaster(int employeeId, int leaveYear);
+	public EmployeeLeaveMaster getEmployeeLeaveMaster(String employeeId, int leaveYear);
 }
