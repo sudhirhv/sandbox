@@ -1,26 +1,18 @@
 package com.sobis.leave.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="leaveRequests")
-public class LeaveRequest implements Serializable {
+public class LeaveRequest extends Base {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)	
-	@Column(name="leaveRequestId")
-	private int leaveRequestId;
-	
 	@ManyToOne()
 	@JoinColumn(name="fk_requestorName")
 	private Employee requestorName;
@@ -61,13 +53,12 @@ public class LeaveRequest implements Serializable {
 		
 	}
 
-	public LeaveRequest(int leaveRequestId, Employee requestorName,
+	public LeaveRequest(Employee requestorName,
 			Employee approverName, Date leaveStartDate, Date leaveEndDate,
 			String typeOfLeave, String leaveDurationType, String remarks,
 			int availableLeaveBalance, int leaveDuration,
 			LeaveStatus leaveStatus, String log) {
-		super();
-		this.leaveRequestId = leaveRequestId;
+		super();	
 		this.requestorName = requestorName;
 		this.approverName = approverName;
 		this.leaveStartDate = leaveStartDate;
@@ -79,14 +70,6 @@ public class LeaveRequest implements Serializable {
 		this.leaveDuration = leaveDuration;
 		this.leaveStatus = leaveStatus;
 		this.log = log;
-	}
-
-	public int getLeaveRequestId() {
-		return leaveRequestId;
-	}
-
-	public void setLeaveRequestId(int leaveRequestId) {
-		this.leaveRequestId = leaveRequestId;
 	}
 
 	public Employee getRequestorName() {

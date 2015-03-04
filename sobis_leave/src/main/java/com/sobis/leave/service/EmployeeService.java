@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sobis.leave.model.Employee;
 import com.sobis.leave.model.EmployeeLeaveMaster;
+import com.sobis.leave.model.Holiday;
 
 public interface EmployeeService {
 	
@@ -11,10 +12,9 @@ public interface EmployeeService {
 	
 	public List<Employee> getAllEmployees();
 	
-	public int getAvailableLeaveBalance(int employeeId, int leaveYear);
-	
-	public Employee getApprover(int employeeId);
+	public Employee getApprover(String employeeId);
 	
 	public EmployeeLeaveMaster getEmployeeLeaveMaster(Employee employee, int leaveYear);
-	
+
+	public void addHoliday(Holiday holiday);
 }

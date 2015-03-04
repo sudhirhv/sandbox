@@ -3,8 +3,16 @@
  */
 package com.sobis.leave.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,30 +28,29 @@ public class Employee extends Base {
 	
 	@Column(name="employeeName")
 	private String employeeName;
+	
+	@Column(name="employeeId")
+	private String employeeId;
 		
 	@Column(name="email")
 	private String email;
 	
-	@Column(name="approver")
-	private String approver;
+	@ManyToOne(cascade={CascadeType.ALL}) // self join
+    @JoinColumn(name="managerId")
+    private Employee manager;
 	
-	@Column(name="approverEmail")
-	private String approverEmail;
+	@OneToMany(mappedBy="manager", fetch=FetchType.LAZY)
+	private Set<Employee> reportees = new HashSet<Employee>();
+			
 	
-	public String getApprover() {
-		return approver;
-	}
-
-	public void setApprover(String approver) {
-		this.approver = approver;
-	}
-
-	public String getApproverEmail() {
-		return approverEmail;
-	}
-
-	public void setApproverEmail(String approverEmail) {
-		this.approverEmail = approverEmail;
+	public Employee(String employeeName, String employeeId, String email,
+			Employee manager, Set<Employee> reportees) {
+		super();
+		this.employeeName = employeeName;
+		this.employeeId = employeeId;
+		this.email = email;
+		this.manager = manager;
+		this.reportees = reportees;		
 	}
 
 	public Employee() {
@@ -64,16 +71,6 @@ public class Employee extends Base {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	
-	public Employee(String employeeName, String email, String approver,
-			String approverEmail) {
-		super();		
-		this.employeeName = employeeName;
-		this.email = email;
-		this.approver = approver;
-		this.approverEmail = approverEmail;
 	}
 
 	

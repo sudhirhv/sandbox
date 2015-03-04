@@ -10,4 +10,6 @@ public interface EmployeeLeaveMasterDao {
 	
 	public List<EmployeeLeaveMaster> getAllEmployeeLeaveMasters();		
 	
+	public int getAvailableLeaveBalance(String employeeId, int leaveYear);
+	
 }

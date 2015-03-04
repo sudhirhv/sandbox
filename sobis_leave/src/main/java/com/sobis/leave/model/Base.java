@@ -4,16 +4,31 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
-public class Base implements Serializable  {
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="base")
+@Inheritance(strategy=InheritanceType.JOINED)
+
+public abstract class Base implements Serializable  {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6942134775866295552L;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)	
-	@Column(name="id")
-	private int id;
+	@GeneratedValue(generator="system-uuid")
+	@GenericGenerator(name="system-uuid",strategy = "uuid")	
+	@Column(length=32, nullable=false)	
+	private String id;
 	
 	@Column(name="createdOn")
 	private Date createdOn;
@@ -22,13 +37,13 @@ public class Base implements Serializable  {
 	private Date modifiedOn;
 	
 	@Column(name="isDeleted")
-	private int isDeleted;
+	private boolean isDeleted;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -48,14 +63,40 @@ public class Base implements Serializable  {
 		this.modifiedOn = modifiedOn;
 	}
 
-	public int getIsDeleted() {
+	public boolean getIsDeleted() {
 		return isDeleted;
 	}
 
-	public void setIsDeleted(int isDeleted) {
+	public void setIsDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Base other = (Base) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}	
+
+	
 	
 	
 }

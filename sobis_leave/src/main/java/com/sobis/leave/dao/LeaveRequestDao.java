@@ -9,16 +9,16 @@ public interface LeaveRequestDao {
 
 	public void createLeaveRequest(LeaveRequest leaveRequest);
 	
-	public LeaveRequest getLeaveRequestById(int leaveRequestId);
+	public LeaveRequest getLeaveRequestById(String leaveRequestId);
 	
-	public void processLeaveRequestStatus(int leaveRequestId, int leaveStatusId);
+	public void processLeaveRequestStatus(String leaveRequestId, String leaveStatusId);
 	
-	public LeaveRequest getLeaveRequestForEmployee(int employeeId);
+	public LeaveRequest getLeaveRequestForEmployee(String employeeId);
 	
 	public List<LeaveRequest> getAllLeaveRequests();
 		
 	public int calculateLeaveDuration(Date startDate, Date endDate);
 	
-	public void sendMailNotification(int leaveRequestId, int employeeId);
+	public void sendMailNotification(String leaveRequestId, String employeeId);
 	
 }

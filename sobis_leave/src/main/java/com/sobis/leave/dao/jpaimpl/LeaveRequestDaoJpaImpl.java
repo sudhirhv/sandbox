@@ -27,13 +27,13 @@ public class LeaveRequestDaoJpaImpl implements LeaveRequestDao {
 	}
 
 	@Override
-	public LeaveRequest getLeaveRequestById(int leaveRequestId) {
+	public LeaveRequest getLeaveRequestById(String leaveRequestId) {
 		LeaveRequest leaveRequest = entityManager.find(LeaveRequest.class, leaveRequestId);
 		return null;
 	}	
 
 	@Override
-	public void processLeaveRequestStatus(int leaveRequestId, int leaveStatusId) {
+	public void processLeaveRequestStatus(String leaveRequestId, String leaveStatusId) {
 		LeaveStatus leaveStatus = entityManager.find(LeaveStatus.class, leaveStatusId); //TODO	
 		LeaveRequest leaveRequest = this.getLeaveRequestById(leaveRequestId);
 		leaveRequest.setLeaveStatus(leaveStatus);
@@ -41,7 +41,7 @@ public class LeaveRequestDaoJpaImpl implements LeaveRequestDao {
 	}
 	
 	@Override
-	public LeaveRequest getLeaveRequestForEmployee(int employeeId) {
+	public LeaveRequest getLeaveRequestForEmployee(String employeeId) {
 		Query query = entityManager.createQuery("select lr from LeaveRequest lr where requestorId= :requestor", LeaveRequest.class);
 		query.setParameter("requestor", employeeId);
 		return (LeaveRequest) query.getResultList();
@@ -59,7 +59,7 @@ public class LeaveRequestDaoJpaImpl implements LeaveRequestDao {
 	}
 
 	@Override
-	public void sendMailNotification(int leaveRequestId, int employeeId) {		
+	public void sendMailNotification(String leaveRequestId, String employeeId) {		
 		System.out.println("mail successfully sent to "+employeeId);
 
 	}

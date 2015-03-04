@@ -15,7 +15,7 @@ public interface LeaveRequestService {
 	
 	public List<LeaveRequest> getAllLeaveRequests();
 	
-	public LeaveRequest getLeaveRequestById(int leaveRequestId);
+	public LeaveRequest getLeaveRequestById(String leaveRequestId);
 	
 	public int calculateLeaveDuration(Date startDate, Date endDate);
 	

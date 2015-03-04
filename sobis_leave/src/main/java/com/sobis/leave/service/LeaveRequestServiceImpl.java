@@ -43,7 +43,7 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void processLeaveRequest(LeaveRequest leaveRequest) {
-		leaveRequestDao.processLeaveRequestStatus(leaveRequest.getLeaveRequestId(), leaveRequest.getLeaveStatus().getLeaveStatusId());
+		leaveRequestDao.processLeaveRequestStatus(leaveRequest.getId(), leaveRequest.getLeaveStatus().getId());
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
 
 	@Override
 	@Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
-	public LeaveRequest getLeaveRequestById(int leaveRequestId) {
+	public LeaveRequest getLeaveRequestById(String leaveRequestId) {
 		return leaveRequestDao.getLeaveRequestById(leaveRequestId);
 	}
 
