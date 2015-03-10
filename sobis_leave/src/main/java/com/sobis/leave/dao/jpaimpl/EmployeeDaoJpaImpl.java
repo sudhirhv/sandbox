@@ -40,7 +40,7 @@ public class EmployeeDaoJpaImpl implements EmployeeDao {
 		Query query = entityManager.createQuery(jql);
 		query.setParameter("employee", employeeId);
 		query.setParameter("leaveYear", leaveYear);
-		return (EmployeeLeaveMaster) query.getResultList();
+		return (EmployeeLeaveMaster) query.getResultList().get(0);
 	}
 
 }

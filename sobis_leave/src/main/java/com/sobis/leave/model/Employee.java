@@ -53,6 +53,14 @@ public class Employee extends Base {
 		this.reportees = reportees;		
 	}
 
+	public Employee getManager() {
+		return manager;
+	}
+
+	public void setManager(Employee manager) {
+		this.manager = manager;
+	}
+
 	public Employee() {
 
 	}

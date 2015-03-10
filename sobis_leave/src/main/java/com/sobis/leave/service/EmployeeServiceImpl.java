@@ -66,8 +66,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
 	public Employee getApprover(String employeeId) {
-		return employeeDao.getEmployee(employeeId);
+		return employeeDao.getEmployee(employeeId).getManager();
 		
+	}
+
+	@Override
+	public Employee getEmployeeById(String employeeId) {
+		return employeeDao.getEmployee(employeeId);
 	}
 
 	

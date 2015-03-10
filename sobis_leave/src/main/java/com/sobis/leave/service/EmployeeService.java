@@ -10,6 +10,8 @@ public interface EmployeeService {
 	
 	public void addEmployee(Employee employee);
 	
+	public Employee getEmployeeById(String employeeId);
+	
 	public List<Employee> getAllEmployees();
 	
 	public Employee getApprover(String employeeId);
