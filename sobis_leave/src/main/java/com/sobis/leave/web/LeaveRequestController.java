@@ -1,23 +1,20 @@
 package com.sobis.leave.web;
 
-import java.beans.PropertyEditorSupport;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.ClassEditor;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sobis.leave.model.Employee;
@@ -94,6 +91,9 @@ public class LeaveRequestController {
 	@InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
 		binder.registerCustomEditor(Employee.class, "requestorName", new LeaveRequestEditor(this.employeeService));
+		binder.registerCustomEditor(Employee.class, "approverName", new LeaveRequestEditor(this.employeeService));
+		binder.registerCustomEditor(Date.class, new CustomDateEditor( new SimpleDateFormat("dd/MM/yyyy"), false));
+		
     }
 
 	@RequestMapping(value="/newLeaveRequest.view")
@@ -110,6 +110,10 @@ public class LeaveRequestController {
 		
 		System.out.println(leaveRequest.getTypeOfLeave());
 		System.out.println(leaveRequest.getRequestorName().getEmployeeName());		
+		System.out.println(leaveRequest.getApproverName().getEmployeeName());
+		System.out.println(leaveRequest.getLeaveStartDate());
+		System.out.println(leaveRequest.getLeaveEndDate());
+		
 		
 		return jsonResponse;
 	}

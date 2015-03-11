@@ -8,6 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name="leaveRequests")
@@ -21,10 +28,14 @@ public class LeaveRequest extends Base {
 	@JoinColumn(name="fk_approverName")
 	private Employee approverName;
 	
+	
 	@Column(name="leaveStartDate")
+	@DateTimeFormat(iso=ISO.NONE)
 	private Date leaveStartDate;
 	
+		
 	@Column(name="leaveEndDate")
+	@DateTimeFormat(iso=ISO.NONE)
 	private Date leaveEndDate;
 	
 	@Column(name="typeOfLeave")

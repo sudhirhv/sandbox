@@ -16,6 +16,7 @@ public class LeaveRequestEditor extends PropertyEditorSupport {
 	public void setAsText(String employeeId) throws IllegalArgumentException {
 		System.out.println("in editor converting "+employeeId);
 		Employee employee = employeeService.getEmployeeById(employeeId);
+		System.out.println("employee "+employee.getEmail());
 		setValue(employee);
 	}
 }

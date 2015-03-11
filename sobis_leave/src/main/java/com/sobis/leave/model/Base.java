@@ -10,8 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name="base")
@@ -30,10 +36,13 @@ public abstract class Base implements Serializable  {
 	@Column(length=32, nullable=false)	
 	private String id;
 	
-	@Column(name="createdOn")
+	@Column(name="createdOn")		
+	@DateTimeFormat(iso=ISO.NONE)
 	private Date createdOn;
 	
-	@Column(name="modifiedOn")
+	@Column(name="modifiedOn")	
+	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+	@DateTimeFormat(iso=ISO.NONE)
 	private Date modifiedOn;
 	
 	@Column(name="isDeleted")
