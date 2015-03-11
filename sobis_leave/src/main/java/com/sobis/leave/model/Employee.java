@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * @author Sudhir
  *
@@ -36,10 +39,10 @@ public class Employee extends Base {
 	private String email;
 	
 	@ManyToOne(cascade={CascadeType.ALL}) // self join
-    @JoinColumn(name="managerId")
+    @JoinColumn(name="managerId")	
     private Employee manager;
 	
-	@OneToMany(mappedBy="manager", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="manager", fetch=FetchType.LAZY)	
 	private Set<Employee> reportees = new HashSet<Employee>();
 			
 	
