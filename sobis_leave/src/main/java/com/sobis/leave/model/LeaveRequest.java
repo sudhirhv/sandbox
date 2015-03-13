@@ -29,14 +29,14 @@ public class LeaveRequest extends Base {
 	private Employee approverName;
 	
 	
-	@Column(name="leaveStartDate")
-	@DateTimeFormat(iso=ISO.NONE)
-	private Date leaveStartDate;
+	@Column(name="leaveStartDate")	
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	private DateTime leaveStartDate;
 	
 		
-	@Column(name="leaveEndDate")
-	@DateTimeFormat(iso=ISO.NONE)
-	private Date leaveEndDate;
+	@Column(name="leaveEndDate")	
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	private DateTime leaveEndDate;
 	
 	@Column(name="typeOfLeave")
 	private String typeOfLeave; //TODO - this should be a master
@@ -65,7 +65,7 @@ public class LeaveRequest extends Base {
 	}
 
 	public LeaveRequest(Employee requestorName,
-			Employee approverName, Date leaveStartDate, Date leaveEndDate,
+			Employee approverName, DateTime leaveStartDate, DateTime leaveEndDate,
 			String typeOfLeave, String leaveDurationType, String remarks,
 			int availableLeaveBalance, int leaveDuration,
 			LeaveStatus leaveStatus, String log) {
@@ -99,19 +99,19 @@ public class LeaveRequest extends Base {
 		this.approverName = approverName;
 	}
 
-	public Date getLeaveStartDate() {
+	public DateTime getLeaveStartDate() {
 		return leaveStartDate;
 	}
-
-	public void setLeaveStartDate(Date leaveStartDate) {
+	@DateTimeFormat(iso=ISO.DATE_TIME)
+	public void setLeaveStartDate(DateTime leaveStartDate) {
 		this.leaveStartDate = leaveStartDate;
 	}
 
-	public Date getLeaveEndDate() {
+	public DateTime getLeaveEndDate() {
 		return leaveEndDate;
 	}
-
-	public void setLeaveEndDate(Date leaveEndDate) {
+	@DateTimeFormat(iso=ISO.DATE_TIME)
+	public void setLeaveEndDate(DateTime leaveEndDate) {
 		this.leaveEndDate = leaveEndDate;
 	}
 

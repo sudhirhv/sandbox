@@ -16,6 +16,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -37,13 +38,10 @@ public abstract class Base implements Serializable  {
 	private String id;
 	
 	@Column(name="createdOn")		
-	@DateTimeFormat(iso=ISO.NONE)
-	private Date createdOn;
+	private DateTime createdOn;
 	
-	@Column(name="modifiedOn")	
-	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-	@DateTimeFormat(iso=ISO.NONE)
-	private Date modifiedOn;
+	@Column(name="modifiedOn")
+	private DateTime modifiedOn;
 	
 	@Column(name="isDeleted")
 	private boolean isDeleted;
@@ -56,21 +54,31 @@ public abstract class Base implements Serializable  {
 		this.id = id;
 	}
 
-	public Date getCreatedOn() {
+	public DateTime getCreatedOn() {
 		return createdOn;
 	}
-
-	public void setCreatedOn(Date createdOn) {
+	@DateTimeFormat(iso=ISO.DATE_TIME)
+	public void setCreatedOn(DateTime createdOn) {
 		this.createdOn = createdOn;
 	}
 
-	public Date getModifiedOn() {
+	public DateTime getModifiedOn() {
 		return modifiedOn;
 	}
-
-	public void setModifiedOn(Date modifiedOn) {
+	
+	public void setModifiedOn(DateTime modifiedOn) {
 		this.modifiedOn = modifiedOn;
 	}
+	
+	/*public DateTime getModifiedOn() {
+		return modifiedOn!=null ? modifiedOn.toDateTime(DateTimeZone.UTC) : null;
+		//return (modifiedOn 	!= null)? new DateTime(modifiedOn.getTime()) : null;
+	}
+	
+	public void setModifiedOn(DateTime dateTime) 	{
+		this.modifiedOn = dateTime.toDateTime();
+		//this.modifiedOn = dateTime.toDate();
+	}*/
 
 	public boolean getIsDeleted() {
 		return isDeleted;

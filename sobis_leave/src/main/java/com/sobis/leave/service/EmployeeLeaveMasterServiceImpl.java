@@ -29,7 +29,7 @@ public class EmployeeLeaveMasterServiceImpl implements EmployeeLeaveMasterServic
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void addEmployeeLeaveMasterService(EmployeeLeaveMaster employeeLeaveMaster) {		
-		Date createdDate = new Date();
+		DateTime createdDate = new DateTime();
 		employeeLeaveMaster.setCreatedOn(createdDate);
 		employeeLeaveMaster.setModifiedOn(createdDate);
 		employeeLeaveMasterDao.addEmployeeLeaveMaster(employeeLeaveMaster);	

@@ -113,7 +113,7 @@ public class LeaveRequestController {
 		System.out.println(leaveRequest.getApproverName().getEmployeeName());
 		System.out.println(leaveRequest.getLeaveStartDate());
 		System.out.println(leaveRequest.getLeaveEndDate());
-		
+		leaveRequestService.createLeaveRequest(leaveRequest);
 		
 		return jsonResponse;
 	}

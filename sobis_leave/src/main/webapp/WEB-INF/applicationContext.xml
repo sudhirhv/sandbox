@@ -17,7 +17,7 @@
 	<tx:annotation-driven />
 	<mvc:annotation-driven /> <!-- This is required to throw out json output -->
 	
-	<!-- <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" /> 
+	<!-- <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
     <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" /> 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
@@ -37,6 +37,12 @@
             <props>
                 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+  				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="jadira.usertype.autoRegisterUserTypes">${jadira.usertype.autoRegisterUserTypes}</prop>
+				<!-- defaults to storing UTC dates in DB otherwise -->
+				<prop key="jadira.usertype.databaseZone">${jadira.usertype.databaseZone}</prop>
+				<prop key="jadira.usertype.javaZone">${jadira.usertype.javaZone}</prop>
             </props>
         </property>
     </bean>

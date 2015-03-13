@@ -34,7 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void addEmployee(Employee employee) {
-		Date createdDate = new Date();
+		DateTime createdDate = new DateTime();
 		employee.setCreatedOn(createdDate);
 		employee.setModifiedOn(createdDate);
 		employeeDao.addEmployee(employee);		
@@ -43,7 +43,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void addHoliday(Holiday holiday) {
-		Date createdDate = new Date();
+		DateTime createdDate = new DateTime();
 		holiday.setCreatedOn(createdDate);		
 		holiday.setModifiedOn(createdDate);
 		holidayDao.addHoliday(holiday);		
