@@ -20,6 +20,9 @@ import org.joda.time.DateTimeZone;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="base")
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -53,7 +56,7 @@ public abstract class Base implements Serializable  {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	
 	public DateTime getCreatedOn() {
 		return createdOn;
 	}

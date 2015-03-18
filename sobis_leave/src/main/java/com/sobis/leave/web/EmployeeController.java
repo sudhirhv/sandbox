@@ -49,7 +49,7 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value="/employeeLeaveDetails.view")
-	public @ResponseBody Map<String, Object> getEmployees(@RequestParam("employeeId") String employeeId, @RequestParam("leaveYear") int leaveYear) {
+	public @ResponseBody Map<String, Object> getEmployeeLeaveDetails(@RequestParam("employeeId") String employeeId, @RequestParam("leaveYear") int leaveYear) {
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();
 		Map<String, Object> employeeLeaveDetails = new HashMap<String, Object>();
 		
@@ -59,6 +59,14 @@ public class EmployeeController {
 		
 		jsonResponse.put("success", true);
 		jsonResponse.put("rows", employeeLeaveDetails);
+		return jsonResponse;
+	}
+	
+	@RequestMapping(value="/allEmployees.view")
+	public @ResponseBody Map<String, Object> getEmployees() {
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
+		jsonResponse.put("success", true);
+		jsonResponse.put("rows", employeeService.getAllEmployees());
 		return jsonResponse;
 	}
 }

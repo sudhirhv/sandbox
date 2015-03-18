@@ -16,7 +16,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.sobis.leave.model.serializer.EmployeeSerializer;
 
 /**
  * @author Sudhir
@@ -24,6 +30,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
  */
 @Entity
 @Table(name="employee")
+//@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@id")
+//@JsonSerialize(using = EmployeeSerializer.class)
 public class Employee extends Base {
 
 	private static final long serialVersionUID = 6404049515635616400L;	
@@ -40,6 +48,7 @@ public class Employee extends Base {
 	
 	@ManyToOne(cascade={CascadeType.ALL}) // self join
     @JoinColumn(name="managerId")	
+	
     private Employee manager;
 	
 	@OneToMany(mappedBy="manager", fetch=FetchType.LAZY)	
@@ -55,7 +64,8 @@ public class Employee extends Base {
 		this.manager = manager;
 		this.reportees = reportees;		
 	}
-
+	
+	@JsonSerialize(using = EmployeeSerializer.class)
 	public Employee getManager() {
 		return manager;
 	}
