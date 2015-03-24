@@ -10,17 +10,44 @@
     will need to resolve manually.
 */
 
+// DO NOT DELETE - this directive is required for Sencha Cmd packages to work.
+//@require @packageOverrides
+
+//<debug>
+Ext.Loader.setPath({
+    'Ext':      'touch/src',
+    'Ext.ux':   'touch/src/ux'
+});
+//</debug>
+
 Ext.application({
     name: 'sobisleave',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'sobisleave.config.Constants'
     ],
 
     views: [
         'Main'
     ],
 
+    models: 		[
+    	'Employee',
+    	'Holiday',
+    	'LeaveRequest'
+    ],
+    
+    stores:			[
+    	'Employee',
+    	'Holiday',
+    	'LeaveRequest'
+    ],
+    
+    controllers:		[
+    	'employee.Employee'
+    ],
+    
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',
@@ -39,23 +66,18 @@ Ext.application({
         '1496x2048': 'resources/startup/1496x2048.png'
     },
 
+    viewport: {
+		layout: {
+			type: 'card'
+		}
+	},
+
+    
     launch: function() {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('sobisleave.view.Main'));
-    },
-
-    onUpdated: function() {
-        Ext.Msg.confirm(
-            "Application Update",
-            "This application has just successfully been updated to the latest version. Reload now?",
-            function(buttonId) {
-                if (buttonId === 'yes') {
-                    window.location.reload();
-                }
-            }
-        );
-    }
+        Ext.Viewport.add(Ext.create('sobisleave.view.viewport.ApplicationContainer'));
+    }  
 });
