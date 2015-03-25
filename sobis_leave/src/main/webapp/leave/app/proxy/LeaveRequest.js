@@ -4,7 +4,7 @@ Ext.define('sobisleave.proxy.LeaveRequest', {
 	alias: 'proxy.LeaveRequest',
 	
 	config: {
-		url: sobisleave.config.constants.BASEURL+sobisleave.config.constants.CONTROLLER.LEAVE_REQUEST_CONTROLLER,
+		url: 'http://localhost:8080/sobis_leave/getAllLeaveRequests.view',
 		reader: {
 			type: 'json',
 			totalProperty: sobisleave.config.constants.JSON_READER.TOTAL_PROPERTY,

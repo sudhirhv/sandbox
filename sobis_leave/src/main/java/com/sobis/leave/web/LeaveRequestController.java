@@ -118,4 +118,13 @@ public class LeaveRequestController {
 		return jsonResponse;
 	}
 	
+	@RequestMapping(value="/getAllLeaveRequests.view")
+	public @ResponseBody Map<String, Object> getAllRequests() {
+		
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
+		jsonResponse.put("success", true);
+		jsonResponse.put("rows", leaveRequestService.getAllLeaveRequests());
+		return jsonResponse;		
+	}
+	
 }

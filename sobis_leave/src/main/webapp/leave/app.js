@@ -25,11 +25,12 @@ Ext.application({
 
     requires: [
         'Ext.MessageBox',
-        'sobisleave.config.Constants'
+        'sobisleave.config.Constants',
+        'sobisleave.config.Functions'
     ],
 
     views: [
-        'Main'
+        
     ],
 
     models: 		[
@@ -45,7 +46,8 @@ Ext.application({
     ],
     
     controllers:		[
-    	'employee.Employee'
+    	'employee.Employee',
+    	'leaverequest.LeaveRequest'
     ],
     
     icon: {
@@ -76,8 +78,9 @@ Ext.application({
     launch: function() {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
-
+		var applicationViewPort = Ext.create('sobisleave.view.viewport.ApplicationViewPort');
+		applicationViewPort.add(Ext.create('sobisleave.view.viewport.ApplicationContainer'))
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('sobisleave.view.viewport.ApplicationContainer'));
+        Ext.Viewport.add(applicationViewPort);
     }  
 });

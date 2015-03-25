@@ -1,6 +1,7 @@
 Ext.define("sobisleave.view.viewport.ApplicationContainer", {
 	
 	extend : 'Ext.tab.Panel',
+	xtype : 'applicationContainer',
 	requires : [
 		
 	],
@@ -16,9 +17,12 @@ Ext.define("sobisleave.view.viewport.ApplicationContainer", {
 		var me = this;
 		this.callParent(arguments);
 		
-		me.employeesCardPanel = Ext.create('sobisleave.view.employee.Employee');		
+		me.employeesCardPanel = Ext.create('sobisleave.view.employee.Employee');	
+		me.leaveRequestCardPanel = Ext.create('sobisleave.view.leaverequest.LeaveRequest');
+		
 		me.add([
-			me.employeesCardPanel
+			me.employeesCardPanel,
+			me.leaveRequestCardPanel
 		])
 		
 	}

@@ -49,7 +49,7 @@ public class LeaveRequestDaoJpaImpl implements LeaveRequestDao {
 
 	@Override
 	public List<LeaveRequest> getAllLeaveRequests() {
-		TypedQuery<LeaveRequest> query = entityManager.createQuery("select lr from LeaveRequest e", LeaveRequest.class);		
+		TypedQuery<LeaveRequest> query = entityManager.createQuery("select lr from LeaveRequest lr", LeaveRequest.class);		
 		return query.getResultList();
 	}
 
