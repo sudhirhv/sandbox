@@ -4,7 +4,8 @@ Ext.define('sobisleave.model.LeaveRequest', {
 	
 	config: {
 		fields: [
-			sobisleave.config.constants.FIELDS.ID		
+			sobisleave.config.constants.FIELDS.ID,
+			'typeOfLeave'
 		],		
 		proxy: {
 			type: 'LeaveRequest'

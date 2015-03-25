@@ -36,18 +36,21 @@ Ext.application({
     models: 		[
     	'Employee',
     	'Holiday',
-    	'LeaveRequest'
+    	'LeaveRequest',
+    	'Superbox'
     ],
     
     stores:			[
     	'Employee',
     	'Holiday',
-    	'LeaveRequest'
+    	'LeaveRequest',
+    	'Superbox'
     ],
     
     controllers:		[
     	'employee.Employee',
-    	'leaverequest.LeaveRequest'
+    	'leaverequest.LeaveRequest',
+    	'common.Superbox'
     ],
     
     icon: {
@@ -78,9 +81,13 @@ Ext.application({
     launch: function() {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
+        
 		var applicationViewPort = Ext.create('sobisleave.view.viewport.ApplicationViewPort');
-		applicationViewPort.add(Ext.create('sobisleave.view.viewport.ApplicationContainer'))
-        // Initialize the main view
+		applicationViewPort.add(Ext.create('sobisleave.view.viewport.ApplicationContainer'));
+		
+		sobisleave.superbox = Ext.create('sobisleave.view.common.Superbox');					
+		applicationViewPort.add(sobisleave.superbox);
+
         Ext.Viewport.add(applicationViewPort);
     }  
 });

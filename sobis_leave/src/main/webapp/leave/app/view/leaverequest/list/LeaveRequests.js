@@ -1,7 +1,7 @@
 Ext.define("sobisleave.view.leaverequest.list.LeaveRequests", {
 	
 	extend : 'sobisleave.view.ux.GeneralView',	
-	xtype : 'employeesList',
+	xtype : 'leaveRequestsList',
 
 	config : {		
 		store : 'LeaveRequest',
@@ -13,7 +13,8 @@ Ext.define("sobisleave.view.leaverequest.list.LeaveRequests", {
 						'{[this.getLeaveRequestEntry(values)]}' +				
 					'</div>'	
 					, {
-					getLeaveRequestEntry : function(rec) {					
+					getLeaveRequestEntry : function(rec) {
+						console.log('rec')
 						var result = '<div>'+ rec['typeOfLeave'] + '</div>';
 						return result;
 					}

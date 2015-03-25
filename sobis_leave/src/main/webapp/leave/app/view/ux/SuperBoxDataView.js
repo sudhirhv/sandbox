@@ -1,4 +1,4 @@
-Ext.define('pirsmobile.view.projectcontainer.common.SuperBoxSearch', {
+Ext.define('sobisleave.view.ux.SuperBoxSearch', {
 	extend: 'Ext.dataview.component.DataItem',
    	requires: ['Ext.field.Text'],
     xtype: 'superBoxSearch',    
@@ -13,7 +13,7 @@ Ext.define('pirsmobile.view.projectcontainer.common.SuperBoxSearch', {
 		width : '',
         dataMap: {
             getSearchField: {
-                setValue : 'superboxValue',
+                setEmployeeName : 'employeeName',
                 setWidth : 'width',
                 setClearIcon : 'clearIcon',
                 setStyle : 'style',
@@ -77,24 +77,22 @@ Ext.define('pirsmobile.view.projectcontainer.common.SuperBoxSearch', {
    onKeyUp : function(field, e) {	  
 	
 		if(field.getValue().length > 1) { 				
- 			var superboxListPanel = pirsmobile.superbox; //pirsmobile.view.projectcontainer.Superbox; //Ext.ComponentQuery.query('#superboxPanel');
+ 			var superboxListPanel = sobisleave.superbox; //pirsmobile.view.projectcontainer.Superbox; //Ext.ComponentQuery.query('#superboxPanel');
  			superboxListPanel.setField(field);
  			var superboxList = superboxListPanel.down('list');	         			
      		var store = superboxList.getStore();     		
-     		
-     		store.getProxy().setExtraParam( 'query', field.getValue() );
-     		store.getProxy().setExtraParam( 'project', pirsmobile.application.project);		             		
+     		    				             		
      		store.loadPage(1);	     
-     		store.sort(pirsmobile.config.constants.FIELDS.NAME, 'ASC')
+     		store.sort('employeeName', 'ASC')
      		superboxListPanel.showBy(field, 'tc-bc?');
 		} 
  	}
    
 });
 
-Ext.define('pirsmobile.view.ux.SuperBoxDataView', {
+Ext.define('sobisleave.view.ux.SuperBoxDataView', {
 	extend: 'Ext.dataview.DataView',
-    requires: ['pirsmobile.view.projectcontainer.common.SuperBoxSearch'],
+    requires: ['sobisleave.view.ux.SuperBoxSearch'],
     xtype: 'superBoxDataView',  
     config : {
     	dataViewLabel : '',
@@ -106,7 +104,7 @@ Ext.define('pirsmobile.view.ux.SuperBoxDataView', {
 	        wrap : true
 	    },
 	    store: {	        
-	    	fields: ['superboxValue', 'superboxId', 'width', 'clearIcon', 'readOnly', 'style','cls', 'deleted', 'dirty']
+	    	fields: ['id', 'employeeName', 'width', 'clearIcon', 'readOnly', 'style','cls', 'deleted', 'dirty']
 	    }
 	},
 	initialize : function(){

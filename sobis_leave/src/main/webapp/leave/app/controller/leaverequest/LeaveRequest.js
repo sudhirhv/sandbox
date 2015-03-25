@@ -4,31 +4,41 @@ Ext.define('sobisleave.controller.leaverequest.LeaveRequest', {
 	
 	config : {
 		control : {
-			'employeesList' : {
+			'leaveRequestsList' : {
 				itemtap : 'itemtap',
-				initialize : 'initialize'
+				initialize : 'initializeLeaveRequestsList'
 			},
-			'button[action=newLeaveRequest]' : {
-				tap : 'newLeaveRequest'
+			'button[action=createNewLeaveRequest]' : {
+				tap : 'createNewLeaveRequest'
+			}, 
+			'leaveRequestForm' : {
+				initialize : 'initializeNewLeaveRequest'
 			}
 		}
 	},
 	
-	initialize : function(leaveRequestsList) {
+	initializeLeaveRequestsList : function(leaveRequestsList) {
 		var newLeaveRequestButton = Ext.create('Ext.Button', {
 			 iconCls: 'compose',
 			 align:  'right',
-			 action: 'newLeaveRequest'			  
+			 action: 'createNewLeaveRequest'			  
 		});		
 		leaveRequestsList.titlebar.add([newLeaveRequestButton]);
 		leaveRequestsList.getStore().loadPage(1);
 	},
 	
-	newLeaveRequest : function(button) {
+	createNewLeaveRequest : function(button) {
 		console.log('in creation of new leave requests');
 		var leaveRequest = Ext.create('sobisleave.view.leaverequest.form.LeaveRequestForm');
 		console.log(leaveRequest);
 		if(leaveRequest) sobisleave.config.Functions.openCard(leaveRequest);
+	},
+	
+	initializeNewLeaveRequest : function(leaveRequestForm) {
+		var superboxDataViews = [leaveRequestForm.requestorDataView, leaveRequestForm.approverDataView];
+		for ( var xi = 0; xi < superboxDataViews.length; xi++) {
+			superboxDataViews[xi].getStore().add(sobisleave.config.Functions.getSuperboxSearchField({isSearchField : true}));			
+		}	
 	}
 	
 })

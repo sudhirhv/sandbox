@@ -23,6 +23,16 @@ Ext.define('sobisleave.view.leaverequest.form.LeaveRequestForm', {
 			//readOnly : false		
 		};
 		
+		this.requestorDataView = Ext.create('sobisleave.view.ux.SuperBoxDataView', {
+			parentForm : this,
+			dataViewLabel : 'Requestor Name'
+	    });
+	    
+	    this.approverDataView = Ext.create('sobisleave.view.ux.SuperBoxDataView', {
+			parentForm : this,
+			dataViewLabel : 'Approver Name'
+	    });
+		
 		this.requestorName = {
 			xtype : 'textfield',
 			name : 'requestorName',
@@ -85,8 +95,10 @@ Ext.define('sobisleave.view.leaverequest.form.LeaveRequestForm', {
 		this.fieldset = Ext.create('Ext.form.FieldSet', {
 			defaults : me.defaults,
 			items : [
-			   me.requestorName,
-			   me.approverName,
+			   //me.requestorName,
+			   //me.approverName,
+			   me.requestorDataView,
+			   me.approverDataView,
 			   me.leaveStartDate,
 			   me.leaveEndDate,
 			   me.leaveDuration,
