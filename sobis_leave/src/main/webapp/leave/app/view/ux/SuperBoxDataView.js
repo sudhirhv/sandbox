@@ -13,8 +13,8 @@ Ext.define('sobisleave.view.ux.SuperBoxSearch', {
 		width : '',
         dataMap: {
             getSearchField: {
-                setEmployeeName : 'employeeName',
-                setWidth : 'width',
+                setValue : 'employeeName',
+               // setWidth : 'width',
                 setClearIcon : 'clearIcon',
                 setStyle : 'style',
                 setReadOnly : 'readOnly',
@@ -26,8 +26,7 @@ Ext.define('sobisleave.view.ux.SuperBoxSearch', {
    },
    initialize : function(){	   
 	  var me = this;
-	  me.callParent();	 
-	  //me.element.on('keypress', 'onKeyPress', me);   
+	  me.callParent();  
    },   
    
    applySearchField: function(config) {
@@ -40,7 +39,8 @@ Ext.define('sobisleave.view.ux.SuperBoxSearch', {
      //I had earlier used keyup, it works in chrome, safari and mobile safari, but not on native iOS app. so am using keypress
       if (newf) {
        	newf.on('clearicontap', this.onClearIconTap, this);       	
-       	var textf = newf.getComponent().input;       	
+       	var textf = newf.getComponent().input;
+        textf.dom.style.width = 110 + 'px';        
        	textf.dom.onkeypress = function (e) { me.onKeyUp(newf,e) };     	        	             	
        	this.add(newf);        	  	
       }

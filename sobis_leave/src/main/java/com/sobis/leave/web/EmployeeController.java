@@ -52,9 +52,12 @@ public class EmployeeController {
 	public @ResponseBody Map<String, Object> getEmployeeLeaveDetails(@RequestParam("employeeId") String employeeId, @RequestParam("leaveYear") int leaveYear) {
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();
 		Map<String, Object> employeeLeaveDetails = new HashMap<String, Object>();
+		Map<String, Object> managerDetails = new HashMap<String, Object>();
 		
 		Employee employee = employeeService.getEmployeeById(employeeId);
-		employeeLeaveDetails.put("manager", employeeService.getApprover(employeeId).getId());
+		managerDetails.put("id", employeeService.getApprover(employeeId).getId());
+		managerDetails.put("employeeName", employeeService.getApprover(employeeId).getEmployeeName());
+		employeeLeaveDetails.put("manager", managerDetails);
 		employeeLeaveDetails.put("availableLeaveBalance", employeeService.getEmployeeLeaveMaster(employee, leaveYear).getAvailableLeaveBalance());
 		
 		jsonResponse.put("success", true);

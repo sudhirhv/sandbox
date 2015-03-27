@@ -71,10 +71,15 @@ Ext.define('sobisleave.view.leaverequest.form.LeaveRequestForm', {
 			label : 'Duration'
 		};
 		
-		this.leaveDurationType = {
-			xtype : 'textfield',
+		this.leaveDurationType = {			
 			name : 'leaveDurationType',
-			label : 'Leave Type'
+			label : 'Duration type',
+			xtype: 'selectfield',
+            options: [
+                {text: 'Full',  value: 'Full'},
+                {text: 'Half', value: 'Half'}                
+            ]
+			
 		};
 		
 		this.leaveType = {
@@ -91,6 +96,16 @@ Ext.define('sobisleave.view.leaverequest.form.LeaveRequestForm', {
 			label : 'Reason for Leave',
 			name : 'remarks'
 		};
+		
+		this.submitLeaveRequestButton = Ext.create('Ext.Button' ,{			 
+  			 ui: 'action',
+  			 align: 'right',
+  			 text:	'Submit',
+  			 iconCls : 'mail-plain',
+  			 action : 'submitLeaveRequest'
+		});
+				
+		this.titlebar.add([me.submitLeaveRequestButton]);
 					
 		this.fieldset = Ext.create('Ext.form.FieldSet', {
 			defaults : me.defaults,

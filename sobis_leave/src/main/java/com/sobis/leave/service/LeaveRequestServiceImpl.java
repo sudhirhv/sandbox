@@ -64,7 +64,7 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
 
 	@Override
 	@Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
-	public int calculateLeaveDuration(Date startDate, Date endDate) {
+	public int calculateLeaveDuration(DateTime startDate, DateTime endDate) {
 		return leaveRequestDao.calculateLeaveDuration(startDate, endDate);
 	}
 

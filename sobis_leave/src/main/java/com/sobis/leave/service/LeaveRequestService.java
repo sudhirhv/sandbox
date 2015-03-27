@@ -3,6 +3,8 @@ package com.sobis.leave.service;
 import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 import com.sobis.leave.model.Employee;
 import com.sobis.leave.model.LeaveRequest;
 import com.sobis.leave.model.LeaveStatus;
@@ -17,7 +19,7 @@ public interface LeaveRequestService {
 	
 	public LeaveRequest getLeaveRequestById(String leaveRequestId);
 	
-	public int calculateLeaveDuration(Date startDate, Date endDate);
+	public int calculateLeaveDuration(DateTime startDate, DateTime endDate);
 	
 	
 }

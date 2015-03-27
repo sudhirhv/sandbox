@@ -33,8 +33,7 @@ Ext.define('sobisleave.config.Functions', {
 		
 		superboxId = superboxObj && superboxObj['id'] ? superboxObj['id'] : '';		
 		superboxValue = superboxObj && superboxObj['employeeName'] ? superboxObj['employeeName'] : '';
-		var cn = superboxValue;
-		console.log('cn',cn)
+		var cn = superboxValue;		
 		var isSearchField = config && config.isSearchField ? true : false;
 		
 		var width = cn.length * 7 ;

@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
 
 import com.sobis.leave.dao.LeaveRequestDao;
@@ -54,7 +55,7 @@ public class LeaveRequestDaoJpaImpl implements LeaveRequestDao {
 	}
 
 	@Override
-	public int calculateLeaveDuration(Date startDate, Date endDate) {		
+	public int calculateLeaveDuration(DateTime startDate, DateTime endDate) {		
 		return 2; //TODO
 	}
 

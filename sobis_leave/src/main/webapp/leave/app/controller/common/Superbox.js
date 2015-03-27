@@ -12,7 +12,6 @@ Ext.define('sobisleave.controller.common.Superbox', {
 		var id = record.getId();
 		var name = record.get('employeeName');
 			superboxObj = {};		
-		console.log('name',name)
 		superboxObj['id'] = id;
 		superboxObj['employeeName'] = name;		
 							
@@ -29,8 +28,7 @@ Ext.define('sobisleave.controller.common.Superbox', {
 		
 		var boolInsert = true;
 		var rec = store.findRecord('id', id);
-		rec && rec['deleted'] == '' ? boolInsert = false : '';
-		console.log('data',data)
+		rec && rec['deleted'] == '' ? boolInsert = false : '';		
 		boolInsert ? dataview.getStore().insert(dataview.getStore().getCount()-1, data) : '';
 		
 		dataItemField.setValue('');
