@@ -53,16 +53,41 @@ Ext.define('sobisleave.view.leaverequest.form.LeaveRequestForm', {
 		
 		this.leaveStartDate = {
 			xtype : 'datepickerfield',
-			name : 'leaveStartDate',
+			name : 'leaveStartDateDisplay',
 			label : 'Leave Start date',
-			value : new Date()
+			value : new Date(),			
+			required : true,
+		    dateFormat: 'd.m.Y',
+		    listeners : {		    	
+		    	change : function() {
+			 		console.log('in change fo field')
+					me.fireEvent('onChangeOfStartDate',this);		
+				}	
+		    }		    	
 		};
 		
+		this.leaveStartDateHidden = {
+			xtype : 'hiddenfield',
+			name : 'leaveStartDate'
+		};
+				
 		this.leaveEndDate = {
 			xtype : 'datepickerfield',
-			name : 'leaveEndDate',
+			name : 'leaveEndDateDisplay',
 			label : 'Leave End date',
-			value : new Date()
+			value : new Date(),
+			dateFormat: 'd.m.Y',			
+			listeners : {
+			 	change : function() {
+			 		console.log('in change fo field')					
+					me.fireEvent('onChangeOfEndDate',this);
+				}		    	
+		    }	
+		};
+		
+		this.leaveEndDateHidden = {
+			xtype : 'hiddenfield',
+			name : 'leaveEndDate'
 		};
 		
 		this.leaveDuration = {
@@ -75,20 +100,18 @@ Ext.define('sobisleave.view.leaverequest.form.LeaveRequestForm', {
 			name : 'leaveDurationType',
 			label : 'Duration type',
 			xtype: 'selectfield',
-            options: [
-                {text: 'Full',  value: 'Full'},
-                {text: 'Half', value: 'Half'}                
-            ]
-			
+			store : sobisleave.store.leaveDurationStore,
+			valueField : 'id',
+			displayField : 'value'
 		};
 		
 		this.leaveType = {
 			xtype: 'selectfield',
-            label: 'Leave type',
-            options: [
-                {text: 'Casual',  value: 'Casual'},
-                {text: 'Maternity', value: 'Maternity'}                
-            ]
+            label: 'Type of Leave',
+            name : 'typeOfLeave',
+            store : sobisleave.store.typesOfLeaveStore,
+            valueField : 'id',
+			displayField : 'value'
 		};
 		
 		this.remarks = {
@@ -112,9 +135,11 @@ Ext.define('sobisleave.view.leaverequest.form.LeaveRequestForm', {
 			items : [
 			   //me.requestorName,
 			   //me.approverName,
+			   me.leaveStartDateHidden,
+			   me.leaveEndDateHidden,
 			   me.requestorDataView,
 			   me.approverDataView,
-			   me.leaveStartDate,
+			   me.leaveStartDate,			  
 			   me.leaveEndDate,
 			   me.leaveDuration,
 			   me.availableLeaveBalance,
@@ -126,7 +151,12 @@ Ext.define('sobisleave.view.leaverequest.form.LeaveRequestForm', {
 		
 		this.add([me.fieldset])
 		
+	}, 
+	onChangeOfStartDate : function(field) {		
+		this.fireEvent('setHiddenDateFormatStartDate',this);
+	},
+	onChangeOfEndDate : function(field) {		
+		this.fireEvent('setHiddenDateFormatEndDate',this);
 	}
-	
 })
  

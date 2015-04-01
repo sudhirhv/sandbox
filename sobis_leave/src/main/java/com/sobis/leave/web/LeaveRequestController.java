@@ -7,8 +7,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -23,6 +25,7 @@ import com.sobis.leave.service.EmployeeLeaveMasterService;
 import com.sobis.leave.service.EmployeeService;
 import com.sobis.leave.service.LeaveRequestService;
 import com.sobis.leave.web.editors.LeaveRequestEditor;
+import com.sobis.leave.web.editors.StringToJodaDateTimeConverter;
 
 
 
@@ -92,7 +95,7 @@ public class LeaveRequestController {
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
 		binder.registerCustomEditor(Employee.class, "requestorName", new LeaveRequestEditor(this.employeeService));
 		binder.registerCustomEditor(Employee.class, "approverName", new LeaveRequestEditor(this.employeeService));
-		binder.registerCustomEditor(Date.class, new CustomDateEditor( new SimpleDateFormat("dd/MM/yyyy"), false));
+		binder.registerCustomEditor(DateTime.class, new StringToJodaDateTimeConverter());
 		
     }
 

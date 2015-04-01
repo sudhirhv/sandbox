@@ -7,6 +7,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.joda.time.DateTime;
+
 @Entity
 @Table(name="holidays")
 public class Holiday extends Base {
@@ -16,7 +18,7 @@ public class Holiday extends Base {
 	private String holidayName;
 	
 	@Column(name="holidayDate")
-	private Date holidayDate;
+	private DateTime holidayDate;
 	
 	public Holiday() {
 
@@ -30,15 +32,15 @@ public class Holiday extends Base {
 		this.holidayName = holidayName;
 	}
 
-	public Date getHolidayDate() {
+	public DateTime getHolidayDate() {
 		return holidayDate;
 	}
 
-	public void setHolidayDate(Date holidayDate) {
+	public void setHolidayDate(DateTime holidayDate) {
 		this.holidayDate = holidayDate;
 	}
 
-	public Holiday(String holidayName, Date holidayDate) {
+	public Holiday(String holidayName, DateTime holidayDate) {
 		super();		
 		this.holidayName = holidayName;
 		this.holidayDate = holidayDate;

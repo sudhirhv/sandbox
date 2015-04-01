@@ -12,7 +12,14 @@ Ext.define('sobisleave.controller.leaverequest.LeaveRequest', {
 				tap : 'createNewLeaveRequest'
 			}, 
 			'leaveRequestForm' : {
-				initialize : 'initializeNewLeaveRequest'
+				initialize : 'initializeNewLeaveRequest',				
+				setHiddenDateFormat : 'setHiddenDateFormat'
+			},
+			'leaveRequestForm datepickerfield[name="leaveStartDateDisplay"]' :  {
+				change : 'setHiddenDateFormatStartDate'
+			},
+			'leaveRequestForm datepickerfield[name="leaveEndDateDisplay"]' :  {
+				change : 'setHiddenDateFormatEndDate'
 			},
 			'leaveRequestForm button[action=submitLeaveRequest]' : {
 				tap : 'submitLeaveRequest'
@@ -32,8 +39,7 @@ Ext.define('sobisleave.controller.leaverequest.LeaveRequest', {
 	
 	createNewLeaveRequest : function(button) {
 		console.log('in creation of new leave requests');
-		var leaveRequest = Ext.create('sobisleave.view.leaverequest.form.LeaveRequestForm');
-		console.log(leaveRequest);
+		var leaveRequest = Ext.create('sobisleave.view.leaverequest.form.LeaveRequestForm');		
 		if(leaveRequest) sobisleave.config.Functions.openCard(leaveRequest);
 	},
 	
@@ -56,7 +62,7 @@ Ext.define('sobisleave.controller.leaverequest.LeaveRequest', {
 			
 	    	switch (result.success) {
 				case true:
-					console.log('result',rec);
+					//console.log('result',rec);
 					var availableLeaveBalance = leaveRequestForm.down('numberfield[name="availableLeaveBalance"]');
 					availableLeaveBalance.setValue(rec['availableLeaveBalance']);
 					leaveRequestForm.approverDataView.getStore().add(rec['manager']);					
@@ -76,10 +82,65 @@ Ext.define('sobisleave.controller.leaverequest.LeaveRequest', {
 	    	
 	},
 	
+	setHiddenDateFormatStartDate : function(field) {
+		var o = {};
+		o.field = field;
+		o.displayField = 'leaveStartDateDisplay';
+		o.hiddenField = 'leaveStartDate';		
+		this.setHiddenDateFormat(o);
+	},
+	
+	setHiddenDateFormatEndDate : function(field) {
+		var o = {};
+		o.field = field;
+		o.displayField = 'leaveEndDateDisplay';
+		o.hiddenField = 'leaveEndDate';		
+		this.setHiddenDateFormat(o);
+	},
+	
+	setHiddenDateFormat : function(config) {
+		//console.log('in change of date field',config.field)
+		var leaveRequest = config.field.up('leaveRequestForm');
+		var displayField = leaveRequest.down('datepickerfield[name="'+config.displayField+'"]');
+		var hiddenField = leaveRequest.down('hiddenfield[name="'+ config.hiddenField +'"]');
+		hiddenField.setValue(Date.parse(displayField.getValue()));
+	},
+	
 	submitLeaveRequest : function(button) {
 		console.log('in submit ');
 		var leaveRequest = button.up('leaveRequestForm');
-		console.log('leaveRequest',leaveRequest)
+		var startDateField = leaveRequest.down('textfield[name="leaveStartDate"]');
+		var formValues = leaveRequest.getValues();	
+		var params = {};
+		
+		var superboxDataViews = {};
+		superboxDataViews['requestorName'] = leaveRequest.requestorDataView;
+		superboxDataViews['approverName'] = leaveRequest.approverDataView;
+			
+		for ( var superboxDataView in superboxDataViews) {
+			if(superboxDataViews.hasOwnProperty(superboxDataView)) {
+				//console.log('superboxDataView',superboxDataView);
+				var superboxValues = sobisleave.config.Functions.getSuperboxValues({
+					superboxDataView : superboxDataViews[superboxDataView]
+				});						
+												
+				if(superboxValues.length > 0) {					
+					params[superboxDataView] = superboxValues;
+				} else {
+					params[superboxDataView] = '';
+				}
+			}
+		};
+		
+		//console.log('leaveRequest',formValues);		
+		//console.log('leaveStartDate',Ext.Date.format(startDateField.getValue(), 'U'));
+		//formValues['leaveStartDate'] = Ext.Date.format(startDateField.getValue(), 'U');
+		
+		leaveRequest.submit({
+			url : 'http://localhost:8080/sobis_leave/newLeaveRequest.view',
+			method : 'POST'	,
+			params : params
+		});		
 	}
 	
 })

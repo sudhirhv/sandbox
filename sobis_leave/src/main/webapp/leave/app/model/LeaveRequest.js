@@ -5,7 +5,12 @@ Ext.define('sobisleave.model.LeaveRequest', {
 	config: {
 		fields: [
 			sobisleave.config.constants.FIELDS.ID,
-			'typeOfLeave'
+			'typeOfLeave',
+			{
+				name: 'leaveStartDate',
+				type: 'date',
+				dateFormat: 'time'
+			}
 		],		
 		proxy: {
 			type: 'LeaveRequest'

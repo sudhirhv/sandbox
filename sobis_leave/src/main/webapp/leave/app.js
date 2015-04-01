@@ -37,14 +37,18 @@ Ext.application({
     	'Employee',
     	'Holiday',
     	'LeaveRequest',
-    	'Superbox'
+    	'Superbox',
+    	'TypesOfLeave',
+    	'LeaveDurationType'
     ],
     
     stores:			[
     	'Employee',
     	'Holiday',
     	'LeaveRequest',
-    	'Superbox'
+    	'Superbox',
+    	'TypesOfLeave',
+    	'LeaveDurationType'
     ],
     
     controllers:		[
@@ -88,6 +92,13 @@ Ext.application({
 		sobisleave.superbox = Ext.create('sobisleave.view.common.Superbox');					
 		applicationViewPort.add(sobisleave.superbox);
 
+		sobisleave.store.typesOfLeaveStore = Ext.create("sobisleave.store.TypesOfLeave");
+		sobisleave.store.leaveDurationStore = Ext.create("sobisleave.store.LeaveDurationType");
+		
+		console.log('sobisleave.store.typesOfLeaveStore',sobisleave.store.typesOfLeaveStore);
+		console.log(sobisleave.store.leaveDurationStore)
+		
+		
         Ext.Viewport.add(applicationViewPort);
     }  
 });

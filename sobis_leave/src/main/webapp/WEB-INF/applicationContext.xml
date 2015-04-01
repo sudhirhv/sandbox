@@ -58,6 +58,16 @@
         <property name="entityManagerFactory" ref="myEmf" />
     </bean>
     
+    <!-- http://stackoverflow.com/questions/24697535/milliseconds-since-unix-epoch-as-requestparameter-for-joda-datetime 
+    
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+    	<property name="converters">
+        	<list>
+            	<bean class="com.sobis.leave.web.editors.StringToJodaDateTimeConverter"/>            	
+        	</list>
+    	</property>
+	</bean> -->
+    
     <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
 </beans>

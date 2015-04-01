@@ -20,7 +20,7 @@ Ext.define('sobisleave.config.Functions', {
 			var records = superboxDataView.getStore().getRange();
 			if(records.length > 0) {
 				for (var i = 0; i < records.length; i++) {
-					if(records[i].data['employeeName'] && records[i].data['deleted'] == '') values.push(records[i].data['id']);
+					if(records[i].data['employeeName']) values.push(records[i].data['id']);
 				}	
 			};	
 		};

@@ -9,10 +9,14 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.sobis.leave.dao.HolidayDao;
 import com.sobis.leave.dao.LeaveRequestDao;
 import com.sobis.leave.model.Employee;
+import com.sobis.leave.model.Holiday;
 import com.sobis.leave.model.LeaveRequest;
 import com.sobis.leave.model.LeaveStatus;
 
@@ -21,6 +25,9 @@ public class LeaveRequestDaoJpaImpl implements LeaveRequestDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	@Autowired
+	private HolidayDao holidayDao;
 
 	@Override
 	public void createLeaveRequest(LeaveRequest leaveRequest) {
@@ -55,8 +62,28 @@ public class LeaveRequestDaoJpaImpl implements LeaveRequestDao {
 	}
 
 	@Override
-	public int calculateLeaveDuration(DateTime startDate, DateTime endDate) {		
-		return 2; //TODO
+	public int calculateLeaveDuration(DateTime startDate, DateTime endDate) {
+		LocalDate dateStart = new LocalDate(startDate);
+		LocalDate dateEnd = new LocalDate(endDate);
+		List<Holiday> listOfHolidays = holidayDao.getAllHolidays();
+		int count = 0;
+		Query q = entityManager.createQuery("select h.holidayDate from Holiday h", Holiday.class);
+	    List<Object[]> holidays= q.getResultList();
+	   
+	    /*for(Object[] holiday: holidays){	         
+	    	(Integer)employee[0];
+	    }*/
+		
+		
+		// day by day:
+		while(dateStart.isBefore(dateEnd)){
+			System.out.println(dateStart);
+			if(holidays.contains(dateStart)) {
+				count++;
+			}
+		    dateStart = dateStart.plusDays(1);		
+		}
+		return count;
 	}
 
 	@Override
