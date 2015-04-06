@@ -59,8 +59,7 @@ Ext.define('sobisleave.view.leaverequest.form.LeaveRequestForm', {
 			required : true,
 		    dateFormat: 'd.m.Y',
 		    listeners : {		    	
-		    	change : function() {
-			 		console.log('in change fo field')
+		    	change : function() {			 		
 					me.fireEvent('onChangeOfStartDate',this);		
 				}	
 		    }		    	
@@ -78,8 +77,7 @@ Ext.define('sobisleave.view.leaverequest.form.LeaveRequestForm', {
 			value : new Date(),
 			dateFormat: 'd.m.Y',			
 			listeners : {
-			 	change : function() {
-			 		console.log('in change fo field')					
+			 	change : function() {			 							
 					me.fireEvent('onChangeOfEndDate',this);
 				}		    	
 		    }	
@@ -153,10 +151,10 @@ Ext.define('sobisleave.view.leaverequest.form.LeaveRequestForm', {
 		
 	}, 
 	onChangeOfStartDate : function(field) {		
-		this.fireEvent('setHiddenDateFormatStartDate',this);
+		this.fireEvent('setHiddenDateFormat',this);
 	},
 	onChangeOfEndDate : function(field) {		
-		this.fireEvent('setHiddenDateFormatEndDate',this);
+		this.fireEvent('setHiddenDateFormat',this);
 	}
 })
  

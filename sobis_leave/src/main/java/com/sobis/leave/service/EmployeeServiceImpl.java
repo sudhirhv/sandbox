@@ -75,6 +75,4 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee getEmployeeById(String employeeId) {
 		return employeeDao.getEmployee(employeeId);
 	}
-
-	
 }

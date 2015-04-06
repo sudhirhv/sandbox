@@ -17,6 +17,7 @@ import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sobis.leave.model.Employee;
@@ -128,6 +129,17 @@ public class LeaveRequestController {
 		jsonResponse.put("success", true);
 		jsonResponse.put("rows", leaveRequestService.getAllLeaveRequests());
 		return jsonResponse;		
+	}
+	
+	@RequestMapping(value="/calculateLeaveDuration.view")	
+	public @ResponseBody Map<String, Object> getEmployeeLeaveDetails(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) {
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();
+		DateTime leaveStartDate = new DateTime(Long.parseLong(startDate));
+		DateTime leaveEndDate = new DateTime(Long.parseLong(endDate));
+		int duration = leaveRequestService.calculateLeaveDuration(leaveStartDate, leaveEndDate);
+		jsonResponse.put("success", true);
+		jsonResponse.put("duration", duration);
+		return jsonResponse;
 	}
 	
 }
