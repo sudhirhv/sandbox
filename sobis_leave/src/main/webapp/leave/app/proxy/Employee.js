@@ -5,7 +5,7 @@ Ext.define('sobisleave.proxy.Employee', {
 	
 	config: {
 		//url: sobisleave.config.constants.BASEURL+sobisleave.config.constants.CONTROLLER.EMPLOYEE_CONTROLLER,
-		url : 'http://localhost:8080/sobis_leave/allEmployees.view',
+		url : '../allEmployees.view',
 		reader: {
 			type: 'json',
 			totalProperty: sobisleave.config.constants.JSON_READER.TOTAL_PROPERTY,
