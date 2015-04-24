@@ -14,13 +14,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.inMemoryAuthentication()
-				.withUser("user").password("password").roles("USER");
+				.withUser("sudhir").password("password").roles("USER");
 	}
 
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.csrf().disable()
-			.authorizeRequests()
+			.authorizeRequests()				
+				.antMatchers("/**").hasRole("USER")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()

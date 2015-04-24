@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -65,6 +66,7 @@ public class EmployeeController {
 		return jsonResponse;
 	}
 	
+	//@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(value="/allEmployees.view")
 	public @ResponseBody Map<String, Object> getEmployees() {
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
