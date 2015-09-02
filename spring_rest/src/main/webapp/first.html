@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html data-ng-app="customerApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Application</title>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/angular-route.js"></script>
+<script type="text/javascript" src="js/ui-grid.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/custom_style.css">
+ <link rel="styleSheet" href="css/ui-grid.min.css"/>
+</head>
+<body>
+
+	<div class="container" ng-controller="CustomerController">
+		<div class="row">
+			<div>
+				<header>
+					<h3>
+						<span class="glyphicon glyphicon-user"></span> Customer Orders
+						Application
+					</h3>
+				</header>
+			</div>
+			<!-- <div class="row">
+				<div nav-bar></div>
+			</div> -->
+
+		</div>
+		<!-- <div class="row">
+			<customer-view></customer-view>
+		</div>
+		<div class="row">
+			<edit-view ng-show="editMode"></edit-view>
+		</div> -->
+		<div ng-view></div> 
+	</div>
+	<script type="text/javascript" src="app/services.js"></script>
+	<script type="text/javascript" src="app/main.js"></script>
+	<script type="text/javascript" src="app/directives.js"></script>	
+	<script type="text/javascript" src="app/customFilters.js"></script>
+</body>
+</html>

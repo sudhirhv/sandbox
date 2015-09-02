@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -22,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.sobis.leave.model.security.User;
 import com.sobis.leave.model.serializer.EmployeeSerializer;
 
 /**
@@ -53,16 +55,28 @@ public class Employee extends Base {
 	
 	@OneToMany(mappedBy="manager", fetch=FetchType.LAZY)	
 	private Set<Employee> reportees = new HashSet<Employee>();
-			
 	
+	@OneToOne()
+	@JoinColumn(name="fk_user")
+	private User user;
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public Employee(String employeeName, String employeeId, String email,
-			Employee manager, Set<Employee> reportees) {
+			Employee manager, Set<Employee> reportees, User user) {
 		super();
 		this.employeeName = employeeName;
 		this.employeeId = employeeId;
 		this.email = email;
 		this.manager = manager;
-		this.reportees = reportees;		
+		this.reportees = reportees;
+		this.user = user;
 	}
 	
 	@JsonSerialize(using = EmployeeSerializer.class)

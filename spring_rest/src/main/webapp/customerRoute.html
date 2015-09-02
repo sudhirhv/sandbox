@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html data-ng-app="">
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Application</title>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular-route.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/custom_style.css">
+</head>
+<body>
+
+	<div class="container" ng-controller="CustomerController">
+	 <div class="row">
+		  	<div>
+		  		<header>
+		  			<h3>
+		  			<span class="glyphicon glyphicon-user"></span>
+		  			Customer Orders Application
+		  			</h3>
+		  		</header>
+		  	</div>
+            <div class="col-md-10">
+                <div class="navbar">
+                    <ul class="nav navbar-nav">
+                        <li  class="toolbaritem">
+                            <a href="#/customers">
+                                Customers
+                            </a>
+                        </li>
+                        <li class="toolbaritem">
+                            <a href="#/orders">
+                               Orders 
+                            </a>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <label class="navbarText col-sm-2">Filter:</label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       data-ng-model="searchText"
+                                       class="novalidate form-control" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+		<div ng-view></div>
+	</div>
+
+</body>
+</html>

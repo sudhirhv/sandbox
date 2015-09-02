@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.sobis.leave.service.security.UserDetailsServiceImpl;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -30,7 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/leave/index.html")
                 .permitAll()
                 .and()
-             .csrf().disable()             	
+             .csrf().disable()
+            // .userDetailsService(new UserDetailsServiceImpl())
              .logout()                                    
                 .permitAll();
     }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.sobis.leave.dao.EmployeeDao;
 import com.sobis.leave.model.Employee;
 import com.sobis.leave.model.EmployeeLeaveMaster;
+import com.sobis.leave.model.security.User;
 @Repository
 public class EmployeeDaoJpaImpl implements EmployeeDao {
 
@@ -41,6 +42,12 @@ public class EmployeeDaoJpaImpl implements EmployeeDao {
 		query.setParameter("employee", employeeId);
 		query.setParameter("leaveYear", leaveYear);
 		return (EmployeeLeaveMaster) query.getResultList().get(0);
+	}
+
+	@Override
+	public User getUser(String employeeId) {
+		Employee e = entityManager.find(Employee.class, employeeId);		
+		return e.getUser();		
 	}
 
 }

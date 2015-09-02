@@ -1,0 +1,29 @@
+ 
+	<div class="container" ng-controller="CustomerController">
+	 	<div class="row">
+			<div class="col-xs-8 col-sm-6 col-lg-3 card" 
+				ng-repeat="customer in customers">
+				<div class="cardHeader">
+					{{customer.firstName + " " + customer.lastName}}
+					<button class="btn close pull-right" 
+						ng-click="deleteCustomer(customer)">&times;</button>
+				</div>
+				<div class="cardBody">
+						<div class="cardBodyLeft">
+							<div class="cardImage pull-left">
+								<img ng-src="images/{{customer.gender}}.png" 
+									class="cardImage" />
+							</div>
+							{{customer.address}},
+							{{customer.city}}
+						</div>
+						<div class="cardBodyRight pull-right">
+							<a href=""><span class="glyphicon glyphicon-edit"></span></a>
+						</div>
+						<div class="cardBodyLeft">
+						<a href="rest/orders">View Orders [{{customer.orders.length}}]</a>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
