@@ -73,4 +73,12 @@ public class EmployeeController {
 		jsonResponse.put("rows", employeeService.getAllEmployees());
 		return jsonResponse;
 	}
+	
+	@RequestMapping(value="/allHolidays.view")
+	public @ResponseBody Map<String, Object> getHolidays() {
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
+		jsonResponse.put("success", true);
+		jsonResponse.put("rows", employeeService.getHolidays());
+		return jsonResponse;
+	}
 }

@@ -19,4 +19,6 @@ public interface EmployeeService {
 	public EmployeeLeaveMaster getEmployeeLeaveMaster(Employee employee, int leaveYear);
 
 	public void addHoliday(Holiday holiday);	
+	
+	public List<Holiday> getHolidays();
 }

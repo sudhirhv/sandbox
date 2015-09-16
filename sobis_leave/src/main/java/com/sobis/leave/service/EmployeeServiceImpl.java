@@ -75,4 +75,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee getEmployeeById(String employeeId) {
 		return employeeDao.getEmployee(employeeId);
 	}
+
+	@Override
+	@Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
+	public List<Holiday> getHolidays() {
+		return holidayDao.getAllHolidays();
+		
+	}
 }
