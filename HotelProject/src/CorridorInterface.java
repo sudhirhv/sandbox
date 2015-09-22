@@ -1,9 +1,5 @@
-
 public interface CorridorInterface {
-		
-	public String getTypeOfCorridor();
+	public int getTotalPowerConsumption(Corridor corridor);	
 	
-	public int getTotalPowerConsumption(Corridor corridor);
-	
-	
+	public void displayPowerStatus(Corridor corridor);
 }

@@ -1,6 +1,8 @@
 
 public class AC  {
 	
+	public static final int powerConsumedByAc = 10;
+	
 	private int acNo;
 	private boolean state;
 

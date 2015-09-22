@@ -2,10 +2,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class Floor implements FloorInterface {
+public class Floor {
 	
-	private int floorNo;
-	
+	private int floorNo;		
 	private Set<MainCorridor> mainCorridors = new HashSet<MainCorridor>();
 	private Set<SubCorridor> subCorridors = new HashSet<SubCorridor>();
 	
@@ -15,24 +14,27 @@ public class Floor implements FloorInterface {
 		this.floorNo = floorNo;
 	}
 	
-	@Override
-	public int getPowerConsumption() {
-		int powerConsumed = 0;		
-		return powerConsumed;
+	public Floor(int noOfMainCorridors, int noOfSubCorridors, int floorNo) {
+		for (int i = 0; i < noOfMainCorridors; i++) {
+			MainCorridor corridor = new MainCorridor(1, 1);
+			corridor.setCorridorNo(i+1);
+			corridor.toggleAllACs(corridor, true);
+			corridor.toggleAllLights(corridor, true);
+			mainCorridors.add(corridor);
+		}
+		for (int j = 0; j < noOfSubCorridors; j++) {
+			SubCorridor corridor = new SubCorridor(1, 1);
+			corridor.setCorridorNo(j+1);
+			corridor.toggleAllACs(corridor, true);
+			corridor.toggleAllLights(corridor, false);
+			subCorridors.add(corridor);
+		}
+		this.setMainCorridors(mainCorridors);
+		this.setSubCorridors(subCorridors);
+		this.floorNo = floorNo;
 	}
-
-	@Override
-	public int getNoOfMainCorridors() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getNoOfSubCorridors() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
+	
 	public Set<MainCorridor> getMainCorridors() {
 		return mainCorridors;
 	}
@@ -57,7 +59,82 @@ public class Floor implements FloorInterface {
 		this.floorNo = floorNo;
 	}
 	
+	public MainCorridor getMainCorridor(Floor floor, int corridorNo) {	
+		MainCorridor mainCorridor = null;
+		for (MainCorridor corridor : floor.getMainCorridors()) {
+			if(corridor.getCorridorNo() == corridorNo) {
+				mainCorridor = corridor;
+			}
+		}
+		return mainCorridor;
+	}
 	
+	public SubCorridor getSubCorridor(Floor floor, int corridorNo) {	
+		SubCorridor subCorridor = null;
+		for (SubCorridor corridor : floor.getSubCorridors()) {
+			if(corridor.getCorridorNo() == corridorNo) {
+				subCorridor = corridor;
+			}
+		}
+		return subCorridor;
+	}
+
+	public int getPowerConsumption(Floor floor) {
+		int powerConsumed = 0;
+		for (Corridor corridor : floor.getMainCorridors()) {
+			powerConsumed = powerConsumed  + corridor.getTotalPowerConsumption(corridor);
+		}
+		for (Corridor corridor : floor.getSubCorridors()) {
+			powerConsumed = powerConsumed  + corridor.getTotalPowerConsumption(corridor);
+		}
+		return powerConsumed;
+	}
 	
+	public void displayPowerStatus(Floor floor) {
+		System.out.println("============ Floor "+floor.getFloorNo()+"====================");
+		//System.out.println("Displaying status of Main corridors");
+		for (MainCorridor corridor : floor.getMainCorridors()) {				
+			corridor.displayPowerStatus(corridor);
+		}			
+		//System.out.println("Displaying status of Sub corridors");
+		for (SubCorridor corridor : floor.getSubCorridors()) {			
+			corridor.displayPowerStatus(corridor);
+		}
+	}
+	
+	public void restrictFloorPowerConsumption(Floor floor, int corridorNo) {
+		
+		Set<AC> allAcs = new HashSet<AC>();	
+		int currentPowerConsumption = 0;
+		
+		for (MainCorridor corridor : floor.getMainCorridors()) {
+			System.out.println("power consumption "+corridor.getTotalPowerConsumption(corridor));
+			currentPowerConsumption = currentPowerConsumption + corridor.getTotalPowerConsumption(corridor);
+		}		
+		for (SubCorridor corridor : floor.getSubCorridors()) {			
+			System.out.println("power consumption "+corridor.getTotalPowerConsumption(corridor));
+			currentPowerConsumption = currentPowerConsumption + corridor.getTotalPowerConsumption(corridor);			
+		}
+		System.out.println("power cap for floor is - "+getPowerCap(floor));
+		System.out.println("currentPowerConsumption "+currentPowerConsumption);
+		if(currentPowerConsumption > getPowerCap(floor)) {
+			for (SubCorridor corridor : floor.getSubCorridors()) {
+				if(corridor.getCorridorNo()!=corridorNo) {
+					allAcs = corridor.getAcs();
+					for (AC ac : allAcs) {
+						ac.setState(false);
+					}
+				}
+			}
+		}
+	}
+	
+	public int getPowerCap(Floor floor) {
+		int powerCapAt = 0;
+		powerCapAt = floor.getMainCorridors().size() * MainCorridor.powerCapAt + floor.getSubCorridors().size() * SubCorridor.powerCapAt;		
+		return powerCapAt;
+	}
+
+
 	
 }
