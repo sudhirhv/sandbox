@@ -61,7 +61,7 @@ public class MainCorridor extends Corridor implements CorridorInterface {
 	}
 
 	@Override
-	public int getTotalPowerConsumption() {
+	public int getTotalPowerConsumption(Corridor corridor) {
 		// TODO Auto-generated method stub
 		return 0;
 	}	

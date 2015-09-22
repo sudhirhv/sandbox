@@ -28,8 +28,7 @@ public class Hotel {
 
 	public void setFloors(Set<Floor> floors) {
 		this.floors = floors;
-	}	
-	
+	}
 	
 	
 }

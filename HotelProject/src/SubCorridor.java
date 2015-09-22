@@ -56,8 +56,16 @@ public class SubCorridor extends Corridor implements CorridorInterface {
 	}
 
 	@Override
-	public int getTotalPowerConsumption() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getTotalPowerConsumption(Corridor corridor) {
+		int powerConsumed = 0;
+		
+		for (AC ac : corridor.getAcs()) {
+			powerConsumed = ac.isState() ? powerConsumed + 10 : powerConsumed + 0;
+		}
+		
+		for (Light light : corridor.getLights()) {
+			powerConsumed = light.isState() ? powerConsumed + 5 : powerConsumed + 0;
+		}				
+		return powerConsumed;
 	}
 }

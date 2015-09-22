@@ -17,8 +17,8 @@ public class Floor implements FloorInterface {
 	
 	@Override
 	public int getPowerConsumption() {
-		// TODO Auto-generated method stub
-		return 0;
+		int powerConsumed = 0;		
+		return powerConsumed;
 	}
 
 	@Override

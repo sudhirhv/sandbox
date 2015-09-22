@@ -3,7 +3,7 @@ public interface CorridorInterface {
 		
 	public String getTypeOfCorridor();
 	
-	public int getTotalPowerConsumption();
+	public int getTotalPowerConsumption(Corridor corridor);
 	
 	
 }
