@@ -68,23 +68,25 @@ public class Floor {
 		this.floorNo = floorNo;
 	}
 	
-	public MainCorridor getMainCorridor(Floor floor, int corridorNo) {	
+	public MainCorridor getMainCorridor(Floor floor, int corridorNo) throws Exception {	
 		MainCorridor mainCorridor = null;
 		for (MainCorridor corridor : floor.getMainCorridors()) {
 			if(corridor.getCorridorNo() == corridorNo) {
 				mainCorridor = corridor;
 			}
 		}
+		if(mainCorridor==null) throw new Exception("Main Corridor does not exist");
 		return mainCorridor;
 	}
 	
-	public SubCorridor getSubCorridor(Floor floor, int corridorNo) {	
+	public SubCorridor getSubCorridor(Floor floor, int corridorNo) throws Exception {	
 		SubCorridor subCorridor = null;
 		for (SubCorridor corridor : floor.getSubCorridors()) {
 			if(corridor.getCorridorNo() == corridorNo) {
 				subCorridor = corridor;
 			}
-		}
+		}		
+		if(subCorridor==null) throw new Exception("Sub Corridor does not exist");
 		return subCorridor;
 	}
 
@@ -111,7 +113,7 @@ public class Floor {
 		}
 	}
 	
-	public void restrictFloorPowerConsumption(Floor floor, int corridorNo) {
+	public void checkAndBalancePowerConsumption(Floor floor, int corridorForWhichInputWasProvidedFor) {
 		
 		Set<AC> allAcs = new HashSet<AC>();	
 		int currentPowerConsumption = getCurrentPowerConsumption(floor);
@@ -119,10 +121,9 @@ public class Floor {
 		System.out.println("power cap for floor is - "+getPowerCap(floor));
 		System.out.println("currentPowerConsumption "+currentPowerConsumption);
 		
-		boolean state = currentPowerConsumption > getPowerCap(floor) ? false : true;
-		
+		boolean state = currentPowerConsumption > getPowerCap(floor) ? false : true;		
 		for (SubCorridor corridor : floor.getSubCorridors()) {
-			if(corridor.getCorridorNo()!=corridorNo) {
+			if(corridor.getCorridorNo()!=corridorForWhichInputWasProvidedFor) {				
 				corridor.toggleAllACs(corridor, state);
 			}
 		}

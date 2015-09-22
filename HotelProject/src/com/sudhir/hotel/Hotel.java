@@ -99,7 +99,7 @@ public class Hotel {
 			MainCorridor corridor = floor.getMainCorridor(floor, Integer.parseInt(corridorNo));
 			if(corridor!=null) corridor.toggleAllLights(corridor, state);
 		}		
-		floor.restrictFloorPowerConsumption(floor, Integer.parseInt(corridorNo));
+		floor.checkAndBalancePowerConsumption(floor, Integer.parseInt(corridorNo));
 	}
 	
 

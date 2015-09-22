@@ -6,6 +6,7 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 import com.sudhir.hotel.Floor;
+import com.sudhir.hotel.Hotel;
 
 public class FloorTests {
 
@@ -39,6 +40,26 @@ public class FloorTests {
 		assertNotNull(floor);
 		System.out.println("created floor with Main corridor - "+floor.getMainCorridors().size());
 		assertEquals(floor.getPowerConsumption(floor), 25);
+	}
+	
+	@Test
+	public void balancePowerConsumption() throws Exception {
+		Hotel hotel = new Hotel(2, 1, 1);
+		assertNotNull(hotel);
+		Floor floor = hotel.getFloor(hotel, 1);		
+		System.out.println("created floor with Main corridor - "+floor.getMainCorridors().size());
+		assertNotNull(floor);
+		floor.checkAndBalancePowerConsumption(floor, 0);
+		hotel.displayHotelStatus(hotel);
+	}
+	
+	@Test
+	public void getCorridor() throws Exception {
+		Floor floor = new Floor(1, 1, 1);
+		assertNotNull(floor);
+		System.out.println("created floor with Main corridor - "+floor.getMainCorridors().size());
+		assertNotNull(floor.getMainCorridor(floor, 1));
+		assertNotNull(floor.getSubCorridor(floor, 1));
 	}
 	
 
