@@ -63,6 +63,7 @@ public class Hotel {
 	}
 	
 	public void processCommand(Hotel hotel, String command) {
+		System.out.println("Executing command-->"+ command);
 		
 		String[] splitCommand = command.split("-");	
 		String floorNo = splitCommand[0];
