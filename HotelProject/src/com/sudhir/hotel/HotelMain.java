@@ -8,10 +8,14 @@ public class HotelMain {
 		int noOfMainCorridors = 1;
 		int noOfSubCorridors = 2;
 		
-		String listOfCommands[] = new String[2];
+		String listOfCommands[] = new String[3];
 		//pattern - floorno - movement(0/1) - SC/MC / corridor no
-		listOfCommands[0] = "1-1-SC-2";
-		listOfCommands[1] = "1-0-SC-2";
+		//listOfCommands[0] = "1-1-SC-2";
+		//listOfCommands[1] = "1-0-SC-2";
+		
+		listOfCommands[0] = "2-0-MC-1";
+		listOfCommands[1] = "2-1-SC-2";
+		listOfCommands[2] = "2-1-MC-1";
 		
 		Hotel hotel = new Hotel(noOfMainCorridors, noOfSubCorridors, noOffloors);
 		System.out.println(" ------------------ Hotel Setup and default status -----------------------------");
