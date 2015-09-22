@@ -105,28 +105,33 @@ public class Floor {
 	public void restrictFloorPowerConsumption(Floor floor, int corridorNo) {
 		
 		Set<AC> allAcs = new HashSet<AC>();	
-		int currentPowerConsumption = 0;
+		int currentPowerConsumption = getCurrentPowerConsumption(floor);
 		
+		System.out.println("power cap for floor is - "+getPowerCap(floor));
+		System.out.println("currentPowerConsumption "+currentPowerConsumption);
+		
+		boolean state = currentPowerConsumption > getPowerCap(floor) ? false : true;
+		
+		for (SubCorridor corridor : floor.getSubCorridors()) {
+			if(corridor.getCorridorNo()!=corridorNo) {
+				corridor.toggleAllACs(corridor, state);
+			}
+		}
+		
+		System.out.println("latest "+getCurrentPowerConsumption(floor));
+	}
+	
+	public int getCurrentPowerConsumption(Floor floor) {
+		int currentPowerConsumption = 0;
 		for (MainCorridor corridor : floor.getMainCorridors()) {
-			System.out.println("power consumption "+corridor.getTotalPowerConsumption(corridor));
+			//System.out.println("power consumption "+corridor.getTotalPowerConsumption(corridor));
 			currentPowerConsumption = currentPowerConsumption + corridor.getTotalPowerConsumption(corridor);
 		}		
 		for (SubCorridor corridor : floor.getSubCorridors()) {			
-			System.out.println("power consumption "+corridor.getTotalPowerConsumption(corridor));
+			//System.out.println("power consumption "+corridor.getTotalPowerConsumption(corridor));
 			currentPowerConsumption = currentPowerConsumption + corridor.getTotalPowerConsumption(corridor);			
 		}
-		System.out.println("power cap for floor is - "+getPowerCap(floor));
-		System.out.println("currentPowerConsumption "+currentPowerConsumption);
-		if(currentPowerConsumption > getPowerCap(floor)) {
-			for (SubCorridor corridor : floor.getSubCorridors()) {
-				if(corridor.getCorridorNo()!=corridorNo) {
-					allAcs = corridor.getAcs();
-					for (AC ac : allAcs) {
-						ac.setState(false);
-					}
-				}
-			}
-		}
+		return currentPowerConsumption;
 	}
 	
 	public int getPowerCap(Floor floor) {

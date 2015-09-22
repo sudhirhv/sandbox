@@ -57,20 +57,18 @@ public class Hotel {
 	
 	public void checkHotelPowerConsumption(Hotel hotel) {
 		floors = hotel.getFloors();		
-		for (Floor floor : floors) {
-			//floor.restrictFloorPowerConsumption(floor);
-		}
+		//TODO
 	}
 	
 	public void processCommand(Hotel hotel, String command) {
+		System.out.println("Executing command-->"+ command);
 		
 		String[] splitCommand = command.split("-");	
 		String floorNo = splitCommand[0];
 		String movement = splitCommand[1];	
 		String corridorType = splitCommand[2];	
 		String corridorNo = splitCommand[3];
-		boolean state = false;
-		System.out.println("floor no " +floorNo);
+		boolean state = false;		
 		Floor floor = getFloor(hotel, Integer.parseInt(floorNo));
 		state = movement.equals("1") ? true : false; 
 		
@@ -85,8 +83,7 @@ public class Hotel {
 		if(corridorType.equals("MC")) {
 			MainCorridor corridor = floor.getMainCorridor(floor, Integer.parseInt(corridorNo));
 			if(corridor!=null) corridor.toggleAllLights(corridor, state);
-		}
-		//checkHotelPowerConsumption(hotel);
+		}		
 		floor.restrictFloorPowerConsumption(floor, Integer.parseInt(corridorNo));
 	}
 	
