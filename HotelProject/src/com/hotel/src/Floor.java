@@ -1,3 +1,4 @@
+package com.hotel.src;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +15,10 @@ public class Floor {
 		this.floorNo = floorNo;
 	}
 	
-	public Floor(int noOfMainCorridors, int noOfSubCorridors, int floorNo) {
+	public Floor(int noOfMainCorridors, int noOfSubCorridors, int floorNo) throws Exception {
+		
+		if(noOfMainCorridors < 1) throw new Exception("A floor must have atleast one main corridor");		
+		
 		for (int i = 0; i < noOfMainCorridors; i++) {
 			MainCorridor corridor = new MainCorridor(1, 1);
 			corridor.setCorridorNo(i+1);

@@ -1,6 +1,4 @@
-import com.hotel.src.Hotel;
-
-
+package com.hotel.src;
 
 public class HotelMain {
 

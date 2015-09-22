@@ -1,3 +1,4 @@
+package com.hotel.src;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +12,11 @@ public class Hotel {
 		this.setFloors(floors);
 	}
 	
-	public Hotel(int noOfMainCorridors, int noOfSubCorridors, int noOfFloors) {
+	public Hotel(int noOfMainCorridors, int noOfSubCorridors, int noOfFloors) throws Exception {
+		
+		if(noOfFloors < 1) throw new Exception("Floor size should atleast be 1 and above");
+		if(noOfMainCorridors < 1) throw new Exception("Floor should have atleast one main corridor");
+		
 		for (int i = 0; i < noOfFloors; i++) {
 			floors.add(new Floor(noOfMainCorridors, noOfSubCorridors, i+1));
 		}
@@ -60,14 +65,21 @@ public class Hotel {
 		//TODO
 	}
 	
-	public void processCommand(Hotel hotel, String command) {
+	public void processCommand(Hotel hotel, String command) throws Exception {
 		System.out.println("Executing command-->"+ command);
 		
-		String[] splitCommand = command.split("-");	
+		
+		
+		String[] splitCommand = command.split("-");
+		if(splitCommand.length<3) throw new Exception("Input command pattern not matching, should be floor no-movement(0/1)-corridor type-corridor no");
+		
 		String floorNo = splitCommand[0];
 		String movement = splitCommand[1];	
 		String corridorType = splitCommand[2];	
 		String corridorNo = splitCommand[3];
+		
+		
+		
 		boolean state = false;		
 		Floor floor = getFloor(hotel, Integer.parseInt(floorNo));
 		state = movement.equals("1") ? true : false; 
