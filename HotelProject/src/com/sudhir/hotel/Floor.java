@@ -1,6 +1,11 @@
-package com.hotel.src;
+package com.sudhir.hotel;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.sudhir.corridor.Corridor;
+import com.sudhir.corridor.MainCorridor;
+import com.sudhir.corridor.SubCorridor;
+import com.sudhir.items.AC;
 
 
 public class Floor {

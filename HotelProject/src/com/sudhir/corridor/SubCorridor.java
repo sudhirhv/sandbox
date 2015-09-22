@@ -1,6 +1,4 @@
-package com.hotel.src;
-import java.util.HashSet;
-import java.util.Set;
+package com.sudhir.corridor;
 
 
 public class SubCorridor extends Corridor implements CorridorInterface  {

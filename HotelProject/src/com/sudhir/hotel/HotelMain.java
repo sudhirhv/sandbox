@@ -1,4 +1,4 @@
-package com.hotel.src;
+package com.sudhir.hotel;
 
 public class HotelMain {
 

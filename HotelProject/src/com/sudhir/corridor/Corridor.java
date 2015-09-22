@@ -1,6 +1,9 @@
-package com.hotel.src;
+package com.sudhir.corridor;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.sudhir.items.AC;
+import com.sudhir.items.Light;
 
 
 public class Corridor implements CorridorInterface {

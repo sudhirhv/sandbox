@@ -1,11 +1,11 @@
-package com.hotel.tests;
+package com.sudhir.tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
 import org.junit.Test;
 
-import com.hotel.src.Floor;
+import com.sudhir.hotel.Floor;
 
 public class FloorTests {
 

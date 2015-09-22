@@ -1,4 +1,4 @@
-package com.hotel.tests;
+package com.sudhir.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.hotel.src.Hotel;
+import com.sudhir.hotel.Hotel;
 
 
 public class HotelTests {

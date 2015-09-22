@@ -1,6 +1,9 @@
-package com.hotel.src;
+package com.sudhir.hotel;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.sudhir.corridor.MainCorridor;
+import com.sudhir.corridor.SubCorridor;
 
 
 public class Hotel {

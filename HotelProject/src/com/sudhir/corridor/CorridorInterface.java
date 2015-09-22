@@ -1,4 +1,4 @@
-package com.hotel.src;
+package com.sudhir.corridor;
 public interface CorridorInterface {
 	public int getTotalPowerConsumption(Corridor corridor);	
 	

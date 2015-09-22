@@ -1,4 +1,4 @@
-import com.hotel.src.Hotel;
+import com.sudhir.hotel.Hotel;
 
 
 

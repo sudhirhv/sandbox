@@ -1,4 +1,4 @@
-package com.hotel.src;
+package com.sudhir.items;
 
 public interface ElectricAppliance {
 	
