@@ -128,7 +128,7 @@ public class Floor {
 			}
 		}
 		
-		System.out.println("latest "+getCurrentPowerConsumption(floor));
+		System.out.println("adjusted power consumption "+getCurrentPowerConsumption(floor));
 	}
 	
 	public int getCurrentPowerConsumption(Floor floor) {

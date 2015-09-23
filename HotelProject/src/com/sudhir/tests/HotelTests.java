@@ -14,13 +14,6 @@ import com.sudhir.hotel.Hotel;
 
 public class HotelTests {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	@Before
 	public void setUp() throws Exception {
