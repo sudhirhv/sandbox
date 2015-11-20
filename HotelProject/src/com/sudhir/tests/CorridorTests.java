@@ -24,7 +24,7 @@ public class CorridorTests {
 	public void toggleLights() {
 		MainCorridor  mc = new MainCorridor(3, 1);
 		assertNotNull(mc);
-		mc.toggleAllLights(mc, false);
+		mc.toggleAllLights(false);
 		
 		for (Light light : mc.getLights()) {
 			assertFalse(light.isState());
@@ -38,10 +38,10 @@ public class CorridorTests {
 		assertNotNull(mc);
 		System.out.println("lights - "+mc.getLights().size());
 	
-		mc.toggleAllACs(mc, true);
-		mc.toggleAllLights(mc, true);
-		System.out.println(mc.getTotalPowerConsumption(mc));
-		assertEquals(mc.getTotalPowerConsumption(mc),25);
+		mc.toggleAllACs(true);
+		mc.toggleAllLights(true);
+		System.out.println(mc.getTotalPowerConsumption());
+		assertEquals(mc.getTotalPowerConsumption(),25);
 		
 	}
 

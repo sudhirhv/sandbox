@@ -1,6 +1,6 @@
 package com.sudhir.corridor;
 public interface CorridorInterface {
-	public int getTotalPowerConsumption(Corridor corridor);	
+	public int getTotalPowerConsumption();	
 	
-	public void displayPowerStatus(Corridor corridor);
+	public void displayPowerStatus();
 }

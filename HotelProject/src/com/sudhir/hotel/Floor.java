@@ -27,15 +27,15 @@ public class Floor {
 		for (int i = 0; i < noOfMainCorridors; i++) {
 			MainCorridor corridor = new MainCorridor(1, 1);
 			corridor.setCorridorNo(i+1);
-			corridor.toggleAllACs(corridor, true);
-			corridor.toggleAllLights(corridor, true);
+			corridor.toggleAllACs(true);
+			corridor.toggleAllLights(true);
 			mainCorridors.add(corridor);
 		}
 		for (int j = 0; j < noOfSubCorridors; j++) {
 			SubCorridor corridor = new SubCorridor(1, 1);
 			corridor.setCorridorNo(j+1);
-			corridor.toggleAllACs(corridor, true);
-			corridor.toggleAllLights(corridor, false);
+			corridor.toggleAllACs(true);
+			corridor.toggleAllLights(false);
 			subCorridors.add(corridor);
 		}
 		this.setMainCorridors(mainCorridors);
@@ -68,9 +68,9 @@ public class Floor {
 		this.floorNo = floorNo;
 	}
 	
-	public MainCorridor getMainCorridor(Floor floor, int corridorNo) throws Exception {	
+	public MainCorridor getMainCorridor(int corridorNo) throws Exception {	
 		MainCorridor mainCorridor = null;
-		for (MainCorridor corridor : floor.getMainCorridors()) {
+		for (MainCorridor corridor : getMainCorridors()) {
 			if(corridor.getCorridorNo() == corridorNo) {
 				mainCorridor = corridor;
 			}
@@ -79,9 +79,9 @@ public class Floor {
 		return mainCorridor;
 	}
 	
-	public SubCorridor getSubCorridor(Floor floor, int corridorNo) throws Exception {	
+	public SubCorridor getSubCorridor(int corridorNo) throws Exception {	
 		SubCorridor subCorridor = null;
-		for (SubCorridor corridor : floor.getSubCorridors()) {
+		for (SubCorridor corridor : getSubCorridors()) {
 			if(corridor.getCorridorNo() == corridorNo) {
 				subCorridor = corridor;
 			}
@@ -90,63 +90,64 @@ public class Floor {
 		return subCorridor;
 	}
 
-	public int getPowerConsumption(Floor floor) {
+	//public int getPowerConsumption(Floor floor) {
+	public int getPowerConsumption() {
 		int powerConsumed = 0;
-		for (Corridor corridor : floor.getMainCorridors()) {
-			powerConsumed = powerConsumed  + corridor.getTotalPowerConsumption(corridor);
+		for (Corridor corridor : getMainCorridors()) {
+			powerConsumed = powerConsumed  + corridor.getTotalPowerConsumption();
 		}
-		for (Corridor corridor : floor.getSubCorridors()) {
-			powerConsumed = powerConsumed  + corridor.getTotalPowerConsumption(corridor);
+		for (Corridor corridor : getSubCorridors()) {
+			powerConsumed = powerConsumed  + corridor.getTotalPowerConsumption();
 		}
 		return powerConsumed;
 	}
 	
-	public void displayPowerStatus(Floor floor) {
-		System.out.println("============ Floor "+floor.getFloorNo()+"====================");
+	public void displayPowerStatus() {
+		System.out.println("============ Floor "+getFloorNo()+"====================");
 		//System.out.println("Displaying status of Main corridors");
-		for (MainCorridor corridor : floor.getMainCorridors()) {				
-			corridor.displayPowerStatus(corridor);
+		for (MainCorridor corridor : getMainCorridors()) {				
+			corridor.displayPowerStatus();
 		}			
 		//System.out.println("Displaying status of Sub corridors");
-		for (SubCorridor corridor : floor.getSubCorridors()) {			
-			corridor.displayPowerStatus(corridor);
+		for (SubCorridor corridor : getSubCorridors()) {			
+			corridor.displayPowerStatus();
 		}
 	}
 	
-	public void checkAndBalancePowerConsumption(Floor floor, int corridorForWhichInputWasProvidedFor) {
+	public void checkAndBalancePowerConsumption(int corridorForWhichInputWasProvidedFor) {
 		
 		Set<AC> allAcs = new HashSet<AC>();	
-		int currentPowerConsumption = getCurrentPowerConsumption(floor);
+		int currentPowerConsumption = getCurrentPowerConsumption();
 		
-		System.out.println("power cap for floor is - "+getPowerCap(floor));
+		System.out.println("power cap for floor is - "+getPowerCap());
 		System.out.println("currentPowerConsumption "+currentPowerConsumption);
 		
-		boolean state = currentPowerConsumption > getPowerCap(floor) ? false : true;		
-		for (SubCorridor corridor : floor.getSubCorridors()) {
+		boolean state = currentPowerConsumption > getPowerCap() ? false : true;		
+		for (SubCorridor corridor : getSubCorridors()) {
 			if(corridor.getCorridorNo()!=corridorForWhichInputWasProvidedFor) {				
-				corridor.toggleAllACs(corridor, state);
+				corridor.toggleAllACs(state);
 			}
 		}
 		
-		System.out.println("adjusted power consumption "+getCurrentPowerConsumption(floor));
+		System.out.println("adjusted power consumption "+getCurrentPowerConsumption());
 	}
 	
-	public int getCurrentPowerConsumption(Floor floor) {
+	public int getCurrentPowerConsumption() {
 		int currentPowerConsumption = 0;
-		for (MainCorridor corridor : floor.getMainCorridors()) {
+		for (MainCorridor corridor : getMainCorridors()) {
 			//System.out.println("power consumption "+corridor.getTotalPowerConsumption(corridor));
-			currentPowerConsumption = currentPowerConsumption + corridor.getTotalPowerConsumption(corridor);
+			currentPowerConsumption = currentPowerConsumption + corridor.getTotalPowerConsumption();
 		}		
-		for (SubCorridor corridor : floor.getSubCorridors()) {			
+		for (SubCorridor corridor : getSubCorridors()) {			
 			//System.out.println("power consumption "+corridor.getTotalPowerConsumption(corridor));
-			currentPowerConsumption = currentPowerConsumption + corridor.getTotalPowerConsumption(corridor);			
+			currentPowerConsumption = currentPowerConsumption + corridor.getTotalPowerConsumption();			
 		}
 		return currentPowerConsumption;
 	}
 	
-	public int getPowerCap(Floor floor) {
+	public int getPowerCap() {
 		int powerCapAt = 0;
-		powerCapAt = floor.getMainCorridors().size() * MainCorridor.powerCapAt + floor.getSubCorridors().size() * SubCorridor.powerCapAt;		
+		powerCapAt = getMainCorridors().size() * MainCorridor.powerCapAt + getSubCorridors().size() * SubCorridor.powerCapAt;		
 		return powerCapAt;
 	}
 

@@ -30,9 +30,9 @@ public class Hotel {
 		return floors;
 	}
 
-	public Floor getFloor(Hotel hotel, int floorNo) {
+	public Floor getFloor(int floorNo) {
 		Floor floor=null;
-		for (Floor fl : hotel.floors ) {			
+		for (Floor fl : getFloors() ) {			
 			if(floorNo == fl.getFloorNo()) floor = fl;			
 		}		
 		return floor;
@@ -42,10 +42,11 @@ public class Hotel {
 		this.floors = floors;
 	}
 
-	public int getPowerConsumption(Hotel hotel) {
+	//public int getPowerConsumption(Hotel hotel) {
+	public int getPowerConsumption() {
 		int powerConsumed = 0;
-		for (Floor floor : hotel.getFloors()) {
-			powerConsumed = powerConsumed  + floor.getPowerConsumption(floor);
+		for (Floor floor : getFloors()) {
+			powerConsumed = powerConsumed  + floor.getPowerConsumption();
 		}		
 		return powerConsumed;
 	}
@@ -54,17 +55,26 @@ public class Hotel {
 		this.setFloors(floors);
 	}
 
-	public void displayHotelStatus(Hotel hotel) {
+	/*public void displayHotelStatus(Hotel hotel) {
 		Set<Floor> floors = new HashSet<Floor>();
 		floors = hotel.getFloors();
 		System.out.println("No of floors - " + hotel.getFloors().size());
 		for (Floor floor : floors) {
 			floor.displayPowerStatus(floor);
 		}
-	}
+	}*/
 
-	public void checkHotelPowerConsumption(Hotel hotel) {
-		floors = hotel.getFloors();		
+	public void displayHotelStatus() {
+		Set<Floor> floors = new HashSet<Floor>();
+		floors = getFloors();
+		System.out.println("No of floors - " + getFloors().size());
+		for (Floor floor : floors) {
+			floor.displayPowerStatus();
+		}
+	}
+	
+	public void checkHotelPowerConsumption() {
+		floors = getFloors();		
 		//TODO
 	}
 
@@ -82,20 +92,20 @@ public class Hotel {
 			String corridorNo = splitCommand[3];
 
 			boolean state = false;		
-			Floor floor = getFloor(hotel, Integer.parseInt(floorNo));
+			Floor floor = getFloor(Integer.parseInt(floorNo));
 			if(floor!=null) {
 				state = movement.equals("1") ? true : false; 
 
 				if(corridorType.equals("SC")) {			
-					SubCorridor corridor = floor.getSubCorridor(floor, Integer.parseInt(corridorNo));
-					if(corridor!=null) corridor.toggleAllLights(corridor, state);				
+					SubCorridor corridor = floor.getSubCorridor(Integer.parseInt(corridorNo));
+					if(corridor!=null) corridor.toggleAllLights(state);				
 				}
 
 				if(corridorType.equals("MC")) {
-					MainCorridor corridor = floor.getMainCorridor(floor, Integer.parseInt(corridorNo));
-					if(corridor!=null) corridor.toggleAllLights(corridor, state);
+					MainCorridor corridor = floor.getMainCorridor(Integer.parseInt(corridorNo));
+					if(corridor!=null) corridor.toggleAllLights(state);
 				}		
-				floor.checkAndBalancePowerConsumption(floor, Integer.parseInt(corridorNo));
+				floor.checkAndBalancePowerConsumption(Integer.parseInt(corridorNo));
 			} else {
 				throw new Exception("Floor does not exist");
 			}

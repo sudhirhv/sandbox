@@ -30,8 +30,8 @@ public class FloorTests {
 		assertNotNull(floor);
 		System.out.println("created floor with Main corridor - "+floor.getMainCorridors().size());
 		
-		assertNull(floor.getMainCorridor(floor, 2));
-		assertNotNull(floor.getMainCorridor(floor, 1));
+		assertNull(floor.getMainCorridor(2));
+		assertNotNull(floor.getMainCorridor(1));
 	}
 	
 	@Test
@@ -39,18 +39,18 @@ public class FloorTests {
 		Floor floor = new Floor(1, 1, 1);
 		assertNotNull(floor);
 		System.out.println("created floor with Main corridor - "+floor.getMainCorridors().size());
-		assertEquals(floor.getPowerConsumption(floor), 25);
+		assertEquals(floor.getPowerConsumption(), 25);
 	}
 	
 	@Test
 	public void balancePowerConsumption() throws Exception {
 		Hotel hotel = new Hotel(2, 1, 1);
 		assertNotNull(hotel);
-		Floor floor = hotel.getFloor(hotel, 1);		
+		Floor floor = hotel.getFloor(1);		
 		System.out.println("created floor with Main corridor - "+floor.getMainCorridors().size());
 		assertNotNull(floor);
-		floor.checkAndBalancePowerConsumption(floor, 0);
-		hotel.displayHotelStatus(hotel);
+		floor.checkAndBalancePowerConsumption(0);
+		hotel.displayHotelStatus();
 	}
 	
 	@Test
@@ -58,8 +58,8 @@ public class FloorTests {
 		Floor floor = new Floor(1, 1, 1);
 		assertNotNull(floor);
 		System.out.println("created floor with Main corridor - "+floor.getMainCorridors().size());
-		assertNotNull(floor.getMainCorridor(floor, 1));
-		assertNotNull(floor.getSubCorridor(floor, 1));
+		assertNotNull(floor.getMainCorridor(1));
+		assertNotNull(floor.getSubCorridor(1));
 	}
 	
 

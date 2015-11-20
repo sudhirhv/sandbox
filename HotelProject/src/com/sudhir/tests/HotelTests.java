@@ -38,7 +38,7 @@ public class HotelTests {
 		Hotel hotel = new Hotel(1, 1, 1);
 		assertNotNull(hotel);
 		hotel.processCommand(hotel, "1-0-SC-1");	
-		hotel.displayHotelStatus(hotel);
+		hotel.displayHotelStatus();
 		System.out.println("Command processed");
 	}
 	
@@ -47,7 +47,7 @@ public class HotelTests {
 		System.out.println("creating hotel");
 		Hotel hotel = new Hotel(1, 1, 1);
 		assertNotNull(hotel);
-		System.out.println("power consumed - "+hotel.getPowerConsumption(hotel));
+		System.out.println("power consumed - "+hotel.getPowerConsumption());
 	}
   
 }

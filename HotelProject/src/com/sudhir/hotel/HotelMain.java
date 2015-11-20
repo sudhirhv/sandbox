@@ -22,7 +22,7 @@ public class HotelMain {
 		
 		Hotel hotel = new Hotel(noOfMainCorridors, noOfSubCorridors, noOffloors);
 		System.out.println(" ------------------ Hotel Setup and default status -----------------------------");
-		hotel.displayHotelStatus(hotel);
+		hotel.displayHotelStatus();
 		System.out.println(" ------------------ Start Executing commands -----------------------------");
 		for (int i = 0; i < listOfCommands.length; i++) {
 			System.out.println(" ------------------ Start Command " +i+1+"-----------------------------");
@@ -30,7 +30,7 @@ public class HotelMain {
 			String delimiter = "-";
 			String[] splitCommand = command.split(delimiter);
 			hotel.processCommand(hotel, command);					
-			hotel.displayHotelStatus(hotel);
+			hotel.displayHotelStatus();
 			System.out.println(" ------------------ End Command "+i+1+"-----------------------------");
 		}
 		System.out.println(" ------------------ End Executing commands -----------------------------");

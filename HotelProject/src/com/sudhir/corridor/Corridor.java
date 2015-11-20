@@ -51,29 +51,29 @@ public class Corridor implements CorridorInterface {
 		this.corridorNo = corridorNo;
 	}
 
-	public void toggleAllLights(Corridor corridor, boolean state) {
-		Set<Light> allLights = corridor.getLights();
+	public void toggleAllLights(boolean state) {
+		Set<Light> allLights = getLights();
 		for (Light light : allLights) {
 			light.setState(state);
 		}
 	}
 	
-	public void toggleAllACs(Corridor corridor, boolean state) {
-		Set<AC> allACs = corridor.getAcs();
+	public void toggleAllACs(boolean state) {
+		Set<AC> allACs = getAcs();
 		for (AC ac : allACs) {
 			ac.setState(state);
 		}
 	}
 
 	@Override
-	public int getTotalPowerConsumption(Corridor corridor) {
+	public int getTotalPowerConsumption() {
 		int powerConsumed = 0;
 		
-		for (AC ac : corridor.getAcs()) {
+		for (AC ac : getAcs()) {
 			powerConsumed = powerConsumed + (ac.isState() ? ac.powerConsumedByAc :  0);
 		}
 		
-		for (Light light : corridor.getLights()) {
+		for (Light light : getLights()) {
 			powerConsumed = powerConsumed + (light.isState() ? light.powerConsumedByLight : + 0);
 		}				
 		return powerConsumed;
@@ -81,12 +81,12 @@ public class Corridor implements CorridorInterface {
 
 
 	@Override
-	public void displayPowerStatus(Corridor corridor) {
-		System.out.println("Displaying status of "+corridor.getClass().getSimpleName() +" "+corridor.getCorridorNo());
-		for (Light light : corridor.getLights()) {
+	public void displayPowerStatus() {
+		System.out.println("Displaying status of "+getClass().getSimpleName() +" "+getCorridorNo());
+		for (Light light : getLights()) {
 			System.out.println("Light "+ light.getLightNo() + " : "+ (light.isState() ? "ON" : "OFF"));
 		}
-		for (AC ac : corridor.getAcs()) {
+		for (AC ac : getAcs()) {
 			System.out.println("AC "+ ac.getAcNo() + " : "+ (ac.isState() ? "ON" : "OFF"));			
 		}
 	}
