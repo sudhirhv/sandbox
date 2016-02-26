@@ -3,6 +3,7 @@ package com.sobis.carparking.web;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,10 +64,12 @@ public class ParkingRequestController {
 	}
 	
 	@RequestMapping(value="/getAllParkingRequests.view")
-	public @ResponseBody Map<String, Object> getAllRequests() {		
+	public @ResponseBody Map<String, Object> getAllRequests() {	
+		List<ParkingRequest> parkingRequests = parkingRequestService.getAllRequests();		
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
 		jsonResponse.put("success", true);
-		jsonResponse.put("rows", parkingRequestService.getAllRequests());
+		jsonResponse.put("rows", parkingRequests);
+		jsonResponse.put("totalCount", parkingRequests.size());
 		return jsonResponse;		
 	}
 	
