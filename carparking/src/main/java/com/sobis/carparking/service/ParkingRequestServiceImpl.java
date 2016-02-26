@@ -1,6 +1,7 @@
 package com.sobis.carparking.service;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +39,12 @@ public class ParkingRequestServiceImpl implements ParkingRequestService {
 
 	@Override
 	public List<ParkingRequest> getAllRequests() {
-		return parkingRequestDao.getAllRequests();
+		List<ParkingRequest> parkingRequests= parkingRequestDao.getAllRequests();	
+		return parkingRequests;		
 	}
 
 	@Override
-	public List<ParkingRequest> getAllRequestsPerDate(Date date) {
-		
+	public List<ParkingRequest> getAllRequestsPerDate(Date date) {		
 		return parkingRequestDao.getAllRequestsPerDate(date);
 	}
 

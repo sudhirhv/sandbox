@@ -1,10 +1,37 @@
 // The following two lines import the default Sencha Touch theme. If you are building
 // a new theme, remove them and the add your own CSS on top of the base CSS (which
 // is already included in your app.json file).
+
+$include-pictos-font: false;
+$include-default-icons: false;
+
+$experimental-support-for-opera:false;
+$experimental-support-for-khtml:false;
+
+// exclude components that app is not using
 @import 'sencha-touch/default';
-@import 'sencha-touch/default/all';
+@import 'sencha-touch/default/src/Class';
+@import 'sencha-touch/default/src/Button';
+@import 'sencha-touch/default/src/Panel';
+@import 'sencha-touch/default/src/Sheet';
+@import 'sencha-touch/default/src/MessageBox';
+@import 'sencha-touch/default/src/Toolbar';
+@import 'sencha-touch/default/src/form/Panel';
+@import 'sencha-touch/default/src/form/FieldSet';
+@import 'sencha-touch/default/src/field/Field';
+@import 'sencha-touch/default/src/field/Checkbox';
+@import 'sencha-touch/default/src/field/Select';
+@import 'sencha-touch/default/src/picker/Picker';
+@import 'sencha-touch/default/src/dataview/List';
+@import 'sencha-touch/default/src/plugin/ListPaging';
+@import 'sencha-touch/default/src/plugin/PullRefresh';
+@import 'sencha-touch/default/src/tab/Panel';
 
-// Custom code goes here..
 
-// Examples of using the icon mixin:
-// @include icon('user');
+@import 'carparking';
+@import 'font-awesome';
+
+
+
+
+
