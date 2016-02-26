@@ -7,7 +7,8 @@ Ext.define('carparking.view.ParkingRequestsContainer', {
 				}, {
 					xtype: 'titlebar',
     				docked: 'top',
-    				title: 'Status as on Feb 26, 2016'
+    				title: 'Status as on - '+Ext.util.Format.date(new Date(),'d-M-y')
+    				
 		}]		
 	}
 });

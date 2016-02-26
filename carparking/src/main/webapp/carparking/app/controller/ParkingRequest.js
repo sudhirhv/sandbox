@@ -25,7 +25,7 @@ Ext.define('carparking.controller.ParkingRequest', {
 						var rows = o['rows'];
 						var employeeObj = o['employee'];
 						//console.log(employeeObj);
-						var result = '<div style = "width:100%;text-align:center;padding:20px;">'+employeeObj.employeeName+'</div>';		
+						var result = '<div style = "width:100%;text-align:center;padding:20px;box-shadow:0 0 15px 5px rgba(0,0,0,0.5)">'+employeeObj.employeeName+'</div>';		
 						return result;
 					},					
 					getContactImage : function(rec) {
