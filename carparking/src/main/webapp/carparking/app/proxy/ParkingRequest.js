@@ -5,7 +5,7 @@ Ext.define('carparking.proxy.ParkingRequest', {
 	
 	config: {
 		//url: carparking.config.constants.BASEURL+'getAllParkingRequests.view',
-		url : '../'+'getAllParkingRequests.view',
+		url : '../'+'getAllParkingSlotsWithStatus.view',
 		type : 'ajax',
 		reader: {
 			type: 'json',
@@ -13,6 +13,10 @@ Ext.define('carparking.proxy.ParkingRequest', {
 			rootProperty: 'rows', //carparking.config.constants.JSON_READER.ROOT,
 			successProperty: 'success',
 			idProperty: 'id' //carparking.config.constants.JSON_READER.ID_PROPERTY
-		}		
+		},
+		extraParams : {
+			date : ''//1456425000000
+		}
+		
 	}
 });

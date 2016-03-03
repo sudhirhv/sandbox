@@ -14,7 +14,7 @@ Ext.application({
     name: 'carparking',
 
     requires: [
-    	//'carparking.config.Constants',
+    	'carparking.config.Constants',
         'Ext.MessageBox'
     ],
 
@@ -28,6 +28,7 @@ Ext.application({
     ],
     
     controllers : [
+    	'Initialize',
     	'ParkingRequest'
     ],
     

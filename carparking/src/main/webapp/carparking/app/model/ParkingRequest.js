@@ -4,8 +4,10 @@ Ext.define('carparking.model.ParkingRequest', {
 	
 	config: {
 		fields: [
-			'id',
-			'employee'			
+			  'ps_id',
+		      'fk_employee',
+		      'parkingDate',
+		      'employeeName'		
 		],
 		proxy: {
 			type: 'ParkingRequest'
