@@ -40,4 +40,9 @@ public class ParkingSlotServiceImpl implements ParkingSlotService {
 		return parkingSlotDao.getAllParkingSlots();
 	}
 
+	@Override
+	public List<Object[]> getAllParkingSlotsWithStatus(Date date) {
+		return parkingSlotDao.getAllParkingSlotsWithStatus(date);
+	}
+
 }

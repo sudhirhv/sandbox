@@ -1,7 +1,6 @@
 package com.sobis.carparking.service;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 import com.sobis.carparking.dao.ParkingRequestDao;
@@ -16,4 +15,5 @@ public interface ParkingRequestService {
 	public List<ParkingRequest> getAllRequests();
 	
 	public List<ParkingRequest> getAllRequestsPerDate(Date date);
+		
 }

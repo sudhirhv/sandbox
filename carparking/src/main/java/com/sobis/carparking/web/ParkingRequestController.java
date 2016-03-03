@@ -73,6 +73,34 @@ public class ParkingRequestController {
 		return jsonResponse;		
 	}
 	
+	@RequestMapping(value="/getAllParkingRequestsPerDate.view")
+	public @ResponseBody Map<String, Object> getAllRequestsPerDate(long date) {
+		System.out.println("date "+date);
+		/*String pattern = "dd-MM-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		//String date = simpleDateFormat.format(new Date());		
+		
+		
+		   
+		System.out.println("datefmt"+simpleDateFormat.format(date1));*/
+		Date date1 = new Date(date);
+	    List<ParkingRequest> parkingRequests = parkingRequestService.getAllRequestsPerDate(date1);
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
+		jsonResponse.put("success", true);
+		jsonResponse.put("rows", parkingRequests);
+		jsonResponse.put("totalCount", parkingRequests.size());
+		return jsonResponse;		
+	}
 	
+	@RequestMapping(value="/getAllParkingSlotsWithStatus.view")
+	public @ResponseBody Map<String, Object> getAllParkingSlotsWithStatus(long date) {		
+		Date date1 = new Date(date);
+		List<Object[]> ps = parkingSlotService.getAllParkingSlotsWithStatus(date1);		
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
+		jsonResponse.put("success", true);
+		jsonResponse.put("rows", ps);
+		jsonResponse.put("totalCount", ps.size());
+		return jsonResponse;		
+	}
 	
 }

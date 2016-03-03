@@ -1,5 +1,6 @@
 package com.sobis.carparking.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.sobis.carparking.model.ParkingSlot;
@@ -12,4 +13,5 @@ public interface ParkingSlotDao {
 	
 	public List<ParkingSlot> getAllParkingSlots();
 	
+	public List<Object[]> getAllParkingSlotsWithStatus(Date date);
 }

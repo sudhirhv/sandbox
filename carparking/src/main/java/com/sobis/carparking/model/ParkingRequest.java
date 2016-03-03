@@ -8,8 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 @Entity
 @Table(name="parkingRequests")
 public class ParkingRequest extends Base {
@@ -22,6 +20,7 @@ public class ParkingRequest extends Base {
 	@OneToOne()
 	@JoinColumn(name="fk_parkingSlot")	
 	private ParkingSlot parkingSlot;
+	
 	
 	@Column(name="parkingDate")	
 	private Date parkingDate;

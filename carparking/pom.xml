@@ -23,7 +23,7 @@
 		<!-- Logging -->
 		<logback.version>1.0.13</logback.version>
 		<slf4j.version>1.7.5</slf4j.version>
-		<commons-lang3.version>3.3.2</commons-lang3.version>
+		<commons-lang3.version>3.4</commons-lang3.version>
 
 		<!-- Test -->
 		<!-- testing -->
@@ -139,8 +139,13 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>${commons-lang3.version}</version>
-			<scope>test</scope>
+			<version>${commons-lang3.version}</version>		
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
 		</dependency>
 
 		<dependency>

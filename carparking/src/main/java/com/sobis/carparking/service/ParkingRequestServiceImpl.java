@@ -1,7 +1,6 @@
 package com.sobis.carparking.service;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sobis.carparking.dao.ParkingRequestDao;
-import com.sobis.carparking.dao.ParkingSlotDao;
 import com.sobis.carparking.model.ParkingRequest;
 
 @Service
@@ -47,5 +45,7 @@ public class ParkingRequestServiceImpl implements ParkingRequestService {
 	public List<ParkingRequest> getAllRequestsPerDate(Date date) {		
 		return parkingRequestDao.getAllRequestsPerDate(date);
 	}
+	
+	
 
 }
