@@ -23,10 +23,22 @@ public class Employee extends Base {
 	@JoinColumn(name="fk_image")
 	private File image;
 	
+	@OneToOne()
+	@JoinColumn(name="fk_username")
+	private User user;
+	
 	public Employee() {
 		
 	}
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public File getImage() {
 		return image;
 	}
@@ -39,12 +51,13 @@ public class Employee extends Base {
 
 
 
-	public Employee(String employeeName, String employeeId, String email, File image) {
+	public Employee(String employeeName, String employeeId, String email, File image, User user) {
 		super();
 		this.employeeName = employeeName;
 		this.employeeId = employeeId;
 		this.email = email;		
 		this.image = image;
+		this.user = user;
 	}
 
 

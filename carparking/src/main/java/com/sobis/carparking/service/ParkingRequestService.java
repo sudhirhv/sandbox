@@ -10,7 +10,7 @@ public interface ParkingRequestService {
 	
 	public void addParkingRequest(ParkingRequest parkingRequest);
 	
-	public ParkingRequestDao getParkingRequest(String requestId);
+	public ParkingRequest getParkingRequest(String requestId);
 	
 	public List<ParkingRequest> getAllRequests();
 	

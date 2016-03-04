@@ -30,7 +30,7 @@ public class ParkingRequestServiceImpl implements ParkingRequestService {
 
 	@Override
 	@Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
-	public ParkingRequestDao getParkingRequest(String requestId) {
+	public ParkingRequest getParkingRequest(String requestId) {
 		return null;
 		
 	}

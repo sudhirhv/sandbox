@@ -23,9 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	private FileDao fileDao;
-	
-	
-	
+		
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void addEmployee(Employee employee) {

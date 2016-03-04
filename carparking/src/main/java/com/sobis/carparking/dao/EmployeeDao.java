@@ -14,4 +14,5 @@ public interface EmployeeDao {
 	public List<Employee> getAllEmployees();		
 	
 	public File getImage(String employeeId);
+
 }

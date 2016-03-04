@@ -28,8 +28,8 @@ public class ParkingRequestDaoJpaImpl implements ParkingRequestDao {
 	}
 
 	@Override
-	public ParkingRequestDao getParkingRequest(String requestId) {
-		return entityManager.find(ParkingRequestDao.class, requestId);	
+	public ParkingRequest getParkingRequest(String requestId) {
+		return entityManager.find(ParkingRequest.class, requestId);	
 	}
 
 	@Override
