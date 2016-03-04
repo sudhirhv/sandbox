@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void addUser(User user) {
 		Date createdDate = new Date();
+		
 		user.setCreatedOn(createdDate);
 		user.setModifiedOn(createdDate);			
 		userDao.addUser(user);

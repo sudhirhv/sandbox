@@ -1,18 +1,15 @@
 package com.sobis.carparking.web;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,24 +29,25 @@ public class UserController {
 	@Autowired
 	private RoleService roleService;
 	
+
+	
 	@InitBinder
-    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
-		binder.registerCustomEditor(Role.class, "roles", new CustomCollectionEditor(Set.class) {
-					@Override
-					protected Object convertElement(Object element) {												
-						System.out.println("element val" + (String) element);
-						if (element != null) {
-							Role role = roleService.getRoleById((String) element);
-							System.out.println("role name "	+ role.getRoleName());
-							return role;
-						} else
-							return null;
-					}
-				});
+    protected void initBinder(WebDataBinder binder) {		
+		binder.registerCustomEditor(Set.class, "roles", new CustomCollectionEditor(Set.class) {
+			@Override
+			protected Object convertElement(Object element) {												
+				System.out.println("element val" + (String) element);
+				if (element != null) {
+					Role role = roleService.getRoleById((String) element);
+					return role;
+				} else
+					return null;
+			}
+		});
     }
 	
 	@RequestMapping("/addUser.view")
-	public @ResponseBody Map<String, Object> addEmployee(@ModelAttribute User user, BindingResult result, Model model) {		
+	public @ResponseBody Map<String, Object> addUser(@ModelAttribute User user, BindingResult result, Model model) {		
 		
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();
 		jsonResponse.put("success", true);
@@ -57,13 +55,13 @@ public class UserController {
 			jsonResponse.put("success", false);
 			jsonResponse.put("errors", result.getAllErrors());
 		}
-		System.out.println("username " +user.getUserName());
+		System.out.println("username " +user.getUserName());	
 		userService.addUser(user);		
 		return jsonResponse;
 	}
 	
 	@RequestMapping("/addRole.view")
-	public @ResponseBody Map<String, Object> addEmployee(@ModelAttribute Role role, BindingResult result) {		
+	public @ResponseBody Map<String, Object> addRole(@ModelAttribute Role role, BindingResult result) {		
 		
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();
 		jsonResponse.put("success", true);

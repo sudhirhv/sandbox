@@ -25,7 +25,7 @@ public class User extends Base {
 	private boolean isActive;
 	
 	 
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany
     @JoinTable(name="user_roles",
         joinColumns = {@JoinColumn(name="user_id")},
         inverseJoinColumns = {@JoinColumn(name="role_id")}
