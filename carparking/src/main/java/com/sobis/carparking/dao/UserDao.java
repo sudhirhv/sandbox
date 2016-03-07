@@ -12,5 +12,7 @@ public interface UserDao {
 	
 	public User getUserById(String userId);
 
+	public User getUserByUserName(String userName);
+
 	
 }
