@@ -36,9 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()		
 				.antMatchers("/resources/**").permitAll()
+				.antMatchers("/carparking/resources/**").permitAll()
 				.anyRequest().authenticated()
 				.and()				
-			.formLogin().loginPage("/login.jsp").defaultSuccessUrl("/carparking/index.html")
+			.formLogin().loginPage("/login").defaultSuccessUrl("/carparking/index.html")
 				.loginProcessingUrl("/j_spring_security_check")
 				.permitAll()
 				.and()			
