@@ -15,7 +15,7 @@ public class LoginController extends WebMvcConfigurerAdapter {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(ModelMap model) {
-		System.out.println("in login controller");
+		//System.out.println("in login controller");
 		return "login";
 	}
 

@@ -49,4 +49,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDao.getEmployee(employeeId).getImage();
 	}
 
+	@Override
+	public Employee getEmployeeByUserName(String userName) {
+		return employeeDao.getEmployeeByUserName(userName);
+	}
+
 }

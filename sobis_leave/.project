@@ -3,6 +3,7 @@
 	<name>sobis_leave</name>
 	<comment></comment>
 	<projects>
+		<project>spring-web-4.2.4.RELEASE</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

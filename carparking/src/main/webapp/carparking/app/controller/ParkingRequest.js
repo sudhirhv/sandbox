@@ -47,14 +47,13 @@ Ext.define('carparking.controller.ParkingRequest', {
 	itemtap : function(list, index, target, rec, e) {
 		
 		console.log(rec.get('employeeName'))
-		if(rec.get('employeeName')==null) {
-			console.log('fetching')
+		if(rec.get('employeeName')==null) {			
 			var me = this;
 			Ext.Ajax.request({
 					url : '../'+'addParkingRequest.view',
 					timeout : carparking.config.Constants.TIMEOUT,
 					params : {
-						'employee' : '2c9089a85318ad4a015318ae187f0000',
+						'employee' : carparking.config.employeeId,//'2c9089a85318ad4a015318ae187f0000',
 						'parkingSlot' : rec.get('ps_id'),//2c9089a85318bc5d015318bf4a060005',
 						'parkingDate' : Ext.util.Format.date(new Date(), 'd-m-Y')					
 					},

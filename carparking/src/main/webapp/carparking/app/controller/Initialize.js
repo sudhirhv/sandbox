@@ -9,8 +9,15 @@ Ext.define('carparking.controller.Initialize', {
 				success : function(response) {					
 					var result = Ext.decode(response.responseText);		
 					console.log(result.userName)
+					var employee = result.employee ? result.employee : null;
+					
 					carparking.config.userName = result.userName ? result.userName : '';
 					carparking.config.currentDate = new Date().getTime();
+					if(employee) {
+						carparking.config.employeeName = employee.employeeName;
+						carparking.config.employeeId = employee.id;
+						
+					}
 				},
 				failure : function(response) {
 					console.log('Failure in ApplicationController call. Could not verify current users access.');			

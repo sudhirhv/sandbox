@@ -29,9 +29,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth
 			.inMemoryAuthentication()
 				.withUser("sudhir").password("password").roles("USER");				
-	}*/
+	}
 	
-
+	protected void configure(HttpSecurity http) throws Exception {
+	    http
+	        .authorizeRequests()
+	            .anyRequest().authenticated() 
+	            .and()
+	        .formLogin()                      
+	            .and()
+	        .httpBasic()
+	        	.and()
+	        .csrf().disable();                     
+	}
+*/
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()		

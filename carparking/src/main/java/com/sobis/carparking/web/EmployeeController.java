@@ -42,6 +42,21 @@ public class EmployeeController {
 		return jsonResponse;
 	}
 	
+	@RequestMapping("/getEmployeeByUserName.view")
+	public @ResponseBody Map<String, Object> getEmployeeByUserName(String userName) {		
+		System.out.println("userName - "+userName);
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();
+		jsonResponse.put("success", true);
+		/*if(result.hasErrors()) {
+			jsonResponse.put("success", false);
+			jsonResponse.put("errors", result.getAllErrors());
+		}*/
+	
+		jsonResponse.put("user", userName);
+		jsonResponse.put("employee", employeeService.getEmployeeByUserName(userName));		
+		return jsonResponse;
+	}
+	
 	/*@RequestMapping(value = "/addFile.view", method = RequestMethod.POST)
 	public String uploadFile(@ModelAttribute File file, BindingResult result, ModelMap model) throws IllegalStateException, IOException {
 		  MultipartFile multipartFile = file.getFile();

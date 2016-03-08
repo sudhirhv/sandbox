@@ -13,4 +13,6 @@ public interface EmployeeService {
 	public List<Employee> getAllEmployees();		
 	
 	public File getImage(String employeeId);
+	
+	public Employee getEmployeeByUserName(String userName);
 }
