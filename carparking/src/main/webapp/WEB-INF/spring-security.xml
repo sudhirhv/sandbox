@@ -18,7 +18,12 @@
  
  	<beans:bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 		<beans:property name="userDetailsService" ref="userDetailsService"></beans:property>
+		<beans:property name="passwordEncoder" ref="encoder"></beans:property>
 	</beans:bean>
+		
+	 <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">		
+	 </beans:bean>
+	
 	
 	<beans:bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
 		<beans:property name="providers">
@@ -31,8 +36,10 @@
     <beans:bean id="userDetailsService" class="com.sobis.carparking.service.CustomUserDetailsService"></beans:bean>
 	<authentication-manager>
 		<authentication-provider user-service-ref="userDetailsService"> 
+			<password-encoder ref="encoder" />
 		</authentication-provider>  	
 	</authentication-manager>
+	
 
  
 </beans:beans>

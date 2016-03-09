@@ -44,9 +44,7 @@ Ext.define('carparking.controller.ParkingRequest', {
 		parkingRequestsDataView.setItemTpl(me.tpl);		
 	},
 	
-	itemtap : function(list, index, target, rec, e) {
-		
-		console.log(rec.get('employeeName'))
+	itemtap : function(list, index, target, rec, e) {		
 		var params = {};
 		var store = list.getStore();
 		var me = this;
@@ -59,8 +57,7 @@ Ext.define('carparking.controller.ParkingRequest', {
 			params['parkingSlot'] = rec.get('ps_id'),//2c9089a85318bc5d015318bf4a060005',
 			params['parkingDate'] = Ext.util.Format.date(new Date(), 'd-m-Y H:i:s');
 			url = 'addParkingRequest.view'
-		}
-		console.log('find'+store.find('fk_employee', carparking.config.employeeId))
+		}		
 		if(rec.get('employeeName')!=null && rec.get('fk_employee')==carparking.config.employeeId) {
 			boolContinue = true;
 			params['pr_id'] = rec.get('pr_id');

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Propagation;
@@ -28,7 +29,9 @@ public class UserServiceImpl implements UserService {
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void addUser(User user) {
 		Date createdDate = new Date();
-		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(hashedPassword);
 		user.setCreatedOn(createdDate);
 		user.setModifiedOn(createdDate);			
 		userDao.addUser(user);
