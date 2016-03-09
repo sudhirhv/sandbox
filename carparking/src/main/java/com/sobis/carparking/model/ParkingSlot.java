@@ -26,9 +26,10 @@ import javax.persistence.ConstructorResult;
 @SqlResultSetMapping(name="ParkingSlotMapping", classes = {
 	    @ConstructorResult(targetClass = ParkingSlotResult.class, 
 	    columns = {
-	    	@ColumnResult(name="ps_id"), 
+	    	@ColumnResult(name="ps_id"),	    	
 	    	@ColumnResult(name="employeeId"),
 	    	@ColumnResult(name="parkingDate", type=Date.class),
+	    	@ColumnResult(name="pr_id"),
 	    	@ColumnResult(name="employeeName")})
 	})
 

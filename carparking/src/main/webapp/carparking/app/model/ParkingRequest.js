@@ -7,7 +7,8 @@ Ext.define('carparking.model.ParkingRequest', {
 			  'ps_id',
 		      'fk_employee',
 		      'parkingDate',
-		      'employeeName'		
+		      'pr_id',
+		      'employeeName'		      
 		],
 		proxy: {
 			type: 'ParkingRequest'

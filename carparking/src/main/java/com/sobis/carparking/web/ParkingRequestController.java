@@ -98,9 +98,18 @@ public class ParkingRequestController {
 		List<Object[]> ps = parkingSlotService.getAllParkingSlotsWithStatus(date1);		
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
 		jsonResponse.put("success", true);
-		jsonResponse.put("rows", ps);
-		jsonResponse.put("totalCount", ps.size());
+		jsonResponse.put("rows", ps);		
+		jsonResponse.put("totalCount", ps.size());		
 		return jsonResponse;		
 	}
+	
+	@RequestMapping(value="/deleteParkingRequest.view")
+	public @ResponseBody Map<String, Object> deleteParkingRequest(String pr_id) {		
+		parkingRequestService.deleteParkingRequest(pr_id);		
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
+		jsonResponse.put("success", true);		
+		return jsonResponse;		
+	}
+	
 	
 }

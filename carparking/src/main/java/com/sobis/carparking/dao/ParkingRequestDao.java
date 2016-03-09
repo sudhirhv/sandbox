@@ -15,4 +15,6 @@ public interface ParkingRequestDao {
 	
 	public List<ParkingRequest> getAllRequestsPerDate(Date date);
 	
+	public void deleteParkingRequest(String pr_id);
+	
 }

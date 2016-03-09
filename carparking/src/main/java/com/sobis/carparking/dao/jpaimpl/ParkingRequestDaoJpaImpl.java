@@ -59,4 +59,11 @@ public class ParkingRequestDaoJpaImpl implements ParkingRequestDao {
 		return query.getResultList();
 	}
 
+	@Override
+	public void deleteParkingRequest(String pr_id) {
+		Query query = entityManager.createQuery("delete from ParkingRequest pr where pr.id=:pr_id");
+		query.setParameter("pr_id", pr_id);
+		query.executeUpdate();		
+	}
+
 }

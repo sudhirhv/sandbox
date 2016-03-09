@@ -45,6 +45,12 @@ public class ParkingRequestServiceImpl implements ParkingRequestService {
 	public List<ParkingRequest> getAllRequestsPerDate(Date date) {		
 		return parkingRequestDao.getAllRequestsPerDate(date);
 	}
+
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
+	public void deleteParkingRequest(String pr_id) {
+		parkingRequestDao.deleteParkingRequest(pr_id);		
+	}
 	
 	
 

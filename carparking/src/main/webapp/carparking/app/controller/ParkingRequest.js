@@ -47,30 +47,47 @@ Ext.define('carparking.controller.ParkingRequest', {
 	itemtap : function(list, index, target, rec, e) {
 		
 		console.log(rec.get('employeeName'))
-		if(rec.get('employeeName')==null) {			
-			var me = this;
-			Ext.Ajax.request({
-					url : '../'+'addParkingRequest.view',
-					timeout : carparking.config.Constants.TIMEOUT,
-					params : {
-						'employee' : carparking.config.employeeId,//'2c9089a85318ad4a015318ae187f0000',
-						'parkingSlot' : rec.get('ps_id'),//2c9089a85318bc5d015318bf4a060005',
-						'parkingDate' : Ext.util.Format.date(new Date(), 'd-m-Y')					
-					},
-					success : function(response) {					
-						var result = Ext.decode(response.responseText);		
-						if(result.success) {
-							var proxy = list.getStore().getProxy();
-							proxy.setExtraParams({
-								'date': new Date().getTime()
-							})
-							list.getStore().load();							
-						}
-					},
-					failure : function(response) {
-						console.log('Failure in ApplicationController call. Could not verify current users access.');			
-					}
-				})	
-			}
+		var params = {};
+		var store = list.getStore();
+		var me = this;
+		var url;
+		var boolContinue = false;
+		
+		if(rec.get('employeeName')==null && (store.find('fk_employee', carparking.config.employeeId) < 0)) {
+			boolContinue = true;
+			params['employee'] = carparking.config.employeeId,//'2c9089a85318ad4a015318ae187f0000',
+			params['parkingSlot'] = rec.get('ps_id'),//2c9089a85318bc5d015318bf4a060005',
+			params['parkingDate'] = Ext.util.Format.date(new Date(), 'd-m-Y');
+			url = 'addParkingRequest.view'
 		}
+		console.log('find'+store.find('fk_employee', carparking.config.employeeId))
+		if(rec.get('employeeName')!=null && rec.get('fk_employee')==carparking.config.employeeId) {
+			boolContinue = true;
+			params['pr_id'] = rec.get('pr_id');
+			url = 'deleteParkingRequest.view'
+		}
+		
+		if (boolContinue) {
+			Ext.Ajax.request({
+				url : '../' + url,
+				timeout : carparking.config.Constants.TIMEOUT,
+				params : params,
+				success : function(response) {
+					var result = Ext.decode(response.responseText);
+					if (result.success) {
+						var proxy = list.getStore().getProxy();
+						proxy.setExtraParams({
+									'date' : new Date().getTime()
+								})
+						list.getStore().load();
+					}
+				},
+				failure : function(response) {
+					console.log('Failure in ApplicationController call. Could not verify current users access.');
+				}
+			})
+		} else {
+			console.log('no access to act or you have already chosen the slot')
+		}
+	}		
 })

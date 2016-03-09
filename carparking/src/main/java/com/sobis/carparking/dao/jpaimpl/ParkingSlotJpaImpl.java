@@ -52,8 +52,8 @@ public class ParkingSlotJpaImpl implements ParkingSlotDao {
 				+ " right outer join pr.parkingSlot as pr"
 				+ " where pr.parkingDate between :start and :end";
 		
-		String hql1 = "SELECT t1.id as ps_id, t2.fk_employee as employeeId, t2.parkingDate as parkingDate,"
-				+ " (select employeeName from employee e where id=t2.fk_employee) employeeName "
+		String hql1 = "SELECT t1.id as ps_id, t2.fk_employee as employeeId, t2.parkingDate as parkingDate, t2.id as pr_id,"
+				+ " (select employeeName from employee e where id=t2.fk_employee) as employeeName "
 				+ " FROM parkingslot as t1"
 				+ " LEFT JOIN parkingrequests as t2"
 				+ " ON t1.id = t2.fk_parkingslot"
