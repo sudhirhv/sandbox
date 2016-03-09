@@ -1,5 +1,7 @@
 package com.sobis.carparking.web;
 
+import java.beans.PropertyEditorSupport;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -42,8 +44,20 @@ public class ParkingRequestController {
 	@InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
 		binder.registerCustomEditor(Employee.class, "employee", new ParkingRequestEditor(this.employeeService));
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+	    
+	    /*binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
+		    public void setAsText(long value) {
+		        try {
+		        	Date date = new Date(value);
+		            setValue(new SimpleDateFormat("dd-M-yyyy hh:mm:ss").parse(value));
+		        } catch(ParseException e) {
+		            setValue(null);
+		        }
+		    }
+		});*/
+	    
 		binder.registerCustomEditor(ParkingSlot.class, "parkingSlot", new ParkingSlotEditor(this.parkingSlotService));		
     }
 	

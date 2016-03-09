@@ -57,7 +57,7 @@ Ext.define('carparking.controller.ParkingRequest', {
 			boolContinue = true;
 			params['employee'] = carparking.config.employeeId,//'2c9089a85318ad4a015318ae187f0000',
 			params['parkingSlot'] = rec.get('ps_id'),//2c9089a85318bc5d015318bf4a060005',
-			params['parkingDate'] = Ext.util.Format.date(new Date(), 'd-m-Y');
+			params['parkingDate'] = Ext.util.Format.date(new Date(), 'd-m-Y H:i:s');
 			url = 'addParkingRequest.view'
 		}
 		console.log('find'+store.find('fk_employee', carparking.config.employeeId))
