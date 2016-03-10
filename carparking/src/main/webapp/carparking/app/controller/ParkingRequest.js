@@ -56,17 +56,17 @@ Ext.define('carparking.controller.ParkingRequest', {
 			params['employee'] = carparking.config.employeeId,//'2c9089a85318ad4a015318ae187f0000',
 			params['parkingSlot'] = rec.get('ps_id'),//2c9089a85318bc5d015318bf4a060005',
 			params['parkingDate'] = Ext.util.Format.date(new Date(), 'd-m-Y H:i:s');
-			url = 'addParkingRequest.view'
+			url = carparking.config.Constants.CONTROLLER.ADD_PARKING_REQUEST
 		}		
 		if(rec.get('employeeName')!=null && rec.get('fk_employee')==carparking.config.employeeId) {
 			boolContinue = true;
 			params['pr_id'] = rec.get('pr_id');
-			url = 'deleteParkingRequest.view'
+			url = carparking.config.Constants.CONTROLLER.DELETE_PARKING_REQUEST
 		}
 		
 		if (boolContinue) {
 			Ext.Ajax.request({
-				url : '../' + url,
+				url : carparking.config.Constants.BASEURL + url,
 				timeout : carparking.config.Constants.TIMEOUT,
 				params : params,
 				success : function(response) {

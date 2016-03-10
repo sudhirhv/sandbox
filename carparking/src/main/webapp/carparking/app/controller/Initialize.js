@@ -3,23 +3,22 @@ Ext.define('carparking.controller.Initialize', {
 	
 	init : function() {	
 			Ext.Ajax.request({
-				url : '../'+carparking.config.Constants.CONTROLLER.APPLICATION_CONTROLLER,
+				url : carparking.config.Constants.BASEURL+carparking.config.Constants.CONTROLLER.APPLICATION_CONTROLLER,
 				timeout : carparking.config.Constants.TIMEOUT,
 				params : {},
 				success : function(response) {					
 					var result = Ext.decode(response.responseText);		
 					console.log(result.userName)
-					var employee = result.employee ? result.employee : null;
-					
+					var employee = result.employee ? result.employee : null;					
 					carparking.config.userName = result.userName ? result.userName : '';
 					carparking.config.currentDate = new Date().getTime();
 					if(employee) {
 						carparking.config.employeeName = employee.employeeName;
 						carparking.config.employeeId = employee.id;
-						
 					}
 				},
 				failure : function(response) {
+					window.location = carparking.config.Constants.BASEURL + "login"	
 					console.log('Failure in ApplicationController call. Could not verify current users access.');			
 				}
 			})	

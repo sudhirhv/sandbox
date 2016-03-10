@@ -5,7 +5,7 @@ Ext.define('carparking.proxy.ParkingRequest', {
 	
 	config: {
 		//url: carparking.config.constants.BASEURL+'getAllParkingRequests.view',
-		url : '../'+carparking.config.Constants.CONTROLLER.GET_PARKING_SLOTS_STATUS,
+		url : carparking.config.Constants.BASEURL+carparking.config.Constants.CONTROLLER.GET_PARKING_SLOTS_STATUS,
 		type : 'ajax',
 		reader: {
 			type: 'json',

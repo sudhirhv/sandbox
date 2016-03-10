@@ -54,10 +54,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()		
-				.antMatchers("/resources/**").permitAll()
-				.antMatchers("/carparking/resources/**").permitAll()				
-				.antMatchers("/carparking/unprotected/**").permitAll()				
-				.antMatchers("/carparking/touch/**").permitAll()
+				.antMatchers("/resources/**")
+				.permitAll()
+				.antMatchers("/carparking/.sencha/**", "/carparking/app/**", "/carparking/resources/**",
+						"/carparking/unprotected/**", "/carparking/touch/**")
+				.permitAll()
+				.antMatchers("/carparking/app.js", "/carparking/app.json",
+						"/carparking/bootstrap.json", "/carparking/bootstrap.js",
+						"/carparking/cache.manifest").permitAll()				
 				.anyRequest().authenticated()
 				.and()				
 			.formLogin().loginPage("/login").defaultSuccessUrl("/carparking/index.html")

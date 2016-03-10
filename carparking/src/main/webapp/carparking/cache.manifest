@@ -1,10 +1,7 @@
 CACHE MANIFEST
-index.html
-login.html
 touch/sencha-touch-all-min.js
 touch/resources/css/sencha-touch.css
-login.html
-
+index.html
 
 FALLBACK:
 
