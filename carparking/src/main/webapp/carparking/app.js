@@ -29,6 +29,7 @@ Ext.application({
     
     controllers : [
     	'Initialize',
+    	'Main',
     	'ParkingRequest'
     ],
     

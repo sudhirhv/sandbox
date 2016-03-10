@@ -31,9 +31,9 @@ Ext.define('carparking.controller.ParkingRequest', {
 					, {
 					getParkingRequestEntry : function(o) {
 						//console.log('rec',o);
-						var employeeName = o.employeeName && o.employeeName!=null ? o.employeeName : '--available--';
-						var style = o.employeeName && o.employeeName!=null ? 'background-color:#EBC2B9;width:100%;text-align:center;padding:20px;box-shadow:0 0 15px 5px rgba(0,0,0,0.5)' 
-						: 'background-color:#CCE8C3;width:100%;text-align:center;padding:20px;box-shadow:0 0 15px 5px rgba(0,0,0,0.5)';
+						var employeeName = o.employeeName && o.employeeName!=null ? o.employeeName : '--';
+						var style = o.employeeName && o.employeeName!=null ? 'font-size:.8em;background-color:#EBC2B9;width:100%;text-align:center;padding:20px;box-shadow:0 0 15px 5px rgba(0,0,0,0.5)' 
+						: 'font-size:.8em;background-color:#CCE8C3;width:100%;text-align:center;padding:20px;box-shadow:0 0 15px 5px rgba(0,0,0,0.5)';
 						var result = '<div style = "'+style +'">'+employeeName+'</div>';		
 						return result;
 					},					

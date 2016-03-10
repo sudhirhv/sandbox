@@ -23,7 +23,7 @@
     */
 
 @import "compass/css3/font-face";
-$font_path: "../sass/stylesheets/fonts/fontawesome/fontawesome-webfont" !default;
+$font_path: "carparking/resources/sass/stylesheets/fonts/fontawesome/fontawesome-webfont" !default;
 
 @font-face{
     font-family:"FontAwesome";
@@ -102,7 +102,7 @@ ul.icons {
     }
   }
 }
-// The following section contains the list of fonts required for PIRSMobile
+// The following section contains the list of fonts required for carparking
 .icon-envelope:before             { content: "\f003"; }
 .icon-star:before                 { content: "\f005"; }
 .icon-th:before                   { content: "\f00a"; }
@@ -123,6 +123,7 @@ ul.icons {
 .icon-star-empty:before           { content: "\f006"; }
 .icon-save:before                 { content: "\f0c7"; }
 .icon-eye-open:before             { content: "\f06e"; }
+.icon-external-link:before        { content: "\f08e"; }
 
 /*  Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
     readers do not read off random characters that represent icons */

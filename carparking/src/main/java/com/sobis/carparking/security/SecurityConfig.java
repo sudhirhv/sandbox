@@ -63,6 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/j_spring_security_check")
 				.permitAll()
 				.and()			
+			.logout().permitAll().and()
 			.csrf().disable();			
 	}
 	

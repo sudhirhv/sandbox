@@ -2,8 +2,8 @@
 // a new theme, remove them and the add your own CSS on top of the base CSS (which
 // is already included in your app.json file).
 
-$include-pictos-font: false;
-$include-default-icons: false;
+$include-pictos-font: true;
+$include-default-icons: true;
 
 $experimental-support-for-opera:false;
 $experimental-support-for-khtml:false;
@@ -29,9 +29,3 @@ $experimental-support-for-khtml:false;
 
 
 @import 'carparking';
-@import 'font-awesome';
-
-
-
-
-
