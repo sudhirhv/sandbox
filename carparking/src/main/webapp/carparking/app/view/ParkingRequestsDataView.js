@@ -24,7 +24,7 @@ Ext.define('carparking.view.ParkingRequestsDataView', {
     				items : [{
     					xtype : 'button',					
 						ui : 'decline',
-						iconCls : 'reply',
+						iconCls : 'exit',
 						align : 'right',
 						action : 'logout'
     				}, {

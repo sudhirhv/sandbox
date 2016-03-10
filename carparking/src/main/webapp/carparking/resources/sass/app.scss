@@ -8,6 +8,8 @@ $include-default-icons: true;
 $experimental-support-for-opera:false;
 $experimental-support-for-khtml:false;
 
+
+
 // exclude components that app is not using
 @import 'sencha-touch/default';
 @import 'sencha-touch/default/src/Class';
@@ -27,5 +29,36 @@ $experimental-support-for-khtml:false;
 @import 'sencha-touch/default/src/plugin/PullRefresh';
 @import 'sencha-touch/default/src/tab/Panel';
 
-
 @import 'carparking';
+
+@include icon-font('Ico-Moon', inline-font-files(
+	'icomoon/icomoon.woff', woff,
+	'icomoon/icomoon.svg', svg,
+	'icomoon/icomoon.ttf', ttf,
+	'icomoon/icomoon.eot', eot
+));
+
+@include icon('reply', '\'', 'Ico-Moon');	
+@include icon('forward', '(', 'Ico-Moon');
+@include icon('share', '&', 'Ico-Moon');
+@include icon('mail-plain', '7', 'Ico-Moon');
+@include icon('disclose', '*', 'Ico-Moon');
+@include icon('edit', ',', 'Ico-Moon');
+@include icon('settings', '-', 'Ico-Moon');
+@include icon('inbox', '/', 'Ico-Moon');
+@include icon('compose', '0', 'Ico-Moon');
+@include icon('settings-alt', '2', 'Ico-Moon');
+@include icon('users', '3', 'Ico-Moon');
+@include icon('search', '4', 'Ico-Moon');
+@include icon('exit', '5', 'Ico-Moon');
+@include icon('info', '6', 'Ico-Moon');
+@include icon('drawer', '1', 'Ico-Moon');
+@include icon('expand', '$', 'Ico-Moon');
+@include icon('collapse', '%', 'Ico-Moon');
+@include icon('cloud-upload', '!', 'Ico-Moon');
+@include icon('upload', '"', 'Ico-Moon');
+@include icon('plus', '#', 'Ico-Moon');
+@include icon('air', '8', 'Ico-Moon');
+@include icon('disk', '9', 'Ico-Moon');
+@include icon('bubble', '@', 'Ico-Moon');
+
