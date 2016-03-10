@@ -17,7 +17,7 @@
 	 * @cfg  bundleSeedId
 	 * A ten character string which stands before aplication ID in Apple Provisioning Portal
 	 */
-	"bundleSeedId":"KPXFEPZ6EF",
+	"bundleSeedId":"QXAD92Y5EG",
 
 	/**
 	 * @cfg  versionString
@@ -82,7 +82,7 @@
 	 *  - Android
 	 *  - AndroidEmulator
 	 */
-	"platform":"iOSSimulator",
+	"platform":"iOS",
 
 	/**
 	 * @cfg  deviceType
@@ -103,7 +103,7 @@
 	 * This is the location of your certificate.
 	 * This is required when you are developing for Android or you are developing on Windows.
 	 */
-	"certificatePath":"/path/to/certificate.file",
+	"certificatePath":"d:/aravind_gopinath.p12",
 
 	/**
 	 * @cfg  certificateAlias
@@ -121,12 +121,12 @@
 	 * @cfg  certificatePassword
 	 * The password which was specified during certificate export
 	 */
-	"certificatePassword":"",
+	"certificatePassword":"lotusnotes",
 	/**
 	 * @cfg  provisionProfile
 	 * The path to the provision profile (APP_NAME.mobileprovision) which you can create and then download from Apple's provisioning portal
 	 */
-	"provisionProfile":"",
+	"provisionProfile":"d:/carparking.mobileprovision",
 	/**
 	 * @cfg  notificationConfiguration
 	 * Notification configuration for push notifications, can be "debug", "release" or empty if you don't use push notifications in your project.

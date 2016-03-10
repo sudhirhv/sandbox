@@ -3,8 +3,8 @@ Ext.define('carparking.controller.Initialize', {
 	
 	init : function() {	
 			Ext.Ajax.request({
-				url : carparking.config.Constants.BASEURL+carparking.config.Constants.CONTROLLER.APPLICATION_CONTROLLER,
-				timeout : carparking.config.Constants.TIMEOUT,
+				url : carparking.config.constants.BASEURL+carparking.config.constants.CONTROLLER.APPLICATION_CONTROLLER,
+				timeout : carparking.config.constants.TIMEOUT,
 				params : {},
 				success : function(response) {					
 					var result = Ext.decode(response.responseText);		
@@ -18,7 +18,7 @@ Ext.define('carparking.controller.Initialize', {
 					}
 				},
 				failure : function(response) {
-					window.location = carparking.config.Constants.BASEURL + "login"	
+					window.location = carparking.config.constants.BASEURL + "login"	
 					console.log('Failure in ApplicationController call. Could not verify current users access.');			
 				}
 			})	

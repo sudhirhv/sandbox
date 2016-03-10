@@ -105,10 +105,22 @@
     /**
      * Extra resources to be copied along when build
      */
+       
     "resources": [
         "resources/images",
         "resources/icons",
-        "resources/startup"
+        "resources/startup",       
+        "resources/sass/stylesheets/fonts",
+        "resources/css/login.css",
+        "unprotected",
+        "touch/sencha-touch-all-min.js",
+        "touch/resources/css/sencha-touch.css",
+        "login.html",        
+        'touch-icon-ipad-retina.png',
+        'touch-icon-ipad.png',
+        'touch-icon-iphone-retina.png',
+        'touch-icon-iphone.png',        
+        'cache.manifest'
     ],
 
     /**
@@ -123,6 +135,13 @@
      * must be kept intact for proper generation of deltas between updates
      */
     "archivePath": "archive",
+
+	 "buildPaths": {
+        "testing": "build/testing",
+        "production": "build/production",
+        "package": "build/package",
+        "native": "build/native"
+    },
 
     /**
      * List of package names to require for the cmd build process

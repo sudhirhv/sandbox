@@ -2,7 +2,7 @@ if (typeof carparking == 'undefined') var carparking = {};
 carparking = carparking || {};
 carparking.config = carparking.config || {};
 
-carparking.config.Constants = {
+carparking.config.constants = {
 	BASEURL:					'http://172.16.9.40:8080/carparking/',
 	IS_NATIVE_APP:				'',	
 	TIMEOUT:					10000,	
@@ -27,4 +27,12 @@ carparking.config.Constants = {
 	FIELDS : {
 		
 	}
-}
+};
+
+Ext.define('carparking.config.Constants', {
+	singleton : true,
+	constructor : function(config) {
+		this.initConfig(config);
+		this.callParent([config]);
+	}
+});

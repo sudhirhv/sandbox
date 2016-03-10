@@ -640,7 +640,16 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "carparking.view.Main": []
+  "carparking.config.Constants": [],
+  "carparking.controller.Initialize": [],
+  "carparking.controller.Main": [],
+  "carparking.controller.ParkingRequest": [],
+  "carparking.model.ParkingRequest": [],
+  "carparking.proxy.ParkingRequest": [],
+  "carparking.store.ParkingRequest": [],
+  "carparking.view.Main": [],
+  "carparking.view.ParkingRequestsContainer": [],
+  "carparking.view.ParkingRequestsDataView": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1357,7 +1366,22 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
+  "carparking.config.Constants": [],
+  "carparking.controller.Initialize": [],
+  "carparking.controller.Main": [],
+  "carparking.controller.ParkingRequest": [],
+  "carparking.model.ParkingRequest": [],
+  "carparking.proxy.ParkingRequest": [
+    "proxy.ParkingRequest"
+  ],
+  "carparking.store.ParkingRequest": [],
   "carparking.view.Main": [
     "widget.main"
+  ],
+  "carparking.view.ParkingRequestsContainer": [
+    "widget.parkingRequestsContainer"
+  ],
+  "carparking.view.ParkingRequestsDataView": [
+    "widget.parkingRequestsDataView"
   ]
 });

@@ -9,6 +9,6 @@ Ext.define('carparking.controller.Main', {
 	
 	},
 	logout : function() {		
-		window.location = carparking.config.Constants.BASEURL + "logout"	
+		window.location = carparking.config.constants.BASEURL + "logout"	
 	}
 })
