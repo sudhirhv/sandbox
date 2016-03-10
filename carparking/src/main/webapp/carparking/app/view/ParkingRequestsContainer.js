@@ -1,5 +1,6 @@
 Ext.define('carparking.view.ParkingRequestsContainer', {
 	extend : 'Ext.Container',
+	requires :'Ext.TitleBar',
 	xtype : 'parkingRequestsContainer',
 	config : {
 		items : [{
@@ -11,7 +12,7 @@ Ext.define('carparking.view.ParkingRequestsContainer', {
     				items : [{
     					xtype : 'button',					
 						ui : 'decline',
-						iconCls : 'refresh',
+						iconCls : 'reply',
 						align : 'right',
 						action : 'logout'
     				}]

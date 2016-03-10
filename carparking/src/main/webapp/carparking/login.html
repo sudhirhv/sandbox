@@ -67,13 +67,24 @@ Ext.Loader.setPath({
 			items : [self.username, self.password],			
 			margin : '0 0 5 0'
 		});
-				
+		
+		this.image = new Ext.Img({			
+			cls: 'sobisLogo',
+			width : '100%'	        
+		});
+		
+		this.imageContainer = new Ext.Container({
+			width: 300,
+		    height: 100,
+		    layout: 'fit',
+			items : [self.image]
+		});
 			
 		this.submitButton = new Ext.Button({
 			ui : 'confirm',
 			maxWidth: '90%',			
 			minWidth: 300,
-			text : 'Login',
+			text : 'Log in',
 			handler: function(btn) {
 				 self.submitHandler();		
             }
@@ -89,7 +100,7 @@ Ext.Loader.setPath({
 		
 		this.titlebar = new Ext.TitleBar({
 			docked : 'top',			
-			title : 'Login',
+			title : 'Log in',
 			height : 50
 		});		
 		
@@ -127,7 +138,7 @@ Ext.Loader.setPath({
     		scrollable : true,
 			//url : self.baseUrl + 'carparking/j_spring_security_check',
 			method : 'POST',
-			items : [self.titlebar, self.fieldsContainer, self.toolbar]
+			items : [self.titlebar, self.imageContainer, self.fieldsContainer, self.toolbar]
 		});			
 	}
 }); 

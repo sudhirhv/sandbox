@@ -85,7 +85,10 @@
          * List of items in the CACHE MANIFEST section
          */
         "cache": [
-            "index.html"
+            "index.html",
+            "touch/sencha-touch-all-min.js",
+            "touch/resources/css/sencha-touch.css",
+            "login.html"
         ],
         /**
          * List of items in the NETWORK section
