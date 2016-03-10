@@ -56,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()		
 				.antMatchers("/resources/**").permitAll()
 				.antMatchers("/carparking/resources/**").permitAll()
+				.antMatchers("/carparking/touch/**").permitAll()
 				.anyRequest().authenticated()
 				.and()				
 			.formLogin().loginPage("/login").defaultSuccessUrl("/carparking/index.html")
