@@ -27,7 +27,7 @@ public class EmployeeController {
 	
 	
 	
-	@RequestMapping("/addEmployee.view")
+	@RequestMapping("/addEmployee.do")
 	public @ResponseBody Map<String, Object> addEmployee(@ModelAttribute Employee employee, BindingResult result) {		
 		
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();
@@ -42,7 +42,7 @@ public class EmployeeController {
 		return jsonResponse;
 	}
 	
-	@RequestMapping("/getEmployeeByUserName.view")
+	@RequestMapping("/getEmployeeByUserName.do")
 	public @ResponseBody Map<String, Object> getEmployeeByUserName(String userName) {		
 		System.out.println("userName - "+userName);
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();

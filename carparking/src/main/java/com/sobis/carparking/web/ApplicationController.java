@@ -18,7 +18,7 @@ public class ApplicationController {
 	@Autowired	
 	private EmployeeService employeeService;
 	
-	@RequestMapping("/applicationController.view")
+	@RequestMapping("/applicationController.do")
 	public @ResponseBody Map<String, Object> getLogin() {
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

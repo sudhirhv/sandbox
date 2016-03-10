@@ -3,7 +3,7 @@ Ext.define('carparking.controller.Initialize', {
 	
 	init : function() {	
 			Ext.Ajax.request({
-				url : '../'+'applicationController.view',
+				url : '../'+carparking.config.Constants.CONTROLLER.APPLICATION_CONTROLLER,
 				timeout : carparking.config.Constants.TIMEOUT,
 				params : {},
 				success : function(response) {					

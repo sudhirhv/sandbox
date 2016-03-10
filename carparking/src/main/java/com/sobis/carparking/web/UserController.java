@@ -46,7 +46,7 @@ public class UserController {
 		});
     }
 	
-	@RequestMapping("/addUser.view")
+	@RequestMapping("/addUser.do")
 	public @ResponseBody Map<String, Object> addUser(@ModelAttribute User user, BindingResult result, Model model) {		
 		
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();
@@ -60,7 +60,7 @@ public class UserController {
 		return jsonResponse;
 	}
 	
-	@RequestMapping("/addRole.view")
+	@RequestMapping("/addRole.do")
 	public @ResponseBody Map<String, Object> addRole(@ModelAttribute Role role, BindingResult result) {		
 		
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();

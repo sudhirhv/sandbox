@@ -20,7 +20,7 @@ public class ParkingSlotController {
 	@Autowired
 	private ParkingSlotService parkingSlotService;
 	
-	@RequestMapping("/addParkingSlot.view")
+	@RequestMapping("/addParkingSlot.do")
 	public @ResponseBody Map<String, Object> addEmployee(@ModelAttribute ParkingSlot parkingSlot, BindingResult result) {		
 		
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();

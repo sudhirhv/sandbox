@@ -10,5 +10,21 @@ carparking.config.Constants = {
 		TOTAL_PROPERTY:			'totalCount',
 		ROOT:					'rows',
 		ID_PROPERTY:			'id'
+	},
+	CONTROLLER : {
+		APPLICATION_CONTROLLER : 'applicationController.do',
+		ADD_EMPLOYEE : '/addEmployee.do',
+		EMPLOYEE_BY_USERNAME : '/getEmployeeByUserName.do',
+		ADD_PARKING_REQUEST : '/addParkingRequest.do',
+		GET_PARKING_REQUESTS : '/getAllParkingRequests.do',
+		GET_PARKING_REQUESTS_DATEWISE : '/getAllParkingRequestsPerDate.do',
+		GET_PARKING_SLOTS_STATUS : '/getAllParkingSlotsWithStatus.do',
+		DELETE_PARKING_REQUEST : '/deleteParkingRequest.do',
+		ADD_PARKING_SLOT : '/addParkingSlot.do',
+		ADD_USER : '/addUser.do',
+		ADD_ROLE : '/addRole.do'
+ 	},
+	FIELDS : {
+		
 	}
 }

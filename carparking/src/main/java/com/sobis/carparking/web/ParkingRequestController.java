@@ -61,7 +61,7 @@ public class ParkingRequestController {
 		binder.registerCustomEditor(ParkingSlot.class, "parkingSlot", new ParkingSlotEditor(this.parkingSlotService));		
     }
 	
-	@RequestMapping("/addParkingRequest.view")
+	@RequestMapping("/addParkingRequest.do")
 	public @ResponseBody Map<String, Object> addParkingRequest(@ModelAttribute ParkingRequest parkingRequest, BindingResult result) {		
 		
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();
@@ -77,7 +77,7 @@ public class ParkingRequestController {
 		return jsonResponse;
 	}
 	
-	@RequestMapping(value="/getAllParkingRequests.view")
+	@RequestMapping(value="/getAllParkingRequests.do")
 	public @ResponseBody Map<String, Object> getAllRequests() {	
 		List<ParkingRequest> parkingRequests = parkingRequestService.getAllRequests();		
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
@@ -87,7 +87,7 @@ public class ParkingRequestController {
 		return jsonResponse;		
 	}
 	
-	@RequestMapping(value="/getAllParkingRequestsPerDate.view")
+	@RequestMapping(value="/getAllParkingRequestsPerDate.do")
 	public @ResponseBody Map<String, Object> getAllRequestsPerDate(long date) {
 		System.out.println("date "+date);
 		/*String pattern = "dd-MM-yyyy";
@@ -106,7 +106,7 @@ public class ParkingRequestController {
 		return jsonResponse;		
 	}
 	
-	@RequestMapping(value="/getAllParkingSlotsWithStatus.view")
+	@RequestMapping(value="/getAllParkingSlotsWithStatus.do")
 	public @ResponseBody Map<String, Object> getAllParkingSlotsWithStatus(long date) {		
 		Date date1 = new Date(date);
 		List<Object[]> ps = parkingSlotService.getAllParkingSlotsWithStatus(date1);		
@@ -117,7 +117,7 @@ public class ParkingRequestController {
 		return jsonResponse;		
 	}
 	
-	@RequestMapping(value="/deleteParkingRequest.view")
+	@RequestMapping(value="/deleteParkingRequest.do")
 	public @ResponseBody Map<String, Object> deleteParkingRequest(String pr_id) {		
 		parkingRequestService.deleteParkingRequest(pr_id);		
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
