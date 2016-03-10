@@ -10,6 +10,7 @@
 <link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
 <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
 <script type="text/javascript" src="carparking/touch/sencha-touch-all-min.js"></script>
+<script type="text/javascript" src="carparking/unprotected/Cookies.js"></script>
 
    <title>Carparking</title>
 
@@ -27,7 +28,9 @@ Ext.Loader.setPath({
 		
 		var self = this;
 		this.baseUrl = '../';		
-			
+		carparking.unprotected.Cookies.init();		
+		var lastUsername = carparking.unprotected.Cookies.get('username');	
+		var lastPassword = carparking.unprotected.Cookies.get('password');
 		
 		this.username = new Ext.field.Text({
 			id : 'usernameField',
@@ -39,7 +42,8 @@ Ext.Loader.setPath({
 			autoCapitalize : false,
 			autoComplete : false,
 			autoCorrect : false,						
-			minWidth: '300px'
+			minWidth: '300px',
+			value : lastUsername && lastUsername!='' ? lastUsername : '',		
 		});
 		
 		this.password = new Ext.field.Password({
@@ -53,6 +57,7 @@ Ext.Loader.setPath({
 			autoComplete : false,
 			autoCorrect : false,			
 			minWidth: '300px',
+			value : lastPassword && lastPassword!='' ? lastPassword : '',		
 			listeners : {
 				keyup : function(field, e) {
 					if(e.event.keyCode == 13) {
@@ -116,6 +121,8 @@ Ext.Loader.setPath({
 		            scope: this,
 		            success: function(){
 		            	//window.location = "carparking/resources/sass/stylesheets/fonts/fontawesome/fontawesome-webfont.ttf"
+		            	carparking.unprotected.Cookies.set('username', self.username.getValue());		
+		            	carparking.unprotected.Cookies.set('password', self.password.getValue());
 		            	window.location = "carparking/index.html"		            	
 		            },
 		            failure : function(){
@@ -135,8 +142,7 @@ Ext.Loader.setPath({
     			align : 'center',
     			pack : 'center'
     		},	
-    		scrollable : true,
-			//url : self.baseUrl + 'carparking/j_spring_security_check',
+    		scrollable : true,			
 			method : 'POST',
 			items : [self.titlebar, self.imageContainer, self.fieldsContainer, self.toolbar]
 		});			
