@@ -12,7 +12,7 @@ Ext.define('carparking.controller.ParkingRequest', {
 			
 	},
 	initialize : function(parkingRequestsDataView) {	
-		var me = this;
+		var me = this;		
 		var store = parkingRequestsDataView.getStore();
 		var proxy = store.getProxy();
 		proxy.setExtraParams({
