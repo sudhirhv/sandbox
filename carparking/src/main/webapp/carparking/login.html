@@ -67,9 +67,15 @@ Ext.Loader.setPath({
 				}				
 			}
 		});
+		
+		this.msg = new Ext.Label({
+			html : '',
+			style : 'font-style: italic;font-size: .8em;color: red;margin: 5px;text-align:center',
+			hidden : true
+		})
 				
 		this.fieldsContainer = new Ext.form.FieldSet({		
-			items : [self.username, self.password],			
+			items : [self.username, self.password, self.msg],			
 			margin : '0 0 5 0'
 		});
 		
@@ -127,18 +133,22 @@ Ext.Loader.setPath({
 				            	carparking.unprotected.Cookies.set('password', self.password.getValue());
 				            	window.location = "carparking/index.html"		            		
 			            	} else {
-			            		Ext.Msg.alert('Error', 'Invalid username or password', Ext.emptyFn);  
+			            		self.msg.setHtml('Invalid username or password');
+			            		self.msg.show();		            		  
 			            	}
 		            	} else {
-		            		Ext.Msg.alert('Error', 'Invalid username or password', Ext.emptyFn);  
+		            		self.msg.setHtml('Invalid username or password');
+		            		self.msg.show();		            		  
 		            	}		            	
 		            },
 		            failure : function(){
-		            	Ext.Msg.alert('Error', 'Application not available', Ext.emptyFn);  
+		            	self.msg.setHtml('Application not available');
+	            		self.msg.show();		            	  
 		            }
 		       	 })
 			} else {
-				Ext.Msg.alert('Error', 'Enter Username and password to login', Ext.emptyFn);  
+				self.msg.setHtml('Enter Username and password to login');
+        		self.msg.show();			
 			}			
 		};
 		
