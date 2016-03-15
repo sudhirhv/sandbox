@@ -119,22 +119,14 @@ Ext.Loader.setPath({
 		            method: 'POST',
 		            params: frm.getValues(),
 		            scope: this,
-		            success: function(response){
-		            	if(response) {
-		            		var result = Ext.decode(response.responseText);	
-			            	if(result && result.success) {			            		
-				            	carparking.unprotected.Cookies.set('username', self.username.getValue());		
-				            	carparking.unprotected.Cookies.set('password', self.password.getValue());
-				            	window.location = "carparking/index.html"		            		
-			            	} else {
-			            		Ext.Msg.alert('Error', 'Invalid username or password', Ext.emptyFn);  
-			            	}
-		            	} else {
-		            		Ext.Msg.alert('Error', 'Invalid username or password', Ext.emptyFn);  
-		            	}		            	
+		            success: function(){
+		            	//window.location = "carparking/resources/sass/stylesheets/fonts/fontawesome/fontawesome-webfont.ttf"
+		            	carparking.unprotected.Cookies.set('username', self.username.getValue());		
+		            	carparking.unprotected.Cookies.set('password', self.password.getValue());
+		            	window.location = "carparking/index.html"		            	
 		            },
 		            failure : function(){
-		            	Ext.Msg.alert('Error', 'Application not available', Ext.emptyFn);  
+		            	
 		            }
 		       	 })
 			} else {
