@@ -19,7 +19,7 @@ Ext.define('carparking.view.ParkingRequestsDataView', {
          items : [{
 					xtype: 'titlebar',
     				docked: 'top',
-    				cls : 'iOSStatusBarFix',
+    				cls : Ext.os.is.iPad || Ext.os.is.iPhone ? 'iOSStatusBarFix' : '',
     				title: Ext.util.Format.date(new Date(),'d-M-y H:i'),
     				items : [{
     					xtype : 'button',					
