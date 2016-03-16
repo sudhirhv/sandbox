@@ -1,32 +1,24 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="carparking/touch/resources/css/sencha-touch.css" />
-<link rel="stylesheet" type="text/css" href="carparking/resources/css/login.css" />
-
-<link rel="shortcut icon" href="favicon.ico">
-<link rel="apple-touch-icon" href="touch-icon-iphone.png" />
-<link rel="apple-touch-icon" sizes="76x76" href="touch-icon-ipad.png" />
-<link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
-<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
-<script type="text/javascript" src="carparking/touch/sencha-touch-all-min.js"></script>
-<script type="text/javascript" src="carparking/unprotected/Cookies.js"></script>
-
-   <title>Carparking</title>
-
-<script type="text/javascript">
-
-Ext.Loader.setPath({
-    'Ext':      'carparking/touch/src',
-    'Ext.ux':   'carparking/touch/src/ux'
-});
-
- Ext.application({
-	requires : ['Ext.MessageBox', 'Ext.TitleBar', 'Ext.form.Panel', 'Ext.form.FieldSet', 'Ext.field.Text', 'Ext.field.Password','Ext.Img'],
+Ext.define("carparking.view.Login", {
+	extend : 'Ext.form.Panel',
+	xtype : 'login',
 	
-	launch: function() {
+	config : {	
+		fullscreen : true,
+		id : 'loginFormPanel',		
+		layout : {	
+			type : 'vbox',
+			align : 'center',
+			pack : 'center'
+		},	
+		scrollable : true,			
+		method : 'POST'
+	},
+	
+	initialize : function(){
 		
+		this.callParent(arguments);
 		var self = this;
+		
 		this.baseUrl = '../';		
 		carparking.unprotected.Cookies.init();		
 		var lastUsername = carparking.unprotected.Cookies.get('username');	
@@ -152,27 +144,6 @@ Ext.Loader.setPath({
 			}			
 		};
 		
-		this.form = Ext.create('Ext.form.Panel', {
-			fullscreen : true,
-			id : 'loginFormPanel',		
-			layout : {	
-				type : 'vbox',
-    			align : 'center',
-    			pack : 'center'
-    		},	
-    		scrollable : true,			
-			method : 'POST',
-			items : [self.titlebar, self.imageContainer, self.fieldsContainer, self.toolbar]
-		});			
+		this.addEventListener([self.titlebar, self.imageContainer, self.fieldsContainer, self.toolbar])		
 	}
-}); 
-</script>
-</head>
-<body>
-<div id="appLoadingIndicator">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</body>
-</html>
+})

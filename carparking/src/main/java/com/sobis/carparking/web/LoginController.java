@@ -33,7 +33,7 @@ public class LoginController extends WebMvcConfigurerAdapter {
 			model.addObject("msg", "You've been logged out successfully.");
 		}
 		model.setViewName("login");
-		System.out.println(model);
+		System.out.println("ddd" +model);
 		return model;
 
 	}

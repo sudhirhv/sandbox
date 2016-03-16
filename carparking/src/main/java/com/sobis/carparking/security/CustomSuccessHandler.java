@@ -32,34 +32,33 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
     @Override
     protected void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
     	
-    	response.setContentType("application/json");
-		String jsonResponse = "{'success':true}";
-		response.getWriter().print(jsonResponse);
-		response.getWriter().flush();
-		
-        /*String targetUrl = determineTargetUrl(authentication);  
+        boolean userType = determineUserType(authentication);  
         if (response.isCommitted()) {
             System.out.println("Can't redirect");
             return;
-        }  
-        redirectStrategy.sendRedirect(request, response, targetUrl);*/
+        }        
+        if(userType) {
+        	response.setContentType("application/json");
+    		String jsonResponse = "{'success':true}";
+    		response.getWriter().print(jsonResponse);
+    		response.getWriter().flush();
+        } else {
+        	redirectStrategy.sendRedirect(request, response, "carparking/login.html");
+        }
     }
      
-    protected String determineTargetUrl(Authentication authentication) {
+    protected boolean determineUserType(Authentication authentication) {
         String url="";         
         Collection<? extends GrantedAuthority> authorities =  authentication.getAuthorities();         
         List<String> roles = new ArrayList<String>(); 
         for (GrantedAuthority a : authorities) {
             roles.add(a.getAuthority());
         } 
-        if (isAdmin(roles)) {
-            url = "/admin";
-        } else if (isUser(roles)) {
-            url = "/home";
-        } else {
-            url="/accessDenied";
-        } 
-        return url;
+        boolean userType = false;
+        if (isAdmin(roles) || isUser(roles)) {
+        	userType = true;
+        }
+        return userType;
     }
   
     public void setRedirectStrategy(RedirectStrategy redirectStrategy) {
@@ -70,14 +69,14 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
     }
      
     private boolean isUser(List<String> roles) {
-        if (roles.contains("USER")) {
+        if (roles.contains("ROLE_USER")) {
             return true;
         }
         return false;
     }
  
     private boolean isAdmin(List<String> roles) {
-        if (roles.contains("ADMIN")) {
+        if (roles.contains("ROLE_ADMIN")) {
             return true;
         }
         return false;
