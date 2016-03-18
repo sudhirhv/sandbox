@@ -98,6 +98,7 @@ public class ParkingRequestController {
 		   
 		System.out.println("datefmt"+simpleDateFormat.format(date1));*/
 		Date date1 = new Date(date);
+		System.out.println(date1);
 	    List<ParkingRequest> parkingRequests = parkingRequestService.getAllRequestsPerDate(date1);
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
 		jsonResponse.put("success", true);

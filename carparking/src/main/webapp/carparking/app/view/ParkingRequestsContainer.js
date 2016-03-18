@@ -3,27 +3,18 @@ Ext.define('carparking.view.ParkingRequestsContainer', {
 		requires : 'Ext.TitleBar',
 		xtype : 'parkingRequestsContainer',
 		config : {
-		items : [{
-					xtype : 'parkingRequestsDataView'
-				}, {
-					xtype : 'titlebar',
-					docked : 'top',
-					cls : 'iOSStatusBarFix',
-					title : Ext.util.Format.date(new Date(),'d-M-y H:i'),
-					
-					items : [{
-								xtype : 'button',
-								ui : 'decline',
-								iconCls : 'reply',
-								align : 'right',
-								action : 'logout'
-							}, {
-								xtype : 'button',
-								ui : 'normal',
-								iconCls : 'refresh',
-								align : 'left',
-								action : 'refresh'
-							}]		
-		}]
+			layout : {
+				type : 'vbox',
+				align : 'stretch',
+				pack : 'start'
+			},
+			scrollable : true,		
+			items : [{
+				xtype : 'parkingRequestsDataView',
+				flex : 1
+			}, {
+				xtype : 'attendance',
+				flex : 1
+			}]
 	}
 });

@@ -43,14 +43,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return encoder;
 	}
 	
-	/*@Autowired
+	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.inMemoryAuthentication()
 				.withUser("sudhir").password("$2a$08$6tldOLp1bS.LhE53po3.CeThghz5r5uEeeSlno.IJBOOYepy394C.").roles("USER");				
 	}
 	
-	protected void configure(HttpSecurity http) throws Exception {
+	/*protected void configure(HttpSecurity http) throws Exception {
 	    http
 	        .authorizeRequests()
 	            .anyRequest().authenticated() 
@@ -60,19 +60,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        .httpBasic()
 	        	.and()
 	        .csrf().disable();                     
-	}
-*/
+	}*/
+
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()	
-				.antMatchers("/resources/**").permitAll()				
-				/*.antMatchers("/carparking/**").permitAll()*/
+				.antMatchers("/resources/**").permitAll()		
+				.antMatchers("/carparking/index.html").access("hasRole('ROLE_USER')")
+				.antMatchers("/carparking/**").permitAll()
 				.antMatchers("/carparking/.sencha/**", "/carparking/app/**", "/carparking/resources/**",
 						"/carparking/unprotected/**", "/carparking/touch/**").permitAll()
 				.antMatchers("/carparking/app.js", "/carparking/app.json",
 						"/carparking/bootstrap.json", "/carparking/bootstrap.js",
 						"/carparking/cache.manifest").permitAll()
-				.antMatchers("/carparking/index.html").access("hasRole('ROLE_USER')")
+				
 				.anyRequest().authenticated()
 				.and()				
 			.formLogin().loginPage("/login")

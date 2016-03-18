@@ -16,6 +16,8 @@ carparking.config.constants = {
 		ADD_EMPLOYEE : 'addEmployee.do',
 		EMPLOYEE_BY_USERNAME : 'getEmployeeByUserName.do',
 		ADD_PARKING_REQUEST : 'addParkingRequest.do',
+		ADD_ATTENDANCE : 'addAttendance.do',
+		GET_ATTENDANCE_DATE_WISE : 'getAttendanceDateWise.do',
 		GET_PARKING_REQUESTS : 'getAllParkingRequests.do',
 		GET_PARKING_REQUESTS_DATEWISE : 'getAllParkingRequestsPerDate.do',
 		GET_PARKING_SLOTS_STATUS : 'getAllParkingSlotsWithStatus.do',

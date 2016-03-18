@@ -20,20 +20,26 @@ Ext.application({
 
     views: [
         'ParkingRequestsContainer',
-        'ParkingRequestsDataView'
+        'ParkingRequestsDataView',
+        'attendance.AttendanceForm',
+        'attendance.AttendanceList',
+        'attendance.Attendance'
     ],
     
     models: 		[
+    	'Attendance',
     	'ParkingRequest'
     ],
     
     controllers : [
+    	'Attendance',
     	'Initialize',
     	'Main',
-    	'ParkingRequest'
+    	'ParkingRequest'    	
     ],
     
     stores: [
+    	'Attendance',
     	'ParkingRequest'
     ],
 
@@ -60,7 +66,7 @@ Ext.application({
         Ext.fly('appLoadingIndicator').destroy();
 
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('carparking.view.ParkingRequestsDataView'));
+        Ext.Viewport.add(Ext.create('carparking.view.ParkingRequestsContainer'));
     },
 
     onUpdated: function() {
