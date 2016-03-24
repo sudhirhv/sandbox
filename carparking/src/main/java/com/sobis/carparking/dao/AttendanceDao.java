@@ -11,4 +11,6 @@ public interface AttendanceDao {
 	public void addAttendance(Attendance attendance);
 	
 	public List<Attendance> getAttendanceDateWise(Date date);
+	
+	public List<Attendance> getAttendanceDateWise(Date date, String employeeId);
 }
