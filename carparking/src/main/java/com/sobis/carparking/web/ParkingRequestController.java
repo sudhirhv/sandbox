@@ -10,6 +10,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,8 @@ import com.sobis.carparking.service.ParkingSlotService;
 @Controller
 public class ParkingRequestController {
 
+	static final Logger logger = LogManager.getLogger(ParkingRequestController.class.getName());
+	
 	@Autowired
 	private ParkingRequestService parkingRequestService;
 	
@@ -63,66 +67,81 @@ public class ParkingRequestController {
 	
 	@RequestMapping("/addParkingRequest.do")
 	public @ResponseBody Map<String, Object> addParkingRequest(@ModelAttribute ParkingRequest parkingRequest, BindingResult result) {		
-		
-		Map<String, Object> jsonResponse = new HashMap<String, Object>();
-		jsonResponse.put("success", true);
-		if(result.hasErrors()) {
-			jsonResponse.put("success", false);
-			jsonResponse.put("errors", result.getAllErrors());
+		logger.debug("Adding Parking request for "+parkingRequest.getEmployee().getEmployeeName());
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
+		try {			
+			jsonResponse.put("success", true);
+			if(result.hasErrors()) {
+				jsonResponse.put("success", false);
+				jsonResponse.put("errors", result.getAllErrors());
+			}			
+			parkingRequestService.addParkingRequest(parkingRequest);
+			System.out.println(jsonResponse.get("success"));
+			
+		} catch (Exception e) {
+			logger.debug("Error occured",e);
 		}
-		System.out.println("date - "+parkingRequest.getParkingDate());
-		System.out.println("name - "+parkingRequest.getEmployee().getEmployeeName());
-		parkingRequestService.addParkingRequest(parkingRequest);
-		System.out.println(jsonResponse.get("success"));
-		return jsonResponse;
+		return jsonResponse;		
 	}
 	
 	@RequestMapping(value="/getAllParkingRequests.do")
 	public @ResponseBody Map<String, Object> getAllRequests() {	
-		List<ParkingRequest> parkingRequests = parkingRequestService.getAllRequests();		
-		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
-		jsonResponse.put("success", true);
-		jsonResponse.put("rows", parkingRequests);
-		jsonResponse.put("totalCount", parkingRequests.size());
+		logger.debug("Getting all parking requests ");
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();
+		try {
+			List<ParkingRequest> parkingRequests = parkingRequestService.getAllRequests();
+			jsonResponse.put("success", true);
+			jsonResponse.put("rows", parkingRequests);
+			jsonResponse.put("totalCount", parkingRequests.size());
+		} catch (Exception e) {
+			logger.debug("Error occured",e);
+		}		
 		return jsonResponse;		
 	}
 	
 	@RequestMapping(value="/getAllParkingRequestsPerDate.do")
 	public @ResponseBody Map<String, Object> getAllRequestsPerDate(long date) {
-		System.out.println("date "+date);
-		/*String pattern = "dd-MM-yyyy";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-		//String date = simpleDateFormat.format(new Date());		
-		
-		
-		   
-		System.out.println("datefmt"+simpleDateFormat.format(date1));*/
 		Date date1 = new Date(date);
-		System.out.println(date1);
-	    List<ParkingRequest> parkingRequests = parkingRequestService.getAllRequestsPerDate(date1);
-		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
-		jsonResponse.put("success", true);
-		jsonResponse.put("rows", parkingRequests);
-		jsonResponse.put("totalCount", parkingRequests.size());
+		logger.debug("Getting all parking requests per date "+date1);
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();
+		
+		try {
+			List<ParkingRequest> parkingRequests = parkingRequestService.getAllRequestsPerDate(date1);
+			jsonResponse.put("success", true);
+			jsonResponse.put("rows", parkingRequests);
+			jsonResponse.put("totalCount", parkingRequests.size());
+		} catch (Exception e) {
+			logger.debug("Error occured",e); 
+		}
 		return jsonResponse;		
 	}
 	
 	@RequestMapping(value="/getAllParkingSlotsWithStatus.do")
 	public @ResponseBody Map<String, Object> getAllParkingSlotsWithStatus(long date) {		
 		Date date1 = new Date(date);
-		List<Object[]> ps = parkingSlotService.getAllParkingSlotsWithStatus(date1);		
-		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
-		jsonResponse.put("success", true);
-		jsonResponse.put("rows", ps);		
-		jsonResponse.put("totalCount", ps.size());		
+		logger.debug("Getting all parking requests with status "+date1);
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();
+		try {
+			List<Object[]> ps = parkingSlotService.getAllParkingSlotsWithStatus(date1);
+			jsonResponse.put("success", true);
+			jsonResponse.put("rows", ps);		
+			jsonResponse.put("totalCount", ps.size());	
+		} catch (Exception e) {
+			logger.debug("Error occured",e);
+		}		
 		return jsonResponse;		
 	}
 	
 	@RequestMapping(value="/deleteParkingRequest.do")
-	public @ResponseBody Map<String, Object> deleteParkingRequest(String pr_id) {		
-		parkingRequestService.deleteParkingRequest(pr_id);		
-		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
-		jsonResponse.put("success", true);		
+	public @ResponseBody Map<String, Object> deleteParkingRequest(String pr_id) {
+		logger.debug("Delete parking request "+pr_id);
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();
+		try {
+			parkingRequestService.deleteParkingRequest(pr_id);						
+			jsonResponse.put("success", true);		
+		} catch (Exception e) {
+			logger.debug("Error occured",e);
+		}
 		return jsonResponse;		
 	}
 	

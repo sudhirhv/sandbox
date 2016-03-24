@@ -1,5 +1,7 @@
 package com.sobis.carparking.web;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
@@ -15,10 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Controller
 public class LoginController extends WebMvcConfigurerAdapter {
 
-	/*@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(ModelMap model) {		
-		return "login";
-	}*/
+	static final Logger logger = LogManager.getLogger(LoginController.class.getName());
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(

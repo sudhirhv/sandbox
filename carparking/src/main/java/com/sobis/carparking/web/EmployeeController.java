@@ -4,6 +4,8 @@ package com.sobis.carparking.web;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,41 +21,42 @@ import com.sobis.carparking.service.FileService;
 @Controller
 public class EmployeeController {
 	
+	static final Logger logger = LogManager.getLogger(EmployeeController.class.getName());
+	
 	@Autowired
 	private EmployeeService employeeService;
 	
 	@Autowired 
 	private FileService fileService;
 	
-	
-	
 	@RequestMapping("/addEmployee.do")
-	public @ResponseBody Map<String, Object> addEmployee(@ModelAttribute Employee employee, BindingResult result) {		
-		
-		Map<String, Object> jsonResponse = new HashMap<String, Object>();
-		jsonResponse.put("success", true);
-		if(result.hasErrors()) {
-			jsonResponse.put("success", false);
-			jsonResponse.put("errors", result.getAllErrors());
+	public @ResponseBody Map<String, Object> addEmployee(@ModelAttribute Employee employee, BindingResult result) {
+		Map<String, Object> jsonResponse = new HashMap<String, Object>();		
+		try {
+			if(result.hasErrors()) {
+				jsonResponse.put("success", false);
+				jsonResponse.put("errors", result.getAllErrors());				
+			}
+			logger.debug("name - "+employee.getEmployeeName());
+			employeeService.addEmployee(employee);
+			jsonResponse.put("success", true);
+		} catch (Exception e) {
+			logger.error("Error occured",e);
 		}
-		System.out.println("name - "+employee.getEmployeeName());
-		employeeService.addEmployee(employee);
-		System.out.println(jsonResponse.get("success"));
 		return jsonResponse;
 	}
 	
 	@RequestMapping("/getEmployeeByUserName.do")
-	public @ResponseBody Map<String, Object> getEmployeeByUserName(String userName) {		
-		System.out.println("userName - "+userName);
+	public @ResponseBody Map<String, Object> getEmployeeByUserName(String userName) {
+		logger.debug("Fetching employee for user - "+userName);		
 		Map<String, Object> jsonResponse = new HashMap<String, Object>();
-		jsonResponse.put("success", true);
-		/*if(result.hasErrors()) {
-			jsonResponse.put("success", false);
-			jsonResponse.put("errors", result.getAllErrors());
-		}*/
-	
-		jsonResponse.put("user", userName);
-		jsonResponse.put("employee", employeeService.getEmployeeByUserName(userName));		
+		try {			
+			jsonResponse.put("user", userName);
+			jsonResponse.put("employee", employeeService.getEmployeeByUserName(userName));
+			jsonResponse.put("success", true);
+		} catch (Exception e) {
+			logger.error("Error occured",e);
+		}	
 		return jsonResponse;
 	}
 	
