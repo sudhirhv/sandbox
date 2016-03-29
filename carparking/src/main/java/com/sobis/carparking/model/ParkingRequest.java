@@ -11,7 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="parkingRequests")
+@Table(name="parkingrequests")
 public class ParkingRequest extends Base {
 	
 	@OneToOne()

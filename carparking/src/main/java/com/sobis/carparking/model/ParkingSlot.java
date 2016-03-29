@@ -34,7 +34,7 @@ import javax.persistence.ConstructorResult;
 	})
 
 @Entity
-@Table(name="parkingSlot")
+@Table(name="parkingslot")
 public class ParkingSlot extends Base {
 	
 
