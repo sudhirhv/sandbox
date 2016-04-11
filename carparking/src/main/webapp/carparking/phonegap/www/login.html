@@ -1,5 +1,5 @@
 <html>
-<head>
+<html manifest="cache.manifest" lang="en-US">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="carparking/touch/resources/css/sencha-touch.css" />
 <link rel="stylesheet" type="text/css" href="carparking/resources/css/login.css" />
@@ -43,7 +43,7 @@ Ext.Loader.setPath({
 			autoComplete : false,
 			autoCorrect : false,						
 			minWidth: '300px',
-			value : lastUsername && lastUsername!='' ? lastUsername : '',		
+			value : lastUsername && lastUsername!='' ? lastUsername : ''		
 		});
 		
 		this.password = new Ext.field.Password({
@@ -67,9 +67,15 @@ Ext.Loader.setPath({
 				}				
 			}
 		});
+		
+		this.msg = new Ext.Label({
+			html : '',
+			style : 'font-style: italic;font-size: .8em;color: red;margin: 5px;text-align:center',
+			hidden : true
+		})
 				
 		this.fieldsContainer = new Ext.form.FieldSet({		
-			items : [self.username, self.password],			
+			items : [self.username, self.password, self.msg],			
 			margin : '0 0 5 0'
 		});
 		
@@ -119,18 +125,30 @@ Ext.Loader.setPath({
 		            method: 'POST',
 		            params: frm.getValues(),
 		            scope: this,
-		            success: function(){
-		            	//window.location = "carparking/resources/sass/stylesheets/fonts/fontawesome/fontawesome-webfont.ttf"
-		            	carparking.unprotected.Cookies.set('username', self.username.getValue());		
-		            	carparking.unprotected.Cookies.set('password', self.password.getValue());
-		            	window.location = "carparking/index.html"		            	
+		            success: function(response){
+		            	if(response) {
+		            		var result = Ext.decode(response.responseText);	
+			            	if(result && result.success) {			            		
+				            	carparking.unprotected.Cookies.set('username', self.username.getValue());		
+				            	carparking.unprotected.Cookies.set('password', self.password.getValue());
+				            	window.location = "carparking/index.html"		            		
+			            	} else {
+			            		self.msg.setHtml('Invalid username or password');
+			            		self.msg.show();		            		  
+			            	}
+		            	} else {
+		            		self.msg.setHtml('Invalid username or password');
+		            		self.msg.show();		            		  
+		            	}		            	
 		            },
 		            failure : function(){
-		            	
+		            	self.msg.setHtml('Application not available');
+	            		self.msg.show();		            	  
 		            }
 		       	 })
 			} else {
-				Ext.Msg.alert('Error', 'Enter Username and password to login', Ext.emptyFn);  
+				self.msg.setHtml('Enter Username and password to login');
+        		self.msg.show();			
 			}			
 		};
 		

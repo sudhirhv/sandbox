@@ -1,2 +1,2 @@
 // @tag full-page
-// @require E:\carparking\app.js
+// @require D:\GitHub\sandbox\carparking\src\main\webapp\carparking\app.js

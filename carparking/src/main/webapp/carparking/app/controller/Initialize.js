@@ -46,7 +46,8 @@ Ext.define('carparking.controller.Initialize', {
 					}					
 				},*/
 				failure : function(response) {
-					window.location = carparking.config.constants.BASEURL + "login"	
+					//window.location = carparking.config.constants.BASEURL + "login"	
+					window.location = "/login"
 					console.log('Failure in ApplicationController call. Could not verify current users access.');			
 				}
 			})	

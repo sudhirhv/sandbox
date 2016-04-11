@@ -641,15 +641,24 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.viewport.WP"
   ],
   "carparking.config.Constants": [],
+  "carparking.controller.Attendance": [],
   "carparking.controller.Initialize": [],
   "carparking.controller.Main": [],
   "carparking.controller.ParkingRequest": [],
+  "carparking.model.Attendance": [],
   "carparking.model.ParkingRequest": [],
+  "carparking.proxy.Attendance": [],
   "carparking.proxy.ParkingRequest": [],
+  "carparking.store.Attendance": [],
   "carparking.store.ParkingRequest": [],
+  "carparking.view.InfoActionSheet": [],
+  "carparking.view.Login": [],
   "carparking.view.Main": [],
   "carparking.view.ParkingRequestsContainer": [],
-  "carparking.view.ParkingRequestsDataView": []
+  "carparking.view.ParkingRequestsDataView": [],
+  "carparking.view.attendance.Attendance": [],
+  "carparking.view.attendance.AttendanceForm": [],
+  "carparking.view.attendance.AttendanceList": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1367,14 +1376,24 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
   "carparking.config.Constants": [],
+  "carparking.controller.Attendance": [],
   "carparking.controller.Initialize": [],
   "carparking.controller.Main": [],
   "carparking.controller.ParkingRequest": [],
+  "carparking.model.Attendance": [],
   "carparking.model.ParkingRequest": [],
+  "carparking.proxy.Attendance": [
+    "proxy.Attendance"
+  ],
   "carparking.proxy.ParkingRequest": [
     "proxy.ParkingRequest"
   ],
+  "carparking.store.Attendance": [],
   "carparking.store.ParkingRequest": [],
+  "carparking.view.InfoActionSheet": [],
+  "carparking.view.Login": [
+    "widget.login"
+  ],
   "carparking.view.Main": [
     "widget.main"
   ],
@@ -1383,5 +1402,14 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "carparking.view.ParkingRequestsDataView": [
     "widget.parkingRequestsDataView"
+  ],
+  "carparking.view.attendance.Attendance": [
+    "widget.attendance"
+  ],
+  "carparking.view.attendance.AttendanceForm": [
+    "widget.attendanceForm"
+  ],
+  "carparking.view.attendance.AttendanceList": [
+    "widget.attendanceList"
   ]
 });
