@@ -1,0 +1,11 @@
+CACHE MANIFEST
+touch/sencha-touch-all-min.js
+touch/resources/css/sencha-touch.css
+index.html
+login.html
+
+FALLBACK:
+
+
+NETWORK:
+*
