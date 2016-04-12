@@ -15,7 +15,7 @@ public class CustomFailureHandler extends SimpleUrlAuthenticationFailureHandler 
 
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 		response.setContentType("application/json");
-		String jsonResponse = "{'success':false}";
+		String jsonResponse = "{\"success\":false}";
 		response.getWriter().print(jsonResponse);
 		response.getWriter().flush();
 	}	

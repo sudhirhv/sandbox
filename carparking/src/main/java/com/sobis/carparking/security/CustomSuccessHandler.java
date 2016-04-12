@@ -39,7 +39,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
         }        
         if(userType) {
         	response.setContentType("application/json");
-    		String jsonResponse = "{'success':true}";
+    		String jsonResponse = "{\"success\":true}";
     		response.getWriter().print(jsonResponse);
     		response.getWriter().flush();
         } else {

@@ -3,8 +3,8 @@ carparking = carparking || {};
 carparking.config = carparking.config || {};
 
 carparking.config.constants = {
-	//BASEURL:					'http://172.16.9.40:8080/carparking/',
-	BASEURL:					'https://applications.sobis.com/carparking/',
+	BASEURL:					'http://172.16.9.40:8080/carparking/',
+	//BASEURL:					'https://applications.sobis.com/carparking/',
 	IS_NATIVE_APP:				'',	
 	TIMEOUT:					10000,	
 	JSON_READER: {

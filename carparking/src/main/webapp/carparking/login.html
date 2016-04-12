@@ -1,178 +1,79 @@
-<html>
-<html manifest="cache.manifest" lang="en-US">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="carparking/touch/resources/css/sencha-touch.css" />
-<link rel="stylesheet" type="text/css" href="carparking/resources/css/login.css" />
+<!doctype html>
+<html manifest="cache.manifest"  lang="en-us" class="login_page">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOBIS Intranet</title>
 
-<link rel="shortcut icon" href="favicon.ico">
-<link rel="apple-touch-icon" href="touch-icon-iphone.png" />
-<link rel="apple-touch-icon" sizes="76x76" href="touch-icon-ipad.png" />
-<link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
-<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
-<script type="text/javascript" src="carparking/touch/sencha-touch-all-min.js"></script>
-<script type="text/javascript" src="carparking/unprotected/Cookies.js"></script>
+<!-- Bootstrap framework -->
+<link rel="stylesheet" href="carparking/unprotected/bootstrap.min.css">
+<!-- main styles -->
+<link rel="stylesheet" href="carparking/unprotected/style.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-   <title>Carparking</title>
 
-<script type="text/javascript">
-
-Ext.Loader.setPath({
-    'Ext':      'carparking/touch/src',
-    'Ext.ux':   'carparking/touch/src/ux'
-});
-
- Ext.application({
-	requires : ['Ext.MessageBox', 'Ext.TitleBar', 'Ext.form.Panel', 'Ext.form.FieldSet', 'Ext.field.Text', 'Ext.field.Password','Ext.Img'],
-	
-	launch: function() {
+<script>
+	$(document).ready(function() {		
+		var userObj = JSON.parse( localStorage.getItem('user'));
+		if(userObj) {
+			$('#username').val(userObj.username ? userObj.username : '');
+			$('#password').val(userObj.password ? userObj.password : '');	
+		}	
 		
-		var self = this;
-		this.baseUrl = '../';		
-		carparking.unprotected.Cookies.init();		
-		var lastUsername = carparking.unprotected.Cookies.get('username');	
-		var lastPassword = carparking.unprotected.Cookies.get('password');
-		
-		this.username = new Ext.field.Text({
-			id : 'usernameField',
-			name : 'username',
-			label : 'Username',
-			required : true,			
-			labelWidth: '40%',
-			clearIcon : true,
-			autoCapitalize : false,
-			autoComplete : false,
-			autoCorrect : false,						
-			minWidth: '300px',
-			value : lastUsername && lastUsername!='' ? lastUsername : ''		
-		});
-		
-		this.password = new Ext.field.Password({
-			id : 'passwordField',
-			name : 'password',
-			label : 'Password',
-			required : true,
-			labelWidth: '40%',
-			clearIcon : true,
-			autoCapitalize : false,
-			autoComplete : false,
-			autoCorrect : false,			
-			minWidth: '300px',
-			value : lastPassword && lastPassword!='' ? lastPassword : '',		
-			listeners : {
-				keyup : function(field, e) {
-					if(e.event.keyCode == 13) {
-						 //self.up('formpanel').submit();
-						 self.submitHandler();
-					} 						
-				}				
-			}
-		});
-		
-		this.msg = new Ext.Label({
-			html : '',
-			style : 'font-style: italic;font-size: .8em;color: red;margin: 5px;text-align:center',
-			hidden : true
-		})
-				
-		this.fieldsContainer = new Ext.form.FieldSet({		
-			items : [self.username, self.password, self.msg],			
-			margin : '0 0 5 0'
-		});
-		
-		this.image = new Ext.Img({			
-			cls: 'sobisLogo',
-			width : '100%'	        
-		});
-		
-		this.imageContainer = new Ext.Container({
-			width: 300,
-		    height: 100,
-		    layout: 'fit',
-			items : [self.image]
-		});
+		$('#loginForm').submit(function(event) {
+			var formData = {
+				'username' : $('#username').val(),
+				'password' : $('#password').val()
+			};
+			var request = $.ajax({
+				type : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+				url : '../carparking/j_spring_security_check', // the url where we want to POST
+				data : formData, // our data object
+				dataType : 'text', // what type of data do we expect back from the server
+				encode : true
+			});
+			var successHandler = function(data) {				
+				if(data) var response = JSON.parse(data);
+				if(response && response.success) {
+					var oUser = {};
+					oUser.username = formData.username;
+					oUser.password = formData.password;	
+					localStorage.setItem('user',JSON.stringify(oUser));				
+					window.location = "carparking/index.html"				
+				} else {
+					console.log('in failure ',response);
+					$('#msg').html("Invalid username or password");
+				}
+			};
 			
-		this.submitButton = new Ext.Button({
-			ui : 'confirm',
-			maxWidth: '90%',			
-			minWidth: 300,
-			text : 'Log in',
-			handler: function(btn) {
-				 self.submitHandler();		
-            }
+			var failureHandler = function(data) {
+				console.log('in failure of call');				
+			}
+			request.then(successHandler, failureHandler);			
+			request.fail(function(data) {
+				console.log(data);
+				window.location = "carparking/login"				
+			});
+			
+			event.preventDefault();
 		});
-		
-		this.toolbar = new Ext.Toolbar({
-			 layout: {
-                 pack: 'center'
-             }, 
-             ui: 'plain',
-             items : [self.submitButton]
-		});
-		
-		this.titlebar = new Ext.TitleBar({
-			docked : 'top',			
-			title : 'Log in',
-			height : 50
-		});		
-		
-		
-		this.submitHandler = function(response){
-			var frm = Ext.getCmp('loginFormPanel');
-			var values = frm.getValues();			
-			if(self.username.getValue()!='' && self.password.getValue()!=''){
-				Ext.Ajax.request({
-					url: self.baseUrl + 'carparking/j_spring_security_check',
-		            method: 'POST',
-		            params: frm.getValues(),
-		            scope: this,
-		            success: function(response){
-		            	if(response) {
-		            		var result = Ext.decode(response.responseText);	
-			            	if(result && result.success) {			            		
-				            	carparking.unprotected.Cookies.set('username', self.username.getValue());		
-				            	carparking.unprotected.Cookies.set('password', self.password.getValue());
-				            	window.location = "carparking/index.html"		            		
-			            	} else {
-			            		self.msg.setHtml('Invalid username or password');
-			            		self.msg.show();		            		  
-			            	}
-		            	} else {
-		            		self.msg.setHtml('Invalid username or password');
-		            		self.msg.show();		            		  
-		            	}		            	
-		            },
-		            failure : function(){
-		            	self.msg.setHtml('Application not available');
-	            		self.msg.show();		            	  
-		            }
-		       	 })
-			} else {
-				self.msg.setHtml('Enter Username and password to login');
-        		self.msg.show();			
-			}			
-		};
-		
-		this.form = Ext.create('Ext.form.Panel', {
-			fullscreen : true,
-			id : 'loginFormPanel',		
-			layout : {	
-				type : 'vbox',
-    			align : 'center',
-    			pack : 'center'
-    		},	
-    		scrollable : true,			
-			method : 'POST',
-			items : [self.titlebar, self.imageContainer, self.fieldsContainer, self.toolbar]
-		});			
-	}
-}); 
+	})
 </script>
+
+
 </head>
 <body>
-<div id="appLoadingIndicator">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+	<div class="container">
+		<div class="wrapper">
+			<form id ="loginForm"  name="Login_Form" class="form-signin">
+				<h3 class="form-signin-heading">Login</h3>
+				<hr class="colorgraph">
+				<br> <input type="text" class="form-control" id = "username" name="username" placeholder="Username" required="" autofocus="" /> 
+					<input id = "password" type="password" class="form-control" name="password"	placeholder="Password" required="" />
+				<div id="msg" class="msg"></div>
+				<button type="submit" id = "submitBtn" class="btn btn-lg btn-primary btn-block" >Login</button>
+			</form>
+		</div>
+	</div>
 </body>
 </html>
