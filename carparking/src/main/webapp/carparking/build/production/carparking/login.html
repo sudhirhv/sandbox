@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SOBIS Intranet</title>
 
-<!-- Bootstrap framework -->
-<link rel="stylesheet" href="carparking/unprotected/bootstrap.min.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <!-- main styles -->
 <link rel="stylesheet" href="carparking/unprotected/style.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 
 <script>
@@ -66,9 +66,9 @@
 	<div class="container">
 		<div class="wrapper">
 			<form id ="loginForm"  name="Login_Form" class="form-signin">
-				<h3 class="form-signin-heading">Login</h3>
-				<hr class="colorgraph">
-				<br> <input type="text" class="form-control" id = "username" name="username" placeholder="Username" required="" autofocus="" /> 
+				<!-- <h3 class="form-signin-heading">Login</h3> -->
+				<div class="sobisLogo" style = "height: 75px !important;"></div>
+				<br> <input type="text" class="form-control" id = "username" name="username" placeholder="Username" autocorrect="off" autocapitalize="off" required="" autofocus="" /> 
 					<input id = "password" type="password" class="form-control" name="password"	placeholder="Password" required="" />
 				<div id="msg" class="msg"></div>
 				<button type="submit" id = "submitBtn" class="btn btn-lg btn-primary btn-block" >Login</button>
